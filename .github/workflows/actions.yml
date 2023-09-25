@@ -24,4 +24,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./.vitepress/dist
           force_orphan: true
+          cname: docs.protomaps.com
 
