@@ -14,7 +14,6 @@ OpenStreetMap layers documentation.
 
 ## buildings
 
-<MaplibreMap/>
 
 Buildings from OpenStreetMap.
 
@@ -34,6 +33,8 @@ Buildings from OpenStreetMap.
 `kind`
 
 ## natural
+
+<MaplibreMap/>
 
 ## physical_line
 

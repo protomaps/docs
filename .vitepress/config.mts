@@ -14,7 +14,7 @@ export default defineConfig({
     sidebar: [
       {
         text: 'Examples',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
@@ -22,7 +22,7 @@ export default defineConfig({
       },
       {
         text: 'PMTiles',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: 'Creating PMTiles', link: '/pmtiles/create' },
           { text: 'Cloud Storage', link: '/markdown-examples' }
@@ -30,7 +30,7 @@ export default defineConfig({
       },
       {
         text: 'PMTiles in the browser',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: '', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
@@ -38,7 +38,7 @@ export default defineConfig({
       },
       {
         text: 'Accelerating PMTiles',
-        collapsed: false,
+        collapsed: true,
         items: [
           { text: 'AWS', link: '/pmtiles/create' },
           { text: 'Cloudflare', link: '/markdown-examples' },
