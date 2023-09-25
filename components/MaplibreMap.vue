@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Map } from "maplibre-gl";
+import maplibregl from "maplibre-gl";
 import { ref, onMounted } from "vue";
 
 const map = ref(null);
 
 onMounted(() => {
-  new Map({
+  new maplibregl.Map({
     container: map.value,
     style: "https://demotiles.maplibre.org/style.json"
   });
