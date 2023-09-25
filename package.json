@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:build_ghpages": "vitepress build --base=/docs/",
-    "docs:preview": "vitepress preview"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "maplibre-gl": "^3.3.1",

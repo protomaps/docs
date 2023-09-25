@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 18.x
           cache: 'npm'
-      - run: npm install && npm run docs:build_ghpages
+      - run: npm install && npm run build
       - uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
