@@ -1,10 +1,20 @@
+<script setup>
+  import MaplibreMap from '../components/MaplibreMap.vue'
+</script>
+
 # Layers
+
+OpenStreetMap layers documentation.
+
+<MaplibreMap/>
 
 ## boundaries
 
 `kind`
 
 ## buildings
+
+<MaplibreMap/>
 
 Buildings from OpenStreetMap.
 
