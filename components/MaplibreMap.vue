@@ -41,6 +41,7 @@ onMounted(() => {
   map = new maplibregl.Map({
     container: mapRef.value,
     style: style(),
+    cooperativeGestures: true,
   });
 });
 
