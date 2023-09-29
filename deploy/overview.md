@@ -2,7 +2,7 @@
 
 ## Comparison
 
-| feature | static pmtiles | Cloudflare |  AWS | [Caddy]() | `pmtiles serve` |
+| feature | static pmtiles | Cloudflare |  AWS | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
 | - | - | :-| -: | - | - | 
 | Z/X/Y compatible | | ✅ | ✅ |✅ | ✅ |
 |  edge caching | |  ✅ |  ✅ |   With CDN | With CDN |

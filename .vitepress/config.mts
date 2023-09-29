@@ -50,7 +50,7 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Basemaps',
+        text: 'OSM Basemaps',
         collapsed: true,
         items: [
           { text: 'Downloads', link: '/basemaps/downloads' },
