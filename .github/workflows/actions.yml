@@ -1,4 +1,4 @@
-name: publish
+name: ci
 on:
   push:
     branches: [ main ]
@@ -18,11 +18,3 @@ jobs:
           node-version: 18.x
           cache: 'npm'
       - run: npm install && npm run prettier-check && npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.vitepress/dist
-          force_orphan: true
-          cname: docs.protomaps.com
-
