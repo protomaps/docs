@@ -34,7 +34,7 @@ export default defineConfig({
         text: 'PMTiles in the browser',
         collapsed: true,
         items: [
-          { text: 'MapLibre GL JS', link: '/pmtiles/maplibre' },
+          { text: 'MapLibre GL', link: '/pmtiles/maplibre' },
           { text: 'Leaflet', link: '/pmtiles/leaflet' },
           { text: 'OpenLayers', link: '/pmtiles/openlayers' },
         ]
@@ -64,7 +64,9 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/protomaps' }
+      { icon: 'github', link: 'https://github.com/protomaps' },
+      { icon: 'mastodon', link: 'https://mapstodon.space/@protomaps' },
+      { icon: 'twitter', link: 'https://twitter.com/protomaps' },
     ],
 
     search: {
