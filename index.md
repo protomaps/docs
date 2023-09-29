@@ -8,11 +8,11 @@ hero:
   tagline: My great project tagline
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: What is Protomaps?
+      link: /guide/what-is-protomaps
     - theme: alt
-      text: OpenStreetMap Basemaps
-      link: /basemaps/start
+      text: Getting Started
+      link: /guide/getting-started
 
 features:
   - title: Feature A
