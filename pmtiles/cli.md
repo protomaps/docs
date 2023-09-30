@@ -8,3 +8,25 @@ outline: deep
 </script>
 
 # {{ frontmatter.title }}
+
+## CLI Overview
+
+### Buckets
+
+### Remote archives
+
+## show
+
+## tile
+
+## verify
+
+## extract
+
+## serve
+
+## upload
+
+## convert
+
+## version
