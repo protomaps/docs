@@ -59,7 +59,7 @@ For the cache to work, the worker must be assigned a zone on your own domain, no
 
 1. In Websites > your domain > DNS, Add a CNAME entry pointing to your `workers.dev` domain:
 
-![cloudflare 1](/images/cloudflare_1.png) 
+(image)
 
 2. In Websites > your domain > Workers Routes, Choose **Add Route**.
 
@@ -67,7 +67,7 @@ For the cache to work, the worker must be assigned a zone on your own domain, no
 
   * for **Service**, choose the name of your Worker. for **Environment**, choose `production`.
 
-![cloudflare 2](/images/cloudflare_2.png)
+(image)
 
 Verify your deployment is working on `SUBDOMAIN.mydomain.com` by checking for the `Cf-Cache-Status` header with a value of `HIT` on tile requests. This may take 2-3 attempts.
 

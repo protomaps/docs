@@ -177,7 +177,7 @@ GitHub pages supports repositories up to [1 GB](https://docs.github.com/en/pages
 
 ## Next steps
 
-* [Accelerate your maps and serve from private buckets with CDN integration](/docs/cdn).
-* Learn how to customize your map's [Basemap Layers](/docs/frontends/basemap-layers).
+* [Accelerate your maps and serve from private buckets with CDN integration](/deploy/).
+* Learn how to customize your map's [Basemap Layers](/basemaps/layers).
 
 

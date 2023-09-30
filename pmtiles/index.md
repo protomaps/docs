@@ -9,7 +9,6 @@ outline: deep
 
 # {{ frontmatter.title }}
 
-
 PMTiles is a single-file archive format for pyramids of tiled data. A PMTiles archive can be hosted on a storage platform like S3, and enables low-cost, zero-maintenance map applications.
 
 ## Concepts
@@ -42,7 +41,7 @@ Examples and source code for `pmtiles` are in the README for [go-pmtiles](https:
 
 PMTiles is designed for being read directly in web browsers in conjunction with a JavaScript map library.
 
-See the docs on viewing PMTiles in [Leaflet](/docs/frontends/leaflet), [MapLibre GL JS](/docs/frontends/maplibre) and [OpenLayers](/docs/frontends/openlayers).
+See the docs on viewing PMTiles in [Leaflet](/pmtiles/leaflet), [MapLibre GL JS](/pmtiles/maplibre) and [OpenLayers](/pmtiles/openlayers).
 
 ### Python
 
@@ -58,8 +57,7 @@ Documentation is available on [GitHub](https://github.com/protomaps/PMTiles/tree
 
 We'll focus on a small area of Berkeley, CA, but you can follow these instructions for any area. Use the search box and the rectangle or polygon tool to draw the area you're interested in:
 
-
-![step 1](/images/BundleStep1.png)
+(image)
 
 ### 2. Serve your file locally
 
@@ -76,7 +74,7 @@ You can also use the HTTP server built into your frontend framework, usually by 
 
 ### 3. Display the tiles in a map frontend
 
-See the [Leaflet](/docs/frontends/leaflet) or [MapLibre](/docs/frontends/maplibre) documentation for how to load the PMTiles into a map rendering frontend library.
+See the [Leaflet](/pmtiles/leaflet) or [MapLibre](/pmtiles/maplibre) documentation for how to load the PMTiles into a map rendering frontend library.
 
 ## With your own data
 
@@ -114,9 +112,9 @@ tippecanoe -zg --projection=EPSG:4326 -o cb_2018_us_zcta510_500k_nolimit.pmtiles
 
 ## Next steps
 
-* [Deploy your tileset to the Internet via Cloud Storage](/docs/pmtiles/cloud-storage).
+* [Deploy your tileset to the Internet via Cloud Storage](/pmtiles/cloud-storage).
 
 * [Edit OpenStreetMap](https://openstreetmap.org) and download basemaps to get new data. Your improvements to the map are available for anyone!
 
-* Learn how to customize your map's [Basemap Layers](/docs/frontends/basemap-layers).
+* Learn how to customize your map's [Basemap Layers](/basemaps/layers).
 

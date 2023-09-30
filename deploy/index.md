@@ -42,8 +42,8 @@ A CDN deployment of Protomaps has three parts:
 
 ## Next steps
 
-* [Deploy Protomaps on Cloudflare.](/docs/cdn/cloudflare)
-* [Deploy Protomaps on AWS.](/docs/cdn/aws)
+* [Deploy Protomaps on Cloudflare.](/deploy/cloudflare)
+* [Deploy Protomaps on AWS.](/deploy/aws)
 
 
 
