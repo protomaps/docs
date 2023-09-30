@@ -1,4 +1,13 @@
-# Run a Tile Server
+---
+title: Set up a Server
+outline: deep
+---
+<script setup>
+  import { useData } from 'vitepress'
+  const { frontmatter } = useData()
+</script>
+
+# {{ frontmatter.title }}
 
 ## Bucket URLs
 

@@ -9,7 +9,8 @@ export default defineConfig({
     logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Guide', link: '/guide/what-is-protomaps' }
+      { text: 'Guides', link: '/guide/what-is-protomaps' },
+      { text: 'protomaps.com', link: 'https://protomaps.com' }
     ],
     sidebar: [
       {
@@ -24,7 +25,7 @@ export default defineConfig({
         text: 'PMTiles',
         collapsed: true,
         items: [
-          { text: 'Concepts', link: '/pmtiles/overview' },
+          { text: 'Concepts', link: '/pmtiles/' },
           { text: 'Creating PMTiles', link: '/pmtiles/create' },
           { text: 'Cloud Storage', link: '/pmtiles/cloud-storage' },
           { text: 'pmtiles CLI', link: '/pmtiles/cli' }
@@ -43,10 +44,10 @@ export default defineConfig({
         text: 'Accelerating PMTiles',
         collapsed: true,
         items: [
-          { text: 'Overview', link: '/deploy/overview' },
+          { text: 'Overview', link: '/deploy/' },
           { text: 'AWS', link: '/deploy/aws' },
           { text: 'Cloudflare', link: '/deploy/cloudflare' },
-          { text: 'Tileserver', link: '/deploy/server' }
+          { text: 'Server (Caddy)', link: '/deploy/server' }
         ]
       },
       {

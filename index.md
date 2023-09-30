@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Protomaps Docs"
   text: "Under Construction"
-  tagline: My great project tagline
+  tagline: Technical documentation for the open source Protomaps ecosystem
   actions:
     - theme: brand
       text: What is Protomaps?
