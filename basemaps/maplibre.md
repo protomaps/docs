@@ -2,12 +2,8 @@
 title: Basemaps for MapLibre
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# Basemaps for MapLibre
 
 
 The `protomaps-themes-base` NPM module contains basemap layer definitions compatible with OpenStreetMap downloads from Protomaps.

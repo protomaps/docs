@@ -2,12 +2,8 @@
 title: PMTiles Concepts
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# PMTiles Concepts
 
 PMTiles is a single-file archive format for pyramids of tiled data. A PMTiles archive can be hosted on a storage platform like S3, and enables low-cost, zero-maintenance map applications.
 

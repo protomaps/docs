@@ -1,13 +1,9 @@
 ---
-title: MapLibre GL
+title: PMTiles for MapLibre GL
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# PMTiles for MapLibre GL
 
 ## Installation
 

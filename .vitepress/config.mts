@@ -10,7 +10,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Guides', link: '/guide/what-is-protomaps' },
-      { text: 'protomaps.com', link: 'https://protomaps.com' }
+      { text: 'protomaps.com', link: 'https://protomaps.com' },
+      { text: 'Sponsor on GitHub', link: 'https://github.com/sponsors/protomaps' }
     ],
     sidebar: [
       {
@@ -72,6 +73,11 @@ export default defineConfig({
 
     search: {
       provider: 'local'
+    },
+
+    footer: {
+      message: 'An open source mapping system released under the BSD and ODbL licenses.',
+      copyright: '© 2019-present Protomaps LLC'
     }
   }
 })

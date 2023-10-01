@@ -1,15 +1,9 @@
 ---
-title: OpenLayers
+title: PMTiles for OpenLayers
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
-
-# OpenLayers
+# PMTiles for OpenLayers
 
 See [the openlayers/ directory](https://github.com/protomaps/PMTiles/tree/main/openlayers) in the PMTiles repository for using PMTiles with OpenLayers.
 

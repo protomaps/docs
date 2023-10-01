@@ -2,12 +2,8 @@
 title: Cloud Storage for PMTiles
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# Cloud Storage for PMTiles
 
 ## Concepts
 

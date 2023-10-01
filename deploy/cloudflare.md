@@ -2,12 +2,8 @@
 title: Cloudflare Integration
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# Cloudflare Integration
 
 ## Installation
 

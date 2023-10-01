@@ -2,12 +2,8 @@
 title: pmtiles CLI
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# pmtiles CLI
 
 ## CLI Overview
 

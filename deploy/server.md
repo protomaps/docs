@@ -2,12 +2,8 @@
 title: Set up a Server
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# Set up a Server
 
 PMTiles has first-class integration with [Caddy](https://caddyserver.com), a production-grade, dependency-free web server with [automatic HTTPS](https://caddyserver.com/docs/quick-starts/https). The Caddy plugin can serve buckets of archives from private S3-compatible storage, Azure, Google Cloud, public HTTP endpoints, and the filesystem.
 

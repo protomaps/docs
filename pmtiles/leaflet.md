@@ -1,10 +1,6 @@
 ---
-title: Leaflet
+title: PMTiles for Leaflet
 outline: deep
 ---
-<script setup>
-  import { useData } from 'vitepress'
-  const { frontmatter } = useData()
-</script>
 
-# {{ frontmatter.title }}
+# PMTiles for Leaflet
