@@ -1,29 +1,26 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
-
-hero:
-  name: "Protomaps Docs"
-  text: "Under Construction"
-  tagline: Technical documentation for the open source Protomaps ecosystem
-  actions:
-    - theme: brand
-      text: What is Protomaps?
-      link: /guide/what-is-protomaps
-    - theme: alt
-      text: Getting Started
-      link: /guide/getting-started
-
-features:
-  - title: Simple deployment
-    details: A serverless deployment using static single-files.
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+title: Protomaps Documentation
+outline: deep
 ---
+
+<script setup>
+  import MaplibreMap from './components/MaplibreMap.vue'
+</script>
+
+# Protomaps
+
+Protomaps is an open source system for interactive web maps, like this one:
+
+<MaplibreMap/>
+
+There are three major parts of Protomaps:
+
+* **PMTiles**, an open archive format for pyramids of tile data, accessible via [HTTP Range Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests).
+* An **ecosystem of tools and libraries** for creating, serving and manipulating PMTiles.
+* A **cartographic "basemap"** showing features in the world like roads, water bodies and labels, based on the OpenStreetMap dataset, and delivered as one big PMTiles archive.
+
+Each of these parts has a corresponding section in the documentation.
+
+If it's your first time trying Protomaps, the [Getting Started](/guide/getting-started) guide will demonstrate all parts of the system.
+
 

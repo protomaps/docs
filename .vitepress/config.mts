@@ -9,7 +9,7 @@ export default defineConfig({
     logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Guides', link: '/guide/what-is-protomaps' },
+      { text: 'Guides', link: '/' },
       { text: 'protomaps.com', link: 'https://protomaps.com' },
       { text: 'Sponsor on GitHub', link: 'https://github.com/sponsors/protomaps' }
     ],
@@ -18,7 +18,7 @@ export default defineConfig({
         text: 'Introduction',
         collapsed: true,
         items: [
-          { text: 'What is Protomaps?', link: '/guide/what-is-protomaps' },
+          { text: 'What is Protomaps?', link: '/' },
           { text: 'Getting Started', link: '/guide/getting-started' }
         ]
       },
