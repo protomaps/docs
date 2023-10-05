@@ -27,8 +27,7 @@ These installation guides should take **less than one hour** to deploy.
 
 * **Backwards compatibility** with existing map clients that use Z/X/Y map URLs.
 
-* **Affordable costs at scale.** There are no servers to maintain, and you pay nothing if there's no traffic.
-
+* **Affordable costs at scale.** There are no servers to maintain for AWS and Cloudflare deployments, and you pay nothing if there's no traffic.
 
 ## Components
 
@@ -42,10 +41,9 @@ A CDN deployment of Protomaps has three parts:
 
 ## Next steps
 
-* [Deploy Protomaps on Cloudflare.](/deploy/cloudflare)
-* [Deploy Protomaps on AWS.](/deploy/aws)
-
-
+* [Deploy PMTiles on Cloudflare.](/deploy/cloudflare)
+* [Deploy PMTiles on AWS.](/deploy/aws)
+* [Deploy PMTiles with the Caddy web server.](/deploy/server)
 
 ## Comparison
 
