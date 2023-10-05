@@ -23,7 +23,9 @@ rclone copyto my-filename my-configuration:my-bucket/my-folder/my-filename.pmtil
 
 * The [aws command-line tool](https://aws.amazon.com/cli/) can be used for uploads, as well as setting CORS configuration on any S3-compatible platform.
 
+::: info
 Storage services usually bill by number of GET requests and the total number of bytes stored. It's important to understand these costs when hosting PMTiles, as each `Range` tile request will count as a GET.
+:::
 
 ## Recommended Platforms
 
@@ -168,6 +170,8 @@ GitHub pages supports repositories up to [1 GB](https://docs.github.com/en/pages
 ### HTTP Servers
 
 * [**Caddy**](https://caddyserver.com) is highly recommended for serving PMTiles because of its built-in HTTPS support. Use the `file_server` configuration to serve `.pmtiles` from a static directory.
+
+As an alternative, consider using the [`pmtiles_proxy` plugin for Caddy](/deploy/server).
 
 * **Nginx** supports HTTP Range Requests. CORS headers should be set by configuration files.
 
