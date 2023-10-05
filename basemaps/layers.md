@@ -10,6 +10,10 @@ outline: deep
 
 OpenStreetMap layers documentation.
 
+::: warning
+This section is under construction.
+:::
+
 <MaplibreMap/>
 
 ## boundaries
