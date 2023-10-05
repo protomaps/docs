@@ -12,6 +12,8 @@ OpenStreetMap layers documentation.
 
 ::: warning
 This section is under construction.
+
+For the previous version of the layers, see [Layers Version 2](/basemaps/layers_v2)
 :::
 
 <MaplibreMap/>
