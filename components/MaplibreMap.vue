@@ -8,7 +8,6 @@ const { isDark } = useData();
 
 const mapRef = ref(null);
 var map;
-var id = 0;
 
 const style = () => {
   return {
@@ -26,14 +25,7 @@ const style = () => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", isDark.value ? "dark" : "light").concat([
-      {
-        type: "fill",
-        source: "protomaps",
-        id: "" + id++,
-        "source-layer": "none",
-      },
-    ]),
+    layers: layers("protomaps", isDark.value ? "dark" : "light")
   };
 };
 
