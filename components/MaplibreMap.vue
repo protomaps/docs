@@ -25,7 +25,7 @@ const style = () => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", isDark.value ? "dark" : "light")
+    layers: layers("protomaps", isDark.value ? "dark" : "light"),
   };
 };
 

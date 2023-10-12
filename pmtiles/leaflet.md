@@ -7,7 +7,7 @@ outline: deep
 
 ## Why use Leaflet?
 
-[Leaflet.js](https://leafletjs.com) is the simplest full-featured map library for web browsers, with a wide range of [plugins](https://leafletjs.com/plugins.html). If you're looking for a WebGL-powered library with a smooth-zooming experience like Google or Apple Maps, check out [MapLibre GL](/docs/frontends/maplibre).
+[Leaflet.js](https://leafletjs.com) is the simplest full-featured map library for web browsers, with a wide range of [plugins](https://leafletjs.com/plugins.html). If you're looking for a WebGL-powered library with a smooth-zooming experience like Google or Apple Maps, check out [MapLibre GL](/pmtiles/maplibre).
 
 
 ## Raster PMTiles
@@ -40,13 +40,13 @@ The simplest way to include a map in your application via script includes tag:
 </script>
 ```
 
-By default, this will assume the set of basemap layers described at [Basemap Layers](/docs/frontends/basemap-layers), so you should see a map that looks like this:
+By default, this will assume the set of basemap layers described at [Basemap Layers](/basemaps/layers), so you should see a map that looks like this:
 
 ![detroit](https://protomaps.github.io/protomaps-leaflet/benchmark/example_1.png)
 
 ## Custom Vector Data
 
-If you're bringing your own data created with a tool like [tippecanoe](/docs/pmtiles#tippecanoe), you'll need to write your own **Paint Rules** and **Label Rules** to visualize your tiles. You can re-use common visualization patterns with custom **Symbolizers**.
+If you're bringing your own data created with a tool like [tippecanoe](/pmtiles/create), you'll need to write your own **Paint Rules** and **Label Rules** to visualize your tiles. You can re-use common visualization patterns with custom **Symbolizers**.
 
 ### My first rule
 
