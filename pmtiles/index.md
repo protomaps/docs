@@ -25,6 +25,19 @@ The Viewer is a browser-based tool for visualizing PMTiles on a map, inspecting 
 
 You can access the Viewer at [protomaps.github.io/PMTiles/](https://protomaps.github.io/PMTiles/).
 
+### Serving files locally
+
+You can use any local HTTP server that supports Range Requests to serve files locally. the npm package `http-server` is a popular one:
+
+```sh
+npm install -g http-server
+# from the directory containing your .pmtiles file
+http-server . --cors
+# your file is now available at http://localhost:8080/
+```
+
+You can also use the HTTP server built into frontend frameworks, usually by placing the .pmtiles file into the `/public` folder.
+
 ### pmtiles command line tool
 
 See the [pmtiles cli](/pmtiles/cli).
