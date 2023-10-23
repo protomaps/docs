@@ -11,7 +11,11 @@ The **Protomaps Basemap** is a general purpose vector *base map* - city labels, 
 
 ## Current Version
 
-The current version is `protomaps-basemap-opensource-20230408.pmtiles`
+The Version 3 Protomaps basemap daily build channel is available at [maps.protomaps.com/builds](https://maps.protomaps.com/builds).
+
+## Previous Version
+
+The version 2 basemap is `protomaps-basemap-opensource-20230408.pmtiles`
 
 You can download the planet archive at this link:
 
