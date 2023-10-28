@@ -56,3 +56,8 @@ See the docs on viewing PMTiles in [Leaflet](/pmtiles/leaflet), [MapLibre GL JS]
 The Python `pmtiles` package should be considered beta status.
 :::
 
+## Other Languages
+
+These libraries are maintained by other individuals and organizations.
+
+* Dart: [pub.dev/packages/pmtiles](https://pub.dev/packages/pmtiles)
