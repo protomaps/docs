@@ -18,7 +18,7 @@ import layers from 'protomaps-themes-base';
 ```js
 style: {
     version:8,
-    glyphs:'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
+    glyphs:'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
     sources: {
         "protomaps": {
             type: "vector",
@@ -36,4 +36,12 @@ the default export from `protomaps-themes-base` is a function that takes 2 argum
 * the source name of the basemap.
 
 * the theme, one of `light`, `dark`, `white`, `black`, `grayscale` or `debug`.
+
+## Fonts
+
+The fonts referenced by the `glyphs` style key can be downloaded as a ZIP at the [basemaps-assets](http://github.com/protomaps/basemaps-assets) GitHub repository.
+
+Valid font names are: `Noto Sans Regular`, `Noto Sans Medium`, `Noto Sans Italic`
+
+Prior to version 2.0.0-alpha.3, the Glyphs URL was `https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf`.
 
