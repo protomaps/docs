@@ -3,6 +3,19 @@ title: Getting Started
 outline: deep
 ---
 
+<script setup>
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yyyy = yesterday.getFullYear();
+  let mm = yesterday.getMonth() + 1; // Months start at 0!
+  let dd = yesterday.getDate();
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+  const dateNoDashes = `${yyyy}${mm}${dd}`;
+  const dateDashes = `${yyyy}-${mm}-${dd}`;
+</script>
+
 # Getting Started
 
 ## 1. Install the CLI
@@ -15,13 +28,13 @@ Go to [maps.protomaps.com/builds](https://maps.protomaps.com/builds/) and find a
 
 Use the pmtiles CLI to inspect that archive:
 
-```bash
-pmtiles show https://build.protomaps.com/20231001.pmtiles
+```bash-vue
+pmtiles show https://build.protomaps.com/{{ dateNoDashes }}.pmtiles
 ```
 
-```
+```txt-vue
 ...
-planetiler:osm:osmosisreplicationtime 2023-10-01T05:00:00Z
+planetiler:osm:osmosisreplicationtime {{ dateDashes }}T05:00:00Z
 ...
 ```
 
@@ -31,8 +44,8 @@ The above metadata shows that the file contains [OpenStreetMap](http://openstree
 
 We can now create a subset of the planet file, `my_area.pmtiles`, with just tiles matching the bounding box `4.742883,51.830755,5.552837,52.256198` centered around Utrecht, Netherlands.
 
-```
-pmtiles extract https://build.protomaps.com/20231001.pmtiles my_area.pmtiles --bbox=4.742883,51.830755,5.552837,52.256198
+```bash-vue
+pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles my_area.pmtiles --bbox=4.742883,51.830755,5.552837,52.256198
 ```
 
 ## 4. View the basemap
