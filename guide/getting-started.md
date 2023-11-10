@@ -48,6 +48,8 @@ We can now create a subset of the planet file, `my_area.pmtiles`, with just tile
 pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles my_area.pmtiles --bbox=4.742883,51.830755,5.552837,52.256198
 ```
 
+> **Note:** You can find the bounding box of your own area, using tools, such as [http://bboxfinder.com/](http://bboxfinder.com/#51.830755,4.742883,52.256198,5.552837)
+
 ## 4. View the basemap
 
 [maps.protomaps.com](https://maps.protomaps.com) is a viewer for basemaps. Drag our file `my_area.pmtiles` onto the `Drop Zone` to view the map:
