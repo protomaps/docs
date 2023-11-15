@@ -84,14 +84,16 @@ S3 Policy for public reads:
 S3 CORS Configuration:
 
 ```json title="s3_cors.json"
-[
-    {
-        "AllowedHeaders": ["Range"],
-        "AllowedMethods": ["GET","HEAD"],
-        "AllowedOrigins": ["https://example.com"],
-        "ExposeHeaders": ["ETag"]
-    }
-]
+{
+  "CORSRules": [
+      {
+          "AllowedHeaders": ["Range"],
+          "AllowedMethods": ["GET","HEAD"],
+          "AllowedOrigins": ["https://example.com"],
+          "ExposeHeaders": ["ETag"]
+      }
+  ]
+}
 ```
 
 ### Google Cloud
