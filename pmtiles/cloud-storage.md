@@ -83,16 +83,20 @@ S3 Policy for public reads:
 
 S3 CORS Configuration:
 
+* Using the AWS interface:
+
 ```json title="s3_cors.json"
 [
     {
-        "AllowedHeaders": ["Range"],
-        "AllowedMethods": ["GET","HEAD"],
-        "AllowedOrigins": ["https://example.com"],
-        "ExposeHeaders": ["ETag"]
+      "origin": ["https://example.com"],
+      "method": ["GET","HEAD"],
+      "responseHeader": ["range","etag"],
+      "maxAgeSeconds": 300
     }
 ]
 ```
+
+* The CORS can also be set using `aws s3api put-bucket-cors --bucket MY_BUCKET --cors-configuration file:///home/user/cors_rules.json` using the JSON structure shown above for Cloudflare R2.
 
 ### Google Cloud
 
