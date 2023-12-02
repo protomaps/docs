@@ -39,9 +39,7 @@ pmtiles convert output.mbtiles output.pmtiles
 
 ## GDAL
 
-::: warning
-This section is under construction.
-:::
+GDAL has native support for PMTiles starting with version 3.8.0 (2023-11-13), see [gdal.org/drivers/vector/pmtiles](https://gdal.org/drivers/vector/pmtiles.html) for details.
 
 ## Other
 
