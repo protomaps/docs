@@ -2,6 +2,17 @@
 import { ref, computed } from "vue";
 
 const tileRequests = ref(10000000);
+
+const formattedRequests = computed({
+  get() {
+    return tileRequests.value.toLocaleString();
+  },
+
+  set(value) {
+    tileRequests.value = parseInt(value.replace(/,/g, ""), 10) || 0;
+  },
+});
+
 const tilesPerView = ref(16);
 const averageTileSizeKB = ref(100);
 const cacheHitRate = ref(0.5);
@@ -69,59 +80,62 @@ const cfShow = ref(false);
 <template>
   <div>
     <h3>Inputs</h3>
-    <div>
-      <input
-        type="range"
-        id="range"
-        min="0"
-        step="1000000"
-        v-model.number="tileRequests"
-        max="100000000"
-      />
-    </div>
-    <div><input v-model="tileRequests" />monthly tile requests</div>
-    <div>
-      one viewing session loads <input v-model.number="tilesPerView" />tiles
-    </div>
-    <div>
-      average tile size <input v-model.number="averageTileSizeKB" />kilobytes
-    </div>
-    <div><input v-model.number="cacheHitRate" />% CDN cache hit rate</div>
-    <div><input v-model.number="storedGB" /> gigabytes on cloud storage</div>
-  </div>
-  <br />
-  <div>
-    <div>
-      <strong>{{ tileRequests.toLocaleString() }}</strong> monthly tile requests
-    </div>
-    <div>
-      <strong>{{ mapViews.toLocaleString() }}</strong> monthly map viewer
-      sessions
-    </div>
-    <div>
-      <strong>{{ outgoingGB.toLocaleString() }} GB</strong> outgoing bandwidth
-      to Internet
+    <div class="well">
+      <div class="big">
+        <input v-model="formattedRequests" />monthly tile requests
+      </div>
+      <div>
+        <input
+          type="range"
+          id="range"
+          min="0"
+          step="1000000"
+          v-model.number="tileRequests"
+          max="100000000"
+        />
+      </div>
+      <div>
+        <strong>{{ mapViews.toLocaleString() }}</strong> monthly map viewer
+        sessions
+      </div>
+      <div>
+        (one viewing session loads <input v-model.number="tilesPerView" />tiles)
+      </div>
+      <div>
+        <strong>{{ outgoingGB.toLocaleString() }} GB</strong> outgoing bandwidth
+        to Internet
+      </div>
+      <div>
+        (average tile size
+        <input v-model.number="averageTileSizeKB" />kilobytes)
+      </div>
+      <div><input v-model.number="cacheHitRate" /> CDN cache hit rate</div>
+      <div><input v-model.number="storedGB" /> gigabytes on cloud storage</div>
     </div>
   </div>
   <div>
     <h3>Google Maps</h3>
-    <strong>{{ googleCost.toFixed(2) }} USD</strong> per month
+    <span class="cost">{{ googleCost.toFixed(2) }} USD per month</span>
     <div>
-      Reference:
+      (Reference:
       <a
         href="https://developers.google.com/maps/documentation/javascript/usage-and-billing"
         >SKU: Dynamic Maps</a
-      >
+      >)
     </div>
   </div>
-  <div>
+  <div class="highlight">
     <h3>Hosted Map API</h3>
-    <div><input v-model.number="hostedPerKViews" /> USD per 1,000 sessions</div>
-    <strong>{{ hostedCost.toFixed(2) }} USD</strong> per month
+    <span class="cost">{{ hostedCost.toFixed(2) }} USD per month</span>
+    <div>
+      (<input v-model.number="hostedPerKViews" /> USD per 1,000 sessions)
+    </div>
   </div>
-  <div>
+  <div class="highlight">
     <h3>Protomaps on AWS</h3>
-    <strong>{{ aws.total.toFixed(2) }} USD</strong> per month
+    <span class="cost"
+      ><strong>{{ aws.total.toFixed(2) }} USD</strong> per month</span
+    >
     <div class="showBreakdown" v-on:click="awsShow = !awsShow">
       {{ awsShow ? "Hide" : "Show" }} cost breakdown
     </div>
@@ -232,7 +246,9 @@ const cfShow = ref(false);
   </div>
   <div>
     <h3>Protomaps on Cloudflare</h3>
-    <strong>{{ cf.total.toFixed(2) }} USD</strong> per month
+    <span class="cost"
+      ><strong>{{ cf.total.toFixed(2) }} USD</strong> per month</span
+    >
     <div class="showBreakdown" v-on:click="cfShow = !cfShow">
       {{ cfShow ? "Hide" : "Show" }} cost breakdown
     </div>
@@ -315,7 +331,8 @@ const cfShow = ref(false);
 <style scoped>
 input {
   border: 1px solid #ccc;
-  width: 5rem;
+  width: 3rem;
+  margin-right: 0.5rem;
 }
 
 #range {
@@ -331,5 +348,25 @@ input {
   font-weight: 500;
   color: var(--vp-c-brand-1);
   text-decoration: underline;
+}
+
+.big,
+.big input {
+  font-size: 2rem;
+}
+
+.big input {
+  width: 15rem;
+}
+
+.well {
+  padding: 1rem;
+  background: var(--vp-sidebar-bg-color);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.cost {
+  font-size: 1.2rem;
 }
 </style>
