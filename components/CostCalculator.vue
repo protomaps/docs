@@ -1,35 +1,30 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-// inputs
 const tileRequests = ref(10000000);
 const tilesPerView = ref(16);
 const averageTileSizeKB = ref(100);
 const cacheHitRate = ref(0.5);
-const gbStored = ref(110);
+const storedGB = ref(110);
 
 const mapViews = computed(() => {
   return tileRequests.value / tilesPerView.value;
 });
 
-const hostedUsdPerKViews = ref(3);
+const hostedPerKViews = ref(3);
 
 const outgoingGB = computed(() => {
   return (tileRequests.value * averageTileSizeKB.value) / 1000 / 1000;
 });
 
-const formattedRequests = computed(() => tileRequests.value.toLocaleString());
-const formattedMapViews = computed(() => mapViews.value.toLocaleString());
-const formattedGB = computed(() => outgoingGB.value.toLocaleString());
-
-const formattedGoogleMaps = computed(() => {
+const googleCost = computed(() => {
   const v = mapViews.value;
-  if (v < 100000) return (v * 0.007).toLocaleString;
-  else return (100000 * 0.007 + (v - 100000) * 0.0056).toLocaleString();
+  if (v < 100000) return v * 0.007;
+  else return 100000 * 0.007 + (v - 100000) * 0.0056;
 });
 
-const formattedHosted = computed(() => {
-  return ((mapViews.value / 1000) * hostedUsdPerKViews.value).toLocaleString();
+const hostedCost = computed(() => {
+  return (mapViews.value / 1000) * hostedPerKViews.value;
 });
 
 const cf = computed(() => {
@@ -38,7 +33,7 @@ const cf = computed(() => {
     planCost: 5,
     storageRequestCost:
       (tileRequests.value / 1000 / 1000) * (1 - cacheHitRate.value) * 0.36,
-    storageCost: gbStored.value * 0.015,
+    storageCost: storedGB.value * 0.015,
   };
   obj.total =
     obj.workerInvocationCost + obj.planCost + obj.storageCost + obj.storageCost;
@@ -55,7 +50,7 @@ const aws = computed(() => {
       tileRequests.value * (1 - cacheHitRate.value) * 150 * 0.0000000067, // milliseconds, cost per 1ms on ARM
     s3GetObjectCost:
       (tileRequests.value / 1000) * (1 - cacheHitRate.value) * 0.0004,
-    s3StorageCost: 0.023 * gbStored.value,
+    s3StorageCost: 0.023 * storedGB.value,
   };
   obj.total =
     obj.cloudfrontGetRequestCost +
@@ -92,23 +87,25 @@ const cfShow = ref(false);
       average tile size <input v-model.number="averageTileSizeKB" />kilobytes
     </div>
     <div><input v-model.number="cacheHitRate" />% CDN cache hit rate</div>
-    <div><input v-model.number="gbStored" /> gigabytes on cloud storage</div>
+    <div><input v-model.number="storedGB" /> gigabytes on cloud storage</div>
   </div>
   <br />
   <div>
     <div>
-      <strong>{{ formattedRequests }}</strong> monthly tile requests
+      <strong>{{ tileRequests.toLocaleString() }}</strong> monthly tile requests
     </div>
     <div>
-      <strong>{{ formattedMapViews }}</strong> monthly map viewer sessions
+      <strong>{{ mapViews.toLocaleString() }}</strong> monthly map viewer
+      sessions
     </div>
     <div>
-      <strong>{{ formattedGB }} GB</strong> outgoing bandwidth to Internet
+      <strong>{{ outgoingGB.toLocaleString() }} GB</strong> outgoing bandwidth
+      to Internet
     </div>
   </div>
   <div>
     <h3>Google Maps</h3>
-    <strong>{{ formattedGoogleMaps }} USD</strong> per month
+    <strong>{{ googleCost.toFixed(2) }} USD</strong> per month
     <div>
       Reference:
       <a
@@ -119,10 +116,8 @@ const cfShow = ref(false);
   </div>
   <div>
     <h3>Hosted Map API</h3>
-    <div>
-      <input v-model.number="hostedUsdPerKViews" /> USD per 1,000 sessions
-    </div>
-    <strong>{{ formattedHosted }} USD</strong> per month
+    <div><input v-model.number="hostedPerKViews" /> USD per 1,000 sessions</div>
+    <strong>{{ hostedCost.toFixed(2) }} USD</strong> per month
   </div>
   <div>
     <h3>Protomaps on AWS</h3>
@@ -220,7 +215,7 @@ const cfShow = ref(false);
             <a href="https://aws.amazon.com/s3/pricing/"> 0.023 / GB </a>
           </td>
           <td></td>
-          <td>{{ gbStored }} GB</td>
+          <td>{{ storedGB }} GB</td>
           <td>{{ aws.s3StorageCost.toFixed(2) }}</td>
         </tr>
         <tr>
@@ -299,7 +294,7 @@ const cfShow = ref(false);
         <tr>
           <td>R2 Storage Costs</td>
           <td>0.015 / GB</td>
-          <td>{{ gbStored }} GB</td>
+          <td>{{ storedGB }} GB</td>
           <td></td>
           <td>{{ cf.storageCost.toFixed(2) }}</td>
         </tr>
