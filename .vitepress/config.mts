@@ -46,6 +46,7 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: 'Overview', link: '/deploy/' },
+          { text: 'Cost Calculator', link: '/deploy/cost' },
           { text: 'AWS', link: '/deploy/aws' },
           { text: 'Cloudflare', link: '/deploy/cloudflare' },
           { text: 'Server (Caddy)', link: '/deploy/server' }
