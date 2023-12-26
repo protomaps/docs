@@ -1,8 +1,9 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Protomaps Docs",
+  head: [["link", { rel: "icon", type: "image/png", href: "/favicon.png" }]],
   description: "Technical Documentation for Protomaps",
   cleanUrls: true,
   themeConfig: {
