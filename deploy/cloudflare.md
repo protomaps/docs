@@ -12,28 +12,38 @@ outline: deep
 Uploading via Web UI is limited to 300 MB.
 
 Use [rclone](https://rclone.org/downloads/) to upload larger PMTiles archives to R2.
+In order to use rclone you'll need to create an API key, and copy the "Access Key ID", "Secret Access Key" and the "Endpoints for S3 clients"
+running rclone can be done using docker so you wouldn't need to install anything locally.
+Run the following commands:
+1. `docker run --rm -i -v ~/workspace:/etc/rclone rclone/rclone config` and follow the on screen questions, note that the endpoint should be `https://<ACCOUNT_ID>.r2.cloudflarestorage.com/<BUCKET_NAME>`
+2. `docker run --rm -i -v ~/workspace:/config/rclone rclone/rclone copy /config/rclone/your.pmtiles <the name you gave the above rclone configurate):<FOLDER_INSIDE_THE_BEUCKET>
 
 Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/FILENAME/0/0/0.ext` for the archive `FILENAME.pmtiles`.
 
 ### 2. Create Worker with Web Console
 
-1. In the Workers tab of the Cloudflare dashboard, choose **Create a Service**.
+1. In the Workers left menu of the Cloudflare dashboard, choose **Create Worker**.
 
-2. Leave the default **HTTP handler** option.
+2. It will ask you to deply it first before you can edit the code, click **Deploy**
 
-3. in Settings for your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
+3. Paste in this code from: [index.js](https://protomaps.github.io/PMTiles/index.js).
+
+4. Leave the default **HTTP handler** option.
+
+5. Choose **Save and Deploy** and leave the code editing window.
+  
+6. Select the newly create worker from the workers list
+
+7. In Settings of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
 
   * Create variable with name `BUCKET` and select your R2 bucket from Step 1.
 
   * Choose **Save and Deploy**.
 
-4. in **Quick Edit**, paste in this code: [index.js](https://protomaps.github.io/PMTiles/index.js).
-
-  * Choose **Save and Deploy**.
 
 Your worker should now be active at its `*.workers.dev` domain. 
 
-Make a request for `/FILENAME/0/0/0.EXT` to verify tiles are served.
+Make a request for `<ACCOUNT_NAME>.workers.dev/<FOLDER>/<FILENAME>/0/0/0.pbf` to verify tiles are served.
 
 ### Alternative: Use Wrangler
 
