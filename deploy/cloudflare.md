@@ -42,7 +42,7 @@ Name your uploads to storage with the `.pmtiles` extension. Your tile requests t
 
 Your worker should now be active at its `*.workers.dev` domain. 
 
-Make a request for `<ACCOUNT_NAME>.workers.dev/<FOLDER>/<FILENAME>/0/0/0.pbf` to verify tiles are served.
+Make a request for `<ACCOUNT_NAME>.workers.dev/<FOLDER>/<FILENAME>/0/0/0.<mvt | pbf | png>` to verify tiles are served.
 
 ### Alternative: Use Wrangler
 
