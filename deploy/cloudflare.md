@@ -15,7 +15,7 @@ Use [rclone](https://rclone.org/downloads/) to upload larger PMTiles archives to
 In order to use rclone you'll need to create an API key. Copy the "Access Key ID", the "Secret Access Key" and the "Endpoints for S3 clients" from the API key creation screen.
 Run the following commands:
 1. `rclone config` and follow the on screen questions, note that the endpoint should be `https://<ACCOUNT_ID>.r2.cloudflarestorage.com/<BUCKET_NAME>`
-2. `rclone copy your.pmtiles <the name you gave the above rclone configuration):<FOLDER_INSIDE_THE_BEUCKET> to upload the file
+2. `rclone copy your.pmtiles <the name you gave the above rclone configuration>:<FOLDER_INSIDE_THE_BEUCKET> to upload the file
 
 Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/FILENAME/0/0/0.ext` for the archive `FILENAME.pmtiles`.
 
