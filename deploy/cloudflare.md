@@ -23,7 +23,7 @@ Name your uploads to storage with the `.pmtiles` extension. Your tile requests t
 
 1. In the Workers left menu of the Cloudflare dashboard, choose **Create Worker**.
 
-2. It will ask you to deply it first before you can edit the code, click **Deploy**
+2. It will ask you to deploy it first before you can edit the code, click **Deploy**
 
 3. Paste in this code from: [index.js](https://protomaps.github.io/PMTiles/index.js).
 
