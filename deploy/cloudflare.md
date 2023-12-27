@@ -17,7 +17,7 @@ Run the following commands:
 1. `rclone config` and follow the on screen questions, the endpoint should be something like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com/`
 2. `rclone copy your.pmtiles <the name you gave the above rclone configuration>:<BUCKET_NAME> to upload the file
 
-Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/FILENAME/0/0/0.ext` for the archive `FILENAME.pmtiles`.
+Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/FILENAME/0/0/0.<mvt | png>` for the archive `FILENAME.pmtiles`.
 
 * Note: in case of an issue with uploading to the root of the bucket you might want to try change the endpoint in the rclone config to have the bucket name at the end. This will probably create a folder in the bucket and you'll need to include that folder name in the URL of the tiles, before the file name.
 
@@ -44,7 +44,7 @@ Name your uploads to storage with the `.pmtiles` extension. Your tile requests t
 
 Your worker should now be active at its `*.workers.dev` domain. 
 
-Make a request for `<ACCOUNT_NAME>.workers.dev/<FOLDER>/<FILENAME>/0/0/0.<mvt | png>` to verify tiles are served.
+Make a request for `<ACCOUNT_NAME>.workers.dev/<FILENAME>/0/0/0.<mvt | png>` to verify tiles are served.
 
 ### Alternative: Use Wrangler
 
