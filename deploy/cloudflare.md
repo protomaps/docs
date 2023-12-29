@@ -12,33 +12,32 @@ outline: deep
 Uploading via Web UI is limited to 300 MB.
 
 Use [rclone](https://rclone.org/downloads/) to upload larger PMTiles archives to R2 (you can use the `rclone/rclone` docker image in order to avoid installation, the config is at `/etc/rclone` for mounting). 
-In order to use rclone you'll need to create an API key. Copy the "Access Key ID", the "Secret Access Key" and the "Endpoints for S3 clients" from the API key creation screen.
+This requires a token from **R2 > Manage R2 API Tokens**. Note **Access Key ID**, the **Secret Access Key** and the **Endpoint for S3 Clients** from the API key creation screen.
 Run the following commands:
-1. `rclone config` and follow the on screen questions, the endpoint should be something like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com/`
-2. `rclone copy your.pmtiles <the name you gave the above rclone configuration>:<BUCKET_NAME> --s3-no-check-bucket` to upload the file to the root of the bucket
+1. `rclone config` and follow the on screen questions, the endpoint should look like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
+2. `rclone copyto <FILE> <rclone configuration name>:<BUCKET_NAME>/<FILE> --progress --s3-no-check-bucket --s3-chunk-size=256M` to upload to the root of the bucket.
 
-Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/FILENAME/0/0/0.<mvt | png>` for the archive `FILENAME.pmtiles`.
+Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` for the archive `NAME.pmtiles`.
 
 ### 2. Create Worker with Web Console
 
 1. In the Workers left menu of the Cloudflare dashboard, choose **Create Worker**.
 
-2. It will ask you to deploy it first before you can edit the code, click **Deploy**
+2. It will ask you to deploy it first before you can edit the code, click **Deploy**.
 
-3. Paste in this code from: [index.js](https://protomaps.github.io/PMTiles/index.js).
+3. **Edit Code** and paste the bundled [index.js](https://protomaps.github.io/PMTiles/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
 
 4. Leave the default **HTTP handler** option.
 
 5. Choose **Save and Deploy** and leave the code editing window.
   
-6. Select the newly create worker from the workers list
+6. Select the newly created worker from the Workers list.
 
-7. In Settings of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
+7. In **Settings** of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
 
-  * Create variable with name `BUCKET` and select your R2 bucket from Step 1.
+  * Create a variable named `BUCKET` and select your R2 bucket from Step 1.
 
   * Choose **Save and Deploy**.
-
 
 Your worker should now be active at its `*.workers.dev` domain. 
 
@@ -101,7 +100,7 @@ Optional environment variables can be set set in `[vars]` of `wrangler.toml` or 
 ## Cost Estimate
 
 * Cloudflare Workers is [$5 USD per month](https://developers.cloudflare.com/workers/platform/pricing) with 10 million requests a month included, plus $0.50 per additional million.
-* [Cloudflare R2](https://blog.cloudflare.com/introducing-r2-object-storage/) incurs costs for storage, write requests and read requests. These will only happon on tile cache misses.
+* [Cloudflare R2](https://blog.cloudflare.com/introducing-r2-object-storage/) incurs costs for storage, write requests and read requests. These will only happen on tile cache misses. See the [Cost Calculator](./cost) for estimates based on usage.
 
 ## Cache Invalidation
 
