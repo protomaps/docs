@@ -26,6 +26,10 @@ pmtiles.leafletRasterLayer(p).addTo(map)
 
 Protomaps publishes a lightweight Leaflet plugin, [protomaps-leaflet](https://github.com/protomaps/protomaps-leaflet), that implements **vector drawing and text labels** built on the Canvas API and Web Fonts.
 
+:::warning
+Note: the protomaps-leaflet default style uses the Protomaps [Basemap tileset verson 2.](/basemaps/downloads)
+:::
+
 ## Vector Basemaps
 
 The simplest way to include a map in your application via script includes tag:
