@@ -17,6 +17,8 @@ The Version 3 Protomaps basemap daily build channel is available at [maps.protom
 
 The version 2 basemap is `protomaps-basemap-opensource-20230408.pmtiles`
 
+The [protomaps-leaflet](https://github.com/protomaps/protomaps-leaflet) Leaflet plugin currently uses this basemap version.
+
 You can download the planet archive at this link (⚠ file is over 100GB):
 
 [https://r2-public.protomaps.com/protomaps-sample-datasets/protomaps-basemap-opensource-20230408.pmtiles](https://r2-public.protomaps.com/protomaps-sample-datasets/protomaps-basemap-opensource-20230408.pmtiles)
