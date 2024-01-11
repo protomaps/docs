@@ -45,7 +45,7 @@ localhost:2019 {
     pmtiles_proxy {
       bucket https://example.com
       cache_size 256
-      public_hostname https://localhost:2019/tiles
+      public_url https://localhost:2019/tiles
     }
   }
 }
@@ -57,7 +57,7 @@ localhost:2019 {
   Examples:
   * `s3://my_bucket?region=auto&endpoint=https://1234.r2.cloudflarestorage.com`
 * `cache_size`: Cache size in MB for intermediate PMTiles headers and directories. Tile data and JSON metadata are not cached.
-* `public_hostname`: The hostname and path that appears in [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0). Required only if you need TileJSON responses. Must be the public hostname as it should appear to the browser, after traversing any proxies or CDNs.
+* `public_url`: The base URL and path that appears in [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0). Required only if you need TileJSON responses. Must be the public URL as it should appear to the browser, after traversing any proxies or CDNs.
 
 For a production-ready deployment, refer to the Caddy docs on [configuring SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) and [CORS headers](https://caddyserver.com/docs/caddyfile/directives/header).
 
