@@ -65,7 +65,12 @@ pmtiles extract INPUT.pmtiles OUTPUT.pmtiles --bbox=MIN_LON,MIN_LAT,MAX_LON,MAX_
 pmtiles extract INPUT.pmtiles OUTPUT.pmtiles --region=REGION.geojson
 ```
 
-Create a smaller archive from a larger archive.
+Create a smaller archive from a larger archive. The source archive may be local or remote. The source archive must be clustered.
+
+Options:
+
+* `--maxzoom`: Extract only a subset of zoom levels. Extracting a full sub-pyramid from 0 to `maxzoom` is always an efficient operation that makes minimal I/O or network requests to the source archive.
+* `--minzoom`: Extract only a partial sub-pyramid. This may require many more requests than leaving the default `--minzoom=0`. Because this removes overview zoom levels, it should only be used in specific situations.
 
 ### serve
 
