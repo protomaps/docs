@@ -13,6 +13,8 @@ The **Protomaps Basemap** is a general purpose vector *base map* - city labels, 
 
 The Version 3 Protomaps basemap daily build channel is available at [maps.protomaps.com/builds](https://maps.protomaps.com/builds).
 
+A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](https://beta.source.coop) at the [protomaps/openstreetmap](https://beta.source.coop/repositories/protomaps/openstreetmap/) repository. This mirrors the recent build only.
+
 ## Previous Version
 
 The version 2 basemap is `protomaps-basemap-opensource-20230408.pmtiles`
