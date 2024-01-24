@@ -15,6 +15,10 @@ The Version 3 Protomaps basemap daily build channel is available at [maps.protom
 
 A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](https://beta.source.coop) at the [protomaps/openstreetmap](https://beta.source.coop/repositories/protomaps/openstreetmap/) repository. This mirrors the recent build only.
 
+## Partial Downloads
+
+To download a cutout of a specific region, rather than the entire world map, see the CLI's [extract command](/pmtiles/cli#extract).
+
 ## Previous Version
 
 The version 2 basemap is `protomaps-basemap-opensource-20230408.pmtiles`
