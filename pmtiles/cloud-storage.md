@@ -42,10 +42,10 @@ Storage services usually bill by number of GET requests and the total number of 
   "CORSRules": [
     {
       "AllowedOrigins": ["https://example.com"],
-      "AllowedHeaders": ["range"],
       "AllowedMethods": ["GET","HEAD"],
-      "MaxAgeSeconds": 3000,
-      "ExposeHeaders": ["ETag"]
+      "AllowedHeaders": ["range","if-match"],
+      "ExposeHeaders": ["etag"],
+      "MaxAgeSeconds": 3000
     }
   ]
 }
@@ -88,10 +88,11 @@ S3 CORS Configuration:
 ```json title="s3_cors.json"
 [
     {
-      "origin": ["https://example.com"],
-      "method": ["GET","HEAD"],
-      "responseHeader": ["range","etag"],
-      "maxAgeSeconds": 300
+      "AllowedOrigins": ["https://example.com"],
+      "AllowedMethods": ["GET","HEAD"],
+      "AllowedHeaders": ["range","if-match"],
+      "ExposeHeaders": ["etag"],
+      "MaxAgeSeconds": 3000
     }
 ]
 ```
@@ -104,21 +105,30 @@ S3 CORS Configuration:
 
 * See the [Cloud Storage CORS documentation](https://cloud.google.com/storage/docs/cross-origin)
 
-* Install the [gsutil tool](https://cloud.google.com/storage/docs/gsutil_install) to set CORS headers
+#### CORS: Google Cloud Shell
 
-```json title="google_cloud_cors.json"
+```
+echo '[{"maxAgeSeconds": 300, "method": ["GET", "HEAD"], "origin": ["https://example.com"], "responseHeader": ["range","etag","if-match"]}]' > cors.json
+gsutil cors set gcors.json gs://my-bucket-name
+```
+
+#### CORS: gsutil tool
+
+Install the [gsutil tool](https://cloud.google.com/storage/docs/gsutil_install)
+
+```json title="cors.json"
 [
     {
       "origin": ["https://example.com"],
       "method": ["GET","HEAD"],
-      "responseHeader": ["range","etag"],
+      "responseHeader": ["range","etag","if-match"],
       "maxAgeSeconds": 300
     }
 ]
 ```
 
 ```bash
-gsutil cors set google_cloud_cors.json gs://my-bucket-name
+gsutil cors set gcors.json gs://my-bucket-name
 ```
 
 ### Microsoft Azure
@@ -128,7 +138,7 @@ gsutil cors set google_cloud_cors.json gs://my-bucket-name
 * Configuration through Web Portal
 
 * CORS Configuration - in left sidebar **Resource Sharing (CORS)**
-    * Set **Allowed Headers** to **Range**
+    * Set **Allowed Headers** to **range,if-match**
     * Set **Exposed Headers** to **range,accept-ranges,etag**
 
 ### DigitalOcean Spaces
@@ -137,7 +147,7 @@ gsutil cors set google_cloud_cors.json gs://my-bucket-name
 
 * CORS is configured via Web UI.
 
-* use S3Cmd config to expose `ETag` header
+* use S3Cmd config to expose `etag` header
 
 ### Backblaze B2
 
@@ -155,7 +165,7 @@ Sample CORS Configuration:
       "corsRuleName": "allowHeaders",
       "allowedOrigins": ["https://example.com"],
       "allowedOperations":["b2_download_file_by_name"],
-      "allowedHeaders": ["range"],
+      "allowedHeaders": ["range","if-match"],
       "maxAgeSeconds": 300
     }
 ]
@@ -174,6 +184,15 @@ GitHub pages supports repositories up to [1 GB](https://docs.github.com/en/pages
 ### HTTP Servers
 
 * [**Caddy**](https://caddyserver.com) is highly recommended for serving PMTiles because of its built-in HTTPS support. Use the `file_server` configuration to serve `.pmtiles` from a static directory.
+
+CORS configuration:
+
+```
+  Access-Control-Allow-Methods GET,HEAD
+  Access-Control-Expose-Headers ETag
+  Access-Control-Allow-Headers Range,If-Match
+  Access-Control-Allow-Origin http://example.com
+```
 
 As an alternative, consider using the [`pmtiles_proxy` plugin for Caddy](/deploy/server).
 
