@@ -185,6 +185,15 @@ GitHub pages supports repositories up to [1 GB](https://docs.github.com/en/pages
 
 * [**Caddy**](https://caddyserver.com) is highly recommended for serving PMTiles because of its built-in HTTPS support. Use the `file_server` configuration to serve `.pmtiles` from a static directory.
 
+CORS configuration:
+
+```
+  Access-Control-Allow-Methods GET,HEAD
+  Access-Control-Expose-Headers ETag
+  Access-Control-Allow-Headers Range,If-Match
+  Access-Control-Allow-Origin http://example.com
+```
+
 As an alternative, consider using the [`pmtiles_proxy` plugin for Caddy](/deploy/server).
 
 * **Nginx** supports HTTP Range Requests. CORS headers should be set by configuration files.
