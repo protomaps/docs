@@ -17,9 +17,9 @@ The base distribution of Leaflet only supports raster images for tiled data sour
 Add a raster PMTiles archive using the `pmtiles` library:
 
 ```js
-import * as pmtiles from 'pmtiles';
-const p = new pmtiles.PMTiles('https://example.com/data.pmtiles');
-pmtiles.leafletRasterLayer(p).addTo(map)
+import { PMTiles, leafletRasterLayer } from 'pmtiles';
+const p = new PMTiles('https://example.com/data.pmtiles');
+leafletRasterLayer(p).addTo(map)
 ````
 
 ## Vector: protomaps-leaflet

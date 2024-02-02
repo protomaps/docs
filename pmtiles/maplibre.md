@@ -16,11 +16,11 @@ npm install pmtiles
 ```
 
 ```js
-import * as pmtiles from "pmtiles";
+import { Protocol } from "pmtiles";
 ```
 
 ```js
-let protocol = new pmtiles.Protocol();
+let protocol = new Protocol();
 maplibregl.addProtocol("pmtiles",protocol.tile);
 ```
 
