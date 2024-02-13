@@ -47,7 +47,7 @@ A CDN deployment of Protomaps has three parts:
 
 ## Deployement Comparison Chart
 
-_Cloudflare is recommended for budget minded beginners. AWS is recommended for advanced developers who are monetizing their map to offset increased marginal tile serving costs or require a faster map._
+_Cloudflare is recommended for budget minded beginners. AWS is recommended for advanced developers who are monetizing their map and can offset increased marginal costs or who require a faster map._
 
 | feature | static pmtiles | Cloudflare |  AWS | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
 | - | :-: | :-:| :-: | :-: | - | 
