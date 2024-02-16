@@ -61,19 +61,11 @@ Make a request for `<ACCOUNT_NAME>.workers.dev/<FILENAME>/0/0/0.<mvt | png>` to 
 
 For the cache to work, the worker must be assigned a zone on your own domain, not `workers.dev`.
 
-1. In Websites > your domain > DNS, Add a CNAME entry pointing to your `workers.dev` domain:
+1. In **Triggers** for your Worker, **Add Custom Domain** e.g. `subdomain.mydomain.com`. This will create a DNS entry in your Cloudflare site.
 
-![cloudflare image](./cloudflare_1.png)
+2. In **Routes**, Assign the route `subdomain.mydomain.com/*` to your worker. This directs traffic to the above subdomain to this specific worker.
 
-2. In Websites > your domain > Workers Routes, Choose **Add Route**.
-
-  * for **Route**, enter `SUBDOMAIN.mydomain.com/*`
-
-  * for **Service**, choose the name of your Worker. for **Environment**, choose `production`.
-
-![cloudflare image](./cloudflare_2.png)
-
-Verify your deployment is working on `SUBDOMAIN.mydomain.com` by checking for the `Cf-Cache-Status` header with a value of `HIT` on tile requests. This may take 2-3 attempts.
+Verify your deployment is working by checking for the `Cf-Cache-Status` header with a value of `HIT` on tile requests. This may take 2-3 attempts.
 
 Example with `curl` for vector tiles and [TileJSON](https://github.com/mapbox/tilejson-spec):
 
