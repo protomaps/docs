@@ -41,15 +41,34 @@ A CDN deployment of Protomaps has three parts:
 
 ## Next steps
 
-* [Deploy PMTiles on Cloudflare.](/deploy/cloudflare)
-* [Deploy PMTiles on AWS.](/deploy/aws)
-* [Deploy PMTiles with the Caddy web server.](/deploy/server)
+* [Deploy PMTiles on Cloudflare](/deploy/cloudflare)
+* [Deploy PMTiles on AWS](/deploy/aws)
+* [Deploy PMTiles with the Caddy web server](/deploy/server)
 
-## Comparison
+## Deployment Comparison Chart
+
+_Cloudflare is recommended for budget minded beginners. AWS is recommended for commercial companies who require a faster map and/or can offset increased marginal cost with monetization._
 
 | feature | static pmtiles | Cloudflare |  AWS | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
-| - | - | :-| -: | - | - | 
-| Z/X/Y compatible | | ✅ | ✅ |✅ | ✅ |
-|  edge caching | |  ✅ |  ✅ |   With CDN | With CDN |
-|  SSL |  ✅ |  ✅ |  ✅ |  ✅ | With reverse proxy |
-| scale to zero |  ✅ |  5 USD |  ✅ | | |
+| - | :-: | :-:| :-: | :-: | - | 
+| Z/X/Y compatible | ✖️    | ✅        | ✅    | ✅       | ✅                  |
+| Edge caching     | ✖️    |  ✅       |  ✅   | With CDN | With CDN           |
+| SSL              |  ✅  |  ✅       |  ✅   |  ✅       | With reverse proxy |
+| Scale to zero    | ✅   |  $5 (USD) |  ✅   | ✖️        |  ✖️                 |
+| Setup effort     | 😓   | 😓        | 😓    | 😓😓     | 😓😓😓               |
+| Latency          | 🚀   |  🚀       |  🚀🚀🚀 | 🚀🚀     | 🚀🚀🚀              |
+| Cost             | 💰   |  💰       |  💰💰💰 | 💰💰     | 💰💰                |
+
+### Feature explanation
+
+- **Z/X/Y compatible**: Can tiles be requested as standard web mapping zoom, x, y tile coordinates?
+- **Edge caching**: Includes easy to configure edge network for content distribution (or manually paired with CDN) to achieve faster latency?
+- **SSL**: Supports encrypted link between tile server and client map library?
+- **Scale to zero**: Does the serverless function scale to zero cost during periods of low usage?
+- **Setup effort**: Developer time to configure complete cloud tile serving solution, less effort 😓 is better than more 😓😓😓 effort
+- **Latency**: Speedy maps tiles 🚀🚀🚀 load in ≤ 200 ms in the client for customers, slow tiles 🚀 load ≥ 500 ms
+- **Cost**: Total cost to run tile serving system, with 💰 being cheaper at $5 USD and 💰💰💰 more expensive options that including storage egress and/or CDN bandwidth costs to achieve lower latency
+
+### Coming soon
+
+- **Azure** support is in development and planned for 2024.
