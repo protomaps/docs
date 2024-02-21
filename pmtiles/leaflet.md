@@ -22,31 +22,15 @@ const p = new PMTiles('https://example.com/data.pmtiles');
 leafletRasterLayer(p).addTo(map)
 ````
 
-## Vector: protomaps-leaflet
+## Vector PMTiles
 
 Protomaps publishes a lightweight Leaflet plugin, [protomaps-leaflet](https://github.com/protomaps/protomaps-leaflet), that implements **vector drawing and text labels** built on the Canvas API and Web Fonts.
 
-:::warning
-Note: the protomaps-leaflet default style uses the Protomaps [Basemap tileset verson 2.](/basemaps/downloads)
-:::
+Note that the protomaps-leaflet library is **designed for non-interactive layers**, because it renders vector tiles to Canvas (image) elements.
 
-## Vector Basemaps
+For basemap display as a substitute for server-rendered tiles, see [Basemaps for Leaflet](/basemaps/leaflet).
 
-The simplest way to include a map in your application via script includes tag:
-
-```js
-// check for the latest version on github...
-<script src="https://unpkg.com/protomaps@1.22.0/dist/protomaps-leaflet.min.js"></script>
-<script>
-    const map = L.map('map')
-    var layer = protomapsL.leafletLayer({url:'FILE.pmtiles OR ENDPOINT/{z}/{x}/{y}.mvt'})
-    layer.addTo(map)
-</script>
-```
-
-By default, this will assume the set of basemap layers described at [Basemap Layers](/basemaps/layers), so you should see a map that looks like this:
-
-![detroit](https://protomaps.github.io/protomaps-leaflet/benchmark/example_1.png)
+For fully interactive vector overlay tiles you should use [MapLibre GL JS](/pmtiles/maplibre).
 
 ## Custom Vector Data
 
@@ -70,8 +54,8 @@ let LABEL_RULES = []; // ignore for now
 
 protomapsL.leafletLayer({
     url:URL,
-    paint_rules:PAINT_RULES,
-    label_rules:LABEL_RULES
+    paintRules:PAINT_RULES,
+    labelRules:LABEL_RULES
 }).addTo(map) 
 ```
 
