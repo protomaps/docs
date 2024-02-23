@@ -33,7 +33,7 @@ outline: deep
 * On the Configuration tab, choose **Environment Variables** > **Edit**.
     * set `BUCKET` to your unique **bucket name** from Step 1.
     * set `PUBLIC_HOSTNAME` to the **public custom domain name you'll assign to your CloudFront distribution.** *TileJSON responses won't work without setting this.* Example: `tiles.example.com`
-* In the **Code** tab, replace the code contents with the bundled [index.mjs](https://protomaps.github.io/PMTiles/lambda_function.zip) from [PMTiles/serverless/aws](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
+* In the **Code** tab, replace the code contents with the bundled [index.mjs](https://protomaps.github.io/PMTiles/lambda_function.zip) from [PMTiles/serverless/aws](https://github.com/protomaps/PMTiles/tree/main/serverless/aws).
 * Choose **Deploy** to deploy the function.
 
 ### 3. Lambda role permissions
