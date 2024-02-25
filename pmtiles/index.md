@@ -48,6 +48,10 @@ PMTiles is designed for being read directly in web browsers in conjunction with 
 
 See the docs on viewing PMTiles in [Leaflet](/pmtiles/leaflet), [MapLibre GL JS](/pmtiles/maplibre) and [OpenLayers](/pmtiles/openlayers).
 
+Each of the client integrations uses the [JavaScript pmtiles library](https://github.com/protomaps/PMTiles/tree/main/js).
+
+[JavaScript Library API documentation](https://protomaps.github.io/PMTiles/typedoc/)
+
 ### Python
 
 `pmtiles` is a python package for reading and writing PMTiles. [GitHub](https://github.com/protomaps/PMTiles/tree/master/python) and via the [Python Package Index](https://pypi.org/project/pmtiles/).
