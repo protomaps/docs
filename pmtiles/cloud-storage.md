@@ -109,7 +109,7 @@ S3 CORS Configuration:
 
 ```
 echo '[{"maxAgeSeconds": 300, "method": ["GET", "HEAD"], "origin": ["https://example.com"], "responseHeader": ["range","etag","if-match"]}]' > cors.json
-gsutil cors set gcors.json gs://my-bucket-name
+gsutil cors set cors.json gs://my-bucket-name
 ```
 
 #### CORS: gsutil tool
