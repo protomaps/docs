@@ -53,6 +53,7 @@ export default defineConfig({
           { text: "Cost Calculator", link: "/deploy/cost" },
           { text: "AWS", link: "/deploy/aws" },
           { text: "Cloudflare", link: "/deploy/cloudflare" },
+          { text: "Google Cloud", link: "/deploy/google-cloud" },
           { text: "Server (Caddy)", link: "/deploy/server" },
         ],
       },
