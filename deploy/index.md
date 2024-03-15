@@ -53,10 +53,10 @@ _Cloudflare is recommended for budget minded beginners. AWS is recommended for c
 | feature | static pmtiles | Cloudflare |  AWS |  GCP | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
 | - | :-: | :-:| :-: | :-: | :-: | - | 
 | Z/X/Y compatible | ✖️    | ✅        | ✅     |  ✅    | ✅       | ✅                  |
-| Edge caching     | ✖️    |  ✅       |  ✅    |  ✅    | With CDN | With CDN           |
+| Edge caching     | ✖️    |  ✅       |  ✅    | With CDN | With CDN | With CDN           |
 | SSL              |  ✅  |  ✅       |  ✅    |  ✅    |  ✅       | With reverse proxy |
 | Scale to zero    | ✅   |  $5 (USD) |  ✅    |   ✅   | ✖️        |  ✖️                 |
-| Setup effort     | 😓   | 😓        | 😓     |   😓   | 😓😓     | 😓😓😓               |
+| Setup effort     | 😓   | 😓        | 😓     |   😓😓  | 😓😓     | 😓😓😓               |
 | Latency          | 🚀   |  🚀       |  🚀🚀🚀 | 🚀🚀🚀  | 🚀🚀     | 🚀🚀🚀              |
 | Cost             | 💰   |  💰       |  💰💰💰 | 💰💰💰  | 💰💰     | 💰💰                |
 
