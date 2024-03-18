@@ -43,21 +43,22 @@ A CDN deployment of Protomaps has three parts:
 
 * [Deploy PMTiles on Cloudflare](/deploy/cloudflare)
 * [Deploy PMTiles on AWS](/deploy/aws)
+* [Deploy PMTiles on Google Cloud (GCP)](/deploy/google-cloud)
 * [Deploy PMTiles with the Caddy web server](/deploy/server)
 
 ## Deployment Comparison Chart
 
 _Cloudflare is recommended for budget minded beginners. AWS is recommended for commercial companies who require a faster map and/or can offset increased marginal cost with monetization._
 
-| feature | static pmtiles | Cloudflare |  AWS | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
-| - | :-: | :-:| :-: | :-: | - | 
-| Z/X/Y compatible | ✖️    | ✅        | ✅    | ✅       | ✅                  |
-| Edge caching     | ✖️    |  ✅       |  ✅   | With CDN | With CDN           |
-| SSL              |  ✅  |  ✅       |  ✅   |  ✅       | With reverse proxy |
-| Scale to zero    | ✅   |  $5 (USD) |  ✅   | ✖️        |  ✖️                 |
-| Setup effort     | 😓   | 😓        | 😓    | 😓😓     | 😓😓😓               |
-| Latency          | 🚀   |  🚀       |  🚀🚀🚀 | 🚀🚀     | 🚀🚀🚀              |
-| Cost             | 💰   |  💰       |  💰💰💰 | 💰💰     | 💰💰                |
+| feature | static pmtiles | Cloudflare |  AWS |  GCP | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
+| - | :-: | :-:| :-: | :-: | :-: | - | 
+| Z/X/Y compatible | ✖️    | ✅        | ✅     |  ✅    | ✅       | ✅                  |
+| Edge caching     | ✖️    |  ✅       |  ✅    | With CDN | With CDN | With CDN           |
+| SSL              |  ✅  |  ✅       |  ✅    |  ✅    |  ✅       | With reverse proxy |
+| Scale to zero    | ✅   |  $5 (USD) |  ✅    |   ✅   | ✖️        |  ✖️                 |
+| Setup effort     | 😓   | 😓        | 😓     |   😓😓  | 😓😓     | 😓😓😓               |
+| Latency          | 🚀   |  🚀       |  🚀🚀🚀 | 🚀🚀🚀  | 🚀🚀     | 🚀🚀🚀              |
+| Cost             | 💰   |  💰       |  💰💰💰 | 💰💰💰  | 💰💰     | 💰💰                |
 
 ### Feature explanation
 
