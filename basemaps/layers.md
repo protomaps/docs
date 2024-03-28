@@ -48,6 +48,14 @@ Polygons from the Natural Earth 50m `land` theme for z0-z4, 10m for z5, preproce
 | ----------- | :-------: | -----------: |
 | `pmap:kind` |  `earth`  |              |
 
+## landcover
+
+Polygons from the Daylight distribution's [landcover](https://daylightmap.org/2023/10/11/landcover.html) theme, for z0-z7.
+
+| Key         |   Values  |  Description |
+| ----------- | :-------: | -----------: |
+| `pmap:kind` |  `barren`, `farmland`, `forest`, `glacier`, `grassland`, `scrub`, `urban_area`  |              |
+
 ## landuse
 
 `kind`
