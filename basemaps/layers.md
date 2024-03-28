@@ -58,7 +58,11 @@ Polygons from the Daylight distribution's [landcover](https://daylightmap.org/20
 
 ## landuse
 
-`kind`
+Polygons from OpenStreetMap, from a curated subset of aeroway, amenity, area:aeroway, boundary, highway, landuse, leisure, man_made, natural, place, railway, tourism tags, for all zooms.
+
+| Key         |   Values  |  Description |
+| ----------- | :-------: | -----------: |
+| `pmap:kind` |  `aerodrome`, `attraction`, `beach`, `cafe`, `camp_site`, `cemetery`, `college`, `commercial`, `dog_park`, `farmland`, `farmyard`, `footway`, `forest`, `garden`, `golf_course`, `grass`, `grocery`, `hospital`, `hotel`, `industrial`, `kindergarten`, `library`, `marina`, `military`, `national_park`, `nature_reserve`, `neighbourhood`, `orchard`, `other`, `park`, `pedestrian`, `pier`, `pitch`, `platform`, `playground`, `post_office`, `protected_area`, `railway`, `recreation_ground`, `residential`, `runway`, `school`, `stadium`, `supermarket`, `taxiway`, `townhall`, `university`, `zoo` |              |
 
 ## natural
 
