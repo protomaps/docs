@@ -171,6 +171,56 @@ Sample CORS Configuration:
 ]
 ```
 
+### Supabase Storage
+
+[Supabase Storage](https://supabase.com/storage) makes it simple to upload and serve files of any size, providing a robust framework for file access controls. Supabase Storage is pre-configured for CORS and HTTP Range Requests making it a plug-and-play solution for hosting PMTiles via [public buckets](https://supabase.com/docs/guides/storage/serving/downloads#public-buckets).
+
+#### Restricting Access
+
+All files uploaded in a public bucket are publicly accessible and benefit from a high CDN cache HIT ratio. However you might want to limit access to specific domains. Currently this is only possible by proxying requests through [Supabase Edge Functions](https://supabase.com/edge-functions).
+
+You can create a simple proxy edge functions that validates the request origin and attaches an header with your projects service role key. This allows you to serve files from private buckets while still benefitting from the built in [smart CDN](https://supabase.com/docs/guides/storage/cdn/smart-cdn).
+
+```ts
+const ALLOWED_ORIGINS = ["http://localhost:3000"];
+const corsHeaders = {
+  "Access-Control-Allow-Origin": ALLOWED_ORIGINS.join(","),
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type, range, if-match",
+  "Access-Control-Expose-Headers": "range, accept-ranges, etag",
+  "Access-Control-Max-Age": "300",
+};
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  // Validate request origin.
+  const origin = req.headers.get("Origin");
+  console.log(origin);
+  if (!origin || !ALLOWED_ORIGINS.includes(origin)) {
+    return new Response("Not Allowed", { status: 405 });
+  }
+
+  // Construct private bucket storage URL.
+  const reqUrl = new URL(req.url);
+  const url = `${
+    Deno.env.get("SUPABASE_URL")
+  }/storage/v1/object/authenticated${reqUrl.pathname}`;
+  console.log(url);
+
+  const { method, headers } = req;
+  // Add auth header to access file in private bucket.
+  const modHeaders = new Headers(headers);
+  modHeaders.append(
+    "authorization",
+    `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!}`,
+  );
+  return fetch(url, { method, headers: modHeaders });
+});
+```
+
 ## Other Platforms
 
 ### GitHub Pages
