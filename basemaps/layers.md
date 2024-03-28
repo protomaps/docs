@@ -127,24 +127,45 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 
 Lines from OpenStreetMap, from a curated subset of highway tags, for mid- and high-zooms.
 
-`kind`
+| Key         |   Values  |  Description |
+| ----------- | :-------: | -----------: |
+| `pmap:kind` |  `highway`, `major_road`, `medium_road`, `minor_road`, `path`, `other`   |              |
+| `pmap:kind_detail` |  `motorway`, `motorway_link`, `trunk`, `trunk_link`, `primary`, `primary_link`, `secondary`, `secondary_link`, `tertiary`, `tertiary_link`, `residential`, `service`, `unclassified`, `road`, `raceway`, `pedestrian`, `track`, `path`, `cycleway`, `bridleway`, `steps`, `corridor`, `sidewalk`, `crossing`, `driveway`, `parking_aisle`, `alley`, `drive-through`, `emergency_access`, `utility`, `irrigation`, `slipway`   |              |
+| `ref`   |  string  |              |
+| `shield_text_length`   |  int  |              |
+| `network`   |  string  |              |
+| `layer`   |  int  |              |
+| `oneway`   |  string  |              |
+| `service`   |  string  |              |
+| `pmap:link`   |  int  |              |
+| `pmap:level`   |  `-1`, `0`, `1`  |              |
+
 
 ## transit
 
-`kind`
+Lines from OpenStreetMap, from a curated subset of railway, aerialway, man_made, route, and aeroway tags, for mid- and high-zooms.
+
+| Key         |   Values  |  Description |
+| ----------- | :-------: | -----------: |
+| `pmap:kind` |  `aerialway`, `cable_car`, `crossover`, `ferry`, `pier`, `rail`, `runway`, `siding`, `taxiway`, `yard`   |              |
+| `pmap:kind_detail` |  `disused`, `funicular`, `light_rail`, `miniature`, `monorail`, `narrow_gauge`, `preserved`, `railway`, `subway`, `tram`   |              |
+| `ref`   |  string  |              |
+| `network`   |  string  |              |
+| `layer`   |  int  |              |
+| `route`   |  string  |              |
+| `service`   |  string  |              |
 
 ## water
 
 Polygons from the Natural Earth 50m `lakes` and `ocean` themes for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
 
-
 | Key                |                    Values                    |  Description |
 | ------------------ | :------------------------------------------: | -----------: |
 | `pmap:kind`        |  `water`, `lake`, `playa`, `ocean`, `other`  |              |
-| `pmap:kind_detail` |                                              |              |
-| `reservoir`        |                                              |              |
-| `alkaline`         |                                              |              |
-| `intermittent`     |                                              |              |
-| `bridge`           |                                              |              |
-| `tunnel`           |                                              |              |
-| `layer`            |                                              |              |
+| `pmap:kind_detail` |  `basin`, `canal`, `ditch`, `dock`, `drain`, `lake`, `reservoir`, `river`, `riverbank`, `stream`                                        |              |
+| `reservoir`        | boolean                                      |              |
+| `alkaline`         | boolean                                      |              |
+| `intermittent`     | boolean                                      |              |
+| `bridge`           | string                                       |              |
+| `tunnel`           | string                                       |              |
+| `layer`            | int                                          |              |
