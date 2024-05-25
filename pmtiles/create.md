@@ -48,15 +48,19 @@ pmtiles convert output.mbtiles output.pmtiles
 
 GDAL has native support for PMTiles starting with version 3.8.0 (2023-11-13), see [gdal.org/drivers/vector/pmtiles](https://gdal.org/drivers/vector/pmtiles.html) for details.
 
-GDAL's [`ogr2ogr`](https://gdal.org/programs/ogr2ogr.html#ogr2ogr) tool supports a wide range of formats as input for creating PMTiles. Below is examples of generating PMTiles from a shape file and based on multiple PostgreSQL/Postgis tables.
+**Using ogr2ogr to create vector PMTiles is recommended only for smaller datasets: the [tippecanoe](#tippecanoe) tool creates much more efficient overview tiles.**
+
+GDAL's [`ogr2ogr`](https://gdal.org/programs/ogr2ogr.html#ogr2ogr) tool supports a wide range of formats as input for creating PMTiles. Below are examples of generating PMTiles from a Shapefile or multiple PostgreSQL/PostGIS tables.
 
 ```sh
 # Convert shapefile to to pmtiles
-ogr2ogr -dsco MINZOOM=10 -dsco MAXZOOM=20 -f "PMTiles" filename.pmtiles my_shapes.shp
+ogr2ogr -dsco MINZOOM=10 -dsco MAXZOOM=15 -f "PMTiles" filename.pmtiles my_shapes.shp
 
 # Merge all PostgreSQL/PostGIS tables in a schema into a single PMTiles file.
-ogr2ogr -dsco MINZOOM=0 -dsco MAXZOOM=22 -f "PMTiles" filename.pmtiles "PG:host=my_host port=my_port dbname=my_database user=my_user password=my_password schemas=my_schema"
+ogr2ogr -dsco MINZOOM=0 -dsco MAXZOOM=15 -f "PMTiles" filename.pmtiles "PG:host=my_host port=my_port dbname=my_database user=my_user password=my_password schemas=my_schema"
 ```
+
+* `MAXZOOM=15` is sufficient for street-level mapping. Choosing less detail with a lower `MAXZOOM` will reduce the size of the final file.
 
 ## Other
 
