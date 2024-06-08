@@ -25,7 +25,7 @@ Name your uploads to storage with the `.pmtiles` extension. Your tile requests t
 
 2. It will ask you to deploy it first before you can edit the code, click **Deploy**.
 
-3. **Edit Code** and paste the bundled [index.js](https://protomaps.github.io/PMTiles/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
+3. **Edit Code** and paste the bundled [index.js](https://pmtiles.io/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
 
 4. Leave the default **HTTP handler** option.
 
