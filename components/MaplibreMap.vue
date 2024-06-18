@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import maplibregl from "maplibre-gl";
-import { defineProps, ref, onMounted, onUpdated, watch } from "vue";
+import { ref, onMounted, onUpdated, watch } from "vue";
 import { default as layers } from "protomaps-themes-base";
 import { useData } from "vitepress";
 

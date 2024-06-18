@@ -1,5 +1,5 @@
 ---
-title: Basemap Styles
+title: Basemap Themes
 outline: deep
 ---
 
@@ -7,9 +7,9 @@ outline: deep
   import MaplibreMap from '../components/MaplibreMap.vue'
 </script>
 
-# Basemap Styles
+# Basemap Themes
 
-All five default styles.
+These examples use the preferred [MapLibre GL JS](/basemaps/maplibre) library.
 
 ## Default Styles
 
