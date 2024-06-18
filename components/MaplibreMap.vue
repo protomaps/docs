@@ -13,7 +13,8 @@ const style = (passedTheme: string) => {
   const theme = passedTheme || (isDark.value ? "dark" : "light");
   return {
     version: 8,
-    glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+    glyphs:
+      "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
     sprite: `https://protomaps.github.io/basemaps-assets/sprites/v3/${theme}`,
     sources: {
       protomaps: {
