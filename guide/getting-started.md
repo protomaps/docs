@@ -59,5 +59,5 @@ pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles my_area.p
 ## Next Steps
 
 * Upload your tiles to cloud storage: [Cloud Storage](/pmtiles/cloud-storage)
-* Change the appearance or theme of the basemap: [Basemap Styles](/basemaps/styles)
+* Change the appearance or theme of the basemap: [Basemap Styles](/basemaps/themes)
 * Bring your own datasets: [Creating PMTiles](/pmtiles/create)
