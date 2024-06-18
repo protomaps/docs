@@ -10,9 +10,11 @@ const mapRef = ref(null);
 var map;
 
 const style = () => {
+  const theme = isDark.value ? "dark" : "light";
   return {
     version: 8,
-    glyphs: "https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf",
+    glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+    sprite: `https://protomaps.github.io/basemaps-assets/sprites/v3/${theme}`,
     sources: {
       protomaps: {
         type: "vector",
@@ -25,7 +27,7 @@ const style = () => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", isDark.value ? "dark" : "light"),
+    layers: layers("protomaps", theme),
   };
 };
 
