@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import maplibregl from "maplibre-gl";
-import { ref, onMounted, onUpdated, watch } from "vue";
+import { defineProps, ref, onMounted, onUpdated, watch } from "vue";
 import { default as layers } from "protomaps-themes-base";
 import { useData } from "vitepress";
 
@@ -9,8 +9,8 @@ const { isDark } = useData();
 const mapRef = ref(null);
 var map;
 
-const style = () => {
-  const theme = isDark.value ? "dark" : "light";
+const style = (passedTheme: string) => {
+  const theme = passedTheme || (isDark.value ? "dark" : "light");
   return {
     version: 8,
     glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
@@ -31,10 +31,14 @@ const style = () => {
   };
 };
 
+const props = defineProps<{
+  theme: string;
+}>();
+
 onMounted(() => {
   map = new maplibregl.Map({
     container: mapRef.value,
-    style: style(),
+    style: style(props.theme),
     cooperativeGestures: true,
   });
 });
