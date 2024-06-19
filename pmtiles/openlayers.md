@@ -9,9 +9,9 @@ See [the openlayers/ directory](https://github.com/protomaps/PMTiles/tree/main/o
 
 ## Quick Example
 
-Example of vector tiles (New Zealand buildings): [Live demo](https://protomaps.github.io/PMTiles/examples/openlayers/vector.html)
+Example of vector tiles (New Zealand buildings): [Live demo](https://pmtiles.io/examples/openlayers/vector.html)
 
-Example of raster tiles (RGB Terrain): [Live demo](https://protomaps.github.io/PMTiles/examples/openlayers/raster.html)
+Example of raster tiles (RGB Terrain): [Live demo](https://pmtiles.io/examples/openlayers/raster.html)
 
 ## Using with a Bundler
 

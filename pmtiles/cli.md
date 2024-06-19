@@ -76,9 +76,13 @@ Options:
 
 ```bash
 pmtiles serve .
+pmtiles serve . --bucket=https://example.com
+pmtiles serve / --bucket=s3://BUCKET_NAME
 ```
 
-Run a Z/X/Y server for a directory or bucket of archives.
+Expose Z/X/Y tile URLS, e.g. `/mymap/{z}/{x}/{y}.mvt`, for a directory or bucket of archives. **Requests for the raw file e.g. `mymap.pmtiles` will not work.**
+
+A Z/X/Y URL like  is directly supported by web and native clients such as [MapLibre](http://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` this way also allows serving public Z/X/Y traffic from private storage buckets.
 
 ### convert
 

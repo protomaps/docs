@@ -5,20 +5,58 @@ outline: deep
 
 # Basemaps for MapLibre
 
+## Assets
 
-The `protomaps-themes-base` NPM module contains basemap layer definitions compatible with OpenStreetMap downloads from Protomaps.
+To render a full basemap, you'll need not only a style and a tileset, but also MapLibre [fontstack](https://maplibre.org/maplibre-style-spec/glyphs/) and [spritesheet](https://maplibre.org/maplibre-style-spec/sprite/) assets.
+
+The assets referenced by the `glyphs` and `sprite` style properties can be downloaded as ZIP files at the [basemaps-assets](http://github.com/protomaps/basemaps-assets) repository, if you need to host them yourself or offline.
+
+### Fonts
+
+The `glyphs` key references a URL hosting pre-compiled fontstacks, required for displaying text labels in MapLibre. Fontstacks can be created with the [font-maker](https://github.com/maplibre/font-maker) tool.
+
+```js
+glyphs:'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf'
+```
+
+When a style layer defines a `text-font` like `Noto Sans Regular`, this will create requests for a URL like `https://protomaps.github.io/basemaps-assets/fonts/Noto%20Sans%20Regular/0-255.pbf`.
+
+
+You can view a list of available fonts [in the GitHub repository](https://github.com/protomaps/basemaps-assets/tree/main/fonts).
+
+### Sprites
+
+The `sprite` key references a URL specific to one of [the default themes](/basemaps/themes):
+
+```js
+sprite: "https://protomaps.github.io/basemaps-assets/sprites/v3/light"
+```
+
+These are required for townspots, highway shields and point of interest icons.
+
+## Loading styles as JSON
+
+Because [MapLibre styles](https://maplibre.org/maplibre-style-spec/) are JSON documents, the simplest way to define a style in your application is with static JSON. You can use the `Get style JSON` feature of [maps.protomaps.com](maps.protomaps.com) to generate static JSON for a specific theme and style package version.
+
+## Creating styles programatically
+
+For more control and less code, you can add use the [`protomaps-themes-base`](https://www.npmjs.com/package/protomaps-themes-base) NPM package as a dependency.
+
+### Using the npm package
 
 ```bash
 npm install protomaps-themes-base
 ```
+
 ```js
 import layers from 'protomaps-themes-base';
 ```
 
 ```js
 style: {
-    version:8,
+    version: 8,
     glyphs:'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
+    sprite: "https://protomaps.github.io/basemaps-assets/sprites/v3/light",
     sources: {
         "protomaps": {
             type: "vector",
@@ -33,15 +71,18 @@ style: {
 
 the default export from `protomaps-themes-base` is a function that takes 2 arguments:
 
-* the source name of the basemap.
+* the source name of the basemap, like `protomaps` in the `sources` example above.
 
-* the theme, one of `light`, `dark`, `white`, `black`, `grayscale` or `debug`.
+* the [theme](/basemaps/themes), one of `light`, `dark`, `white`, `black`, `grayscale`.
 
-## Fonts
+### Using a CDN
 
-The fonts referenced by the `glyphs` style key can be downloaded as a ZIP at the [basemaps-assets](http://github.com/protomaps/basemaps-assets) GitHub repository.
+Loading the `protomaps-themes-base` package from NPM will define the `protomaps_themes_base` global variable.
 
-Valid font names are: `Noto Sans Regular`, `Noto Sans Medium`, `Noto Sans Italic`
+```html
+<script src="https://unpkg.com/protomaps-themes-base@3/dist/protomaps-themes-base.js" crossorigin="anonymous"></script>
+```
 
-Prior to version 2.0.0-alpha.3, the Glyphs URL was `https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf`.
-
+```js
+layers: protomaps_themes_base.default("protomaps","light")
+````

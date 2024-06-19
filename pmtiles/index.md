@@ -23,7 +23,7 @@ The current specification version of PMTiles is version 3, which you can [read o
 
 The Viewer is a browser-based tool for visualizing PMTiles on a map, inspecting metadata, and debugging individual tiles.
 
-You can access the Viewer at [protomaps.github.io/PMTiles/](https://protomaps.github.io/PMTiles/).
+You can access the Viewer at [pmtiles.io](https://pmtiles.io/).
 
 ### Serving files locally
 
@@ -50,7 +50,7 @@ See the docs on viewing PMTiles in [Leaflet](/pmtiles/leaflet), [MapLibre GL JS]
 
 Each of the client integrations uses the [JavaScript pmtiles library](https://github.com/protomaps/PMTiles/tree/main/js).
 
-[JavaScript Library API documentation](https://protomaps.github.io/PMTiles/typedoc/)
+[JavaScript Library API documentation](https://pmtiles.io/typedoc/)
 
 ### Python
 
