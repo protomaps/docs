@@ -36,7 +36,7 @@ These are required for townspots, highway shields and point of interest icons.
 
 ## Loading styles as JSON
 
-Because [MapLibre styles](https://maplibre.org/maplibre-style-spec/) are JSON documents, the simplest way to define a style in your application is with static JSON. You can use the `Get style JSON` feature of [maps.protomaps.com](maps.protomaps.com) to generate static JSON for a specific theme and style package version.
+Because [MapLibre styles](https://maplibre.org/maplibre-style-spec/) are JSON documents, the simplest way to define a style in your application is with static JSON. You can use the `Get style JSON` feature of [maps.protomaps.com](https://maps.protomaps.com) to generate static JSON for a specific theme and style package version.
 
 ## Creating styles programatically
 
