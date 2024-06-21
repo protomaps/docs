@@ -101,7 +101,7 @@ Points from OpenStreetMap and Natural Earth, from a curated subset of place tags
 | Key         |   Values  |  Description |
 | ----------- | :-------: | -----------: |
 | `pmap:kind` |  `country`, `region`, `locality`, `macrohood`, `neighbourhood`  |              |
-| `pmap:kind_detail` |  `city`, `country`, `hamlet`, `neighbourhood`, `province`, `quarter`, `scientific_station`, `state`, `town`, `village`  |              |
+| `pmap:kind_detail` |  `allotments`, `city`, `country`, `farm`, `hamlet`, `hamlet`, `isolated_dwelling`, `locality`, `neighbourhood`, `province`, `quarter`, `scientific_station`, `state`, `town`, `village` |              |
 | `capital` |  string  |              |
 | `population` |  int  |              |
 | `pmap:population_rank` |  int  |              |
