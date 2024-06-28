@@ -177,6 +177,22 @@ Labeling a map is typically localized for a specific language audience by prefer
 
 ### MapLibre
 
+#### MapLibre styling basic example
+
+TK TK TK
+
+#### MapLibre styling localized name with fallback example
+
+TK TK TK
+
+#### MapLibre styling localized name with script-based fallback example
+
+TK TK TK
+
+#### MapLibre styling positioned glyph font with script-based example
+
+TK TK TK
+
 #### MapLibre supported scripts and languages
 
 | Script | Languages |
