@@ -173,13 +173,15 @@ Sample CORS Configuration:
 
 ### Supabase Storage
 
-[Supabase Storage](https://supabase.com/storage) makes it simple to upload and serve files of any size, providing a robust framework for file access controls. Supabase Storage is pre-configured for CORS and HTTP Range Requests making it a plug-and-play solution for hosting PMTiles via [public buckets](https://supabase.com/docs/guides/storage/serving/downloads#public-buckets).
+* [Supabase Storage](https://supabase.com/storage) is an S3-compatible storage API that supports HTTP Range Requests.
+* [Private Buckets](https://supabase.com/docs/guides/storage/serving/downloads#private-buckets) ntegrate with the Supabase Auth system.
+* [Public Buckets](https://supabase.com/docs/guides/storage/serving/downloads#public-buckets) allow all CORS origins (`*`) and benefit from a CDN edge cache.
 
-#### Restricting Access
+#### CORS
 
-All files uploaded in a public bucket are publicly accessible and benefit from a high CDN cache HIT ratio. However you might want to limit access to specific domains. Currently this is only possible by proxying requests through [Supabase Edge Functions](https://supabase.com/edge-functions).
+Currently, limiting access to certain domains is only possible by proxying requests to Private Buckets through [Supabase Edge Functions](https://supabase.com/edge-functions), which has an additional billing model.
 
-You can create a simple proxy edge functions that validates the request origin and attaches an header with your projects service role key. This allows you to serve files from private buckets while still benefitting from the built in [smart CDN](https://supabase.com/docs/guides/storage/cdn/smart-cdn).
+This proxy Edge Function validates the request origin and attaches a header with your project's service role key. This allows you to serve files from private buckets while still benefitting from the built in [smart CDN](https://supabase.com/docs/guides/storage/cdn/smart-cdn).
 
 ```ts
 const ALLOWED_ORIGINS = ["http://localhost:3000"];
