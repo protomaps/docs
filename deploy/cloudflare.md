@@ -81,13 +81,15 @@ Optional environment variables can be set set in `[vars]` of `wrangler.toml` or 
 
 * `PMTILES_PATH` - A string like `folder/{name}.pmtiles` specifying the path to archives in your bucket. Default `{name}.pmtiles`
 
-* ~~`TILES_PATH` - a string like `prefix/{name}/{z}/{x}/{y}.{ext}` specifying the tile path exposed by the worker. Default `{name}/{z}/{x}/{y}.{ext}`~~ **Deprecated**
+* ~~`TILES_PATH` - a string like `prefix/{name}/{z}/{x}/{y}.{ext}` specifying the tile path exposed by the worker. Default `{name}/{z}/{x}/{y}.{ext}`~~
 
 * `PUBLIC_HOSTNAME` - Optional, override the absolute hostname in [TileJSON](https://github.com/mapbox/tilejson-spec) responses. Example `tiles.example.com`
 
 * `ALLOWED_ORIGINS` - a comma-separated list of allowed CORS origins. Default none. Examples: `https://example.com,https://localhost:3000`, `*`
 
-* `CACHE_MAX_AGE`: max age in the Cloudflare cache, in seconds. default 86400, or 1 day.
+* ~~`CACHE_MAX_AGE`: max age in the Cloudflare cache, in seconds. default 86400, or 1 day.~~
+
+* `CACHE_CONTROL`: HTTP header value to control caching, default `public, max-age=86400` (1 day).
 
 ## Cost Estimate
 
