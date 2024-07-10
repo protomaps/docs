@@ -114,9 +114,10 @@ Configure these Lambda environment variables:
 * `BUCKET`: the S3 bucket name.
 * `PMTILES_PATH`: optional, define how a tileset name is translated into an S3 key. Default `{name}.pmtiles`
   * Example path setting for objects in a directory: `my_folder/{name}/file.pmtiles`
-* ~~`TILE_PATH`: optional, define the URL route of the tiles API. Default `/{name}/{z}/{x}/{y}.pbf`~~ **Deprecated**
+* ~~`TILE_PATH`: optional, define the URL route of the tiles API. Default `/{name}/{z}/{x}/{y}.pbf`~~
 * `CORS`: optional, set the value of the `Access-Control-Allow-Origin` response header. Examples: `https://example.com`, `*`. Only supports one origin, so useful for development or staging environments only. For production use you should use CloudFront CORS configuration.
-* `CACHE_MAX_AGE`: max age in the CloudFront cache, in seconds. default 86400, or 1 day.
+* ~~`CACHE_MAX_AGE`: max age in the CloudFront cache, in seconds. default 86400, or 1 day.~~
+* `CACHE_CONTROL`: HTTP header value to control caching, default `public, max-age=86400` (1 day).
 
 ## Accessing your Tiles
 
