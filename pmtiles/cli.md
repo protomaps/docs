@@ -80,7 +80,7 @@ pmtiles serve . --bucket=https://example.com
 pmtiles serve / --bucket=s3://BUCKET_NAME
 ```
 
-Expose Z/X/Y tile URLS, e.g. `/mymap/{z}/{x}/{y}.mvt`, for a directory or bucket of archives. **Requests for the raw file e.g. `mymap.pmtiles` will not work.**
+Expose [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0), e.g. `/mymap.json`, as well as Z/X/Y tile URLs, e.g. `/mymap/{z}/{x}/{y}.mvt`, for a directory or bucket of archives. **Requests for the raw file e.g. `mymap.pmtiles` will not work.**
 
 A Z/X/Y URL like  is directly supported by web and native clients such as [MapLibre](http://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` this way also allows serving public Z/X/Y traffic from private storage buckets.
 

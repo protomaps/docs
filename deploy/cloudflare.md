@@ -17,7 +17,7 @@ Run the following commands:
 1. `rclone config` and follow the on screen questions, the endpoint should look like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
 2. `rclone copyto <FILE> <rclone configuration name>:<BUCKET_NAME>/<FILE> --progress --s3-no-check-bucket --s3-chunk-size=256M` to upload to the root of the bucket.
 
-Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` for the archive `NAME.pmtiles`.
+Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` or `/NAME.json` ([TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0)) for the archive `NAME.pmtiles`.
 
 ### 2. Create Worker with Web Console
 
@@ -72,6 +72,7 @@ Example with `curl` for vector tiles and [TileJSON](https://github.com/mapbox/ti
 ```bash
 curl -v https://subdomain.mydomain.com/FILENAME/0/0/0.mvt
 
+# TileJSON for MapLibre
 curl -v https://subdomain.mydomain.com/FILENAME.json
 ```
 
@@ -80,8 +81,6 @@ curl -v https://subdomain.mydomain.com/FILENAME.json
 Optional environment variables can be set set in `[vars]` of `wrangler.toml` or in the Workers web console.
 
 * `PMTILES_PATH` - A string like `folder/{name}.pmtiles` specifying the path to archives in your bucket. Default `{name}.pmtiles`
-
-* ~~`TILES_PATH` - a string like `prefix/{name}/{z}/{x}/{y}.{ext}` specifying the tile path exposed by the worker. Default `{name}/{z}/{x}/{y}.{ext}`~~
 
 * `PUBLIC_HOSTNAME` - Optional, override the absolute hostname in [TileJSON](https://github.com/mapbox/tilejson-spec) responses. Example `tiles.example.com`
 
