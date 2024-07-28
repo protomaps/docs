@@ -126,14 +126,13 @@ The default Cloudfront URL for your tiles:
 https://SUBDOMAIN.cloudfront.net/ARCHIVE_NAME/{z}/{x}/{y}.{ext}
 ```
 
+where `{ext}` is the file extension - `mvt`, `jpg`, or `png` - matching your tileset, and `SUBDOMAIN` is found at the **Distribution Domain Name** in the [CloudFront Console](https://us-east-1.console.aws.amazon.com/cloudfront/v3/).
+
 If you're using [MapLibre](/pmtiles/maplibre), it's more convenient to fetch [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0), which will detect the tileset `minzoom` and `maxzoom`:
 
 ```
 https://SUBDOMAIN.cloudfront.net/ARCHIVE_NAME.json
 ```
-
-where `{ext}` is the file extension - `mvt`, `jpg`, or `png` - matching your tileset, and `SUBDOMAIN` is found at the **Distribution Domain Name** in the [CloudFront Console](https://us-east-1.console.aws.amazon.com/cloudfront/v3/).
-
 
 ## TileJSON
 
