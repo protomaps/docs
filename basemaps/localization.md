@@ -74,7 +74,7 @@ _NOTE: The Chinese (`zh`) examples above demonstrates how a single language can 
 
 ## Script of default `name` value
 
-The default (or primary) `name` does not self describe the writing system "script" or character set (alphabetic, stroke-based, or otherwise) used to render the value. When combining with localized `name:*` values. This complicates prefering to "fallback" to another language in the same script family before falling back to characters using a different writing system the reader may not be able to make sense of.
+The default (or primary) `name` does not self describe the writing system "script" or character set (alphabetic, stroke-based, or otherwise) used to render the value. When combining with localized `name:*` values. This complicates preferring to "fallback" to another language in the same script family before falling back to characters using a different writing system the reader may not be able to make sense of.
 
 To help solve this, Protomaps characterizes the scipt using in the default `name` value by adding a `pmap:script` tag.
 
@@ -162,14 +162,14 @@ The following country and international organizations worldviews are supported:
 
 Protomaps adds additional names for a small set of language scripts, currently just the `Devanagari` script used for Hindi (`name:hi` and `pmap:pgf:name:hi`) and related languages.
 
-Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and for **CJK scripts** like Chinese, Japanese, and Korean.
+Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and MapLibre has built-in support for **CJK scripts** like Chinese, Japanese, and Korean.
 
-To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like Hindi), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like giberish when inspecting the raw values, they will render correctly in MapLibre.
+To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like Devanagari), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like giberish when inspecting the raw values, they will render correctly in MapLibre.
 
 See more:
 
-- [Traditional MapLibre text rendering](https://github.com/wipfli/about-text-rendering-in-maplibre)
-- [Positioned glyph fonts](https://github.com/wipfli/positioned-glyph-font)
+- [Traditional MapLibre Text Rendering](https://oliverwipfli.ch/about-text-rendering-in-maplibre-2023-10-17/)
+- [Devanagari Positioned Glyph Fonts](https://oliverwipfli.ch/devanagari-in-the-protomaps-basemap-with-a-positioned-glyph-font-for-maplibre-2024-06-30/)
 
 ## Styling localized name
 
@@ -214,7 +214,7 @@ NOTE: Right-to-left scripts and languages like Arabic and Hebrew requires a spec
 
 #### MapLibre partial support
 
-Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pmap:pgf:name:*` values.
+Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pmap:pgf:name:*` values. The PGF fontstacks used by the Protomaps basemaps is available at https://github.com/protomaps/basemaps-assets/tree/main/fonts.
 
 | Script | Languages |
 | ------- | ---------|
