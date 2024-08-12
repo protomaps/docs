@@ -24,9 +24,9 @@ However, many places have more than one common local languages and Protomaps pas
 
 - `Switzerland` the country is represented as a complex key, value pair: `name` = `Schweiz/Suisse/Svizzera/Svizra`
 
-For transnational places involving many countries and languages, like `sea` features, the default name value can get quite long and non-unweidly!
+For transnational places involving many countries and languages, like `sea` features, the default name value can get quite long and unweidly!
 
-It's recommended to prefer localized names (see blow) when labeling a map, and fallback to this default name when a localized name isn't available.
+However, we recommended preferring localized names (see blow) for map labels, and fallback to the default name only when a localized name isn't available.
 
 ## Localized `name:*` values
 
@@ -34,7 +34,7 @@ Protomaps structures localized names using the same `name:{language_code}` forma
 
 More than 100 countries recognize 2 or more official languages – and some like Bolivia, India, and South Africa recognize more than 10 official languages each!
 
-A single official language is used in most remaining countries. However, there are a few countries where no official language has been designated – like in the United States.
+A single official language is used in most remaining countries. There are a few countries where no official language has been designated – like in the United States.
 
 Going back to our London example, English is the predominant (unofficial) langauge in the United Kingdom:
 
@@ -50,6 +50,7 @@ Extending our London example, many other languages include [exonym and endonym](
 - `name:pt` = `Londres`
 - `name:zh-Hans` = `伦敦`
 - `name:zh-Hant` = `倫敦`
+- _... many other localized values..._
 
 Going back to our Switzerland example, each of the local (often official) languages would have a specific language name value (in this case German `de`, French `fr`, Italian `it`, and Romansh `rm`), like:
 
@@ -76,7 +77,7 @@ _NOTE: The Chinese (`zh`) examples above demonstrates how a single language can 
 
 The default (or primary) `name` does not self describe the writing system "script" or character set (alphabetic, stroke-based, or otherwise) used to render the value. When combining with localized `name:*` values. This complicates preferring to "fallback" to another language in the same script family before falling back to characters using a different writing system the reader may not be able to make sense of.
 
-To help solve this, Protomaps characterizes the scipt using in the default `name` value by adding a `pmap:script` tag.
+To help solve this, Protomaps characterizes the scipt used in the default `name` value by adding a `pmap:script` tag.
 
 Values in `pmap:script` follow the [ISO 15924](https://unicode.org/iso15924/iso15924-codes.html) standard codes for the representation of names of scripts and are summarized in the table below.
 
@@ -164,7 +165,7 @@ Protomaps adds additional names for a small set of language scripts, currently j
 
 Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and MapLibre has built-in support for **CJK scripts** like Chinese, Japanese, and Korean.
 
-To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like Devanagari), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like giberish when inspecting the raw values, they will render correctly in MapLibre.
+To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like giberish when inspecting the raw values, they render correctly in MapLibre to the end user.
 
 See more:
 
@@ -173,7 +174,7 @@ See more:
 
 ## Styling localized name
 
-Labeling a map is typically localized for a specific language audience by prefering a specific name tag and falling back to similar languages (in the same writing system "script", see above), and finally falling back to the feature's default name.
+Labeling a map is typically localized for a specific language audience by prefering a specific name tag and falling back to similar languages (in the same writing system "script", see above), and finally falling back to the feature's default name (which could be in any script, in any language).
 
 ### MapLibre
 
