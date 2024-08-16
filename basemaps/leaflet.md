@@ -8,8 +8,7 @@ outline: deep
 The simplest way to include a map in your application via script includes tag:
 
 ```js
-// check for the latest version on github...
-<script src="https://unpkg.com/protomaps@4.0.1/dist/protomaps-leaflet.js"></script>
+<script src="https://unpkg.com/protomaps-leaflet@latest/dist/protomaps-leaflet.js"></script>
 <script>
     const map = L.map('map')
     var layer = protomapsL.leafletLayer({url:'FILE.pmtiles OR ENDPOINT/{z}/{x}/{y}.mvt', theme: 'light'})
