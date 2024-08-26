@@ -21,7 +21,7 @@ outline: deep
 * Open the **Lambda** dashboard in the **same region as your bucket.**
 * Choose **Create Function**.
     * Name your function `protomaps`.
-    * For Runtime, leave the default choice `Node.js 18.x`.
+    * For Runtime, leave the default choice `Node.js 20.x`.
     * For Architecture, choose `arm64`.
     * Under Change Default Execution Role, leave the default `Create a new role with basic Lambda Permissions`.
         * This will auto-generate a role name.
