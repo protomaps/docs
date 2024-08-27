@@ -35,7 +35,7 @@ Storage services usually bill by number of GET requests and the total number of 
 
 * R2 supports HTTP/2.
 
-* R2 CORS must be configured through a command-line utility like the `aws` tool:
+* R2 CORS can be configured through a command-line utility, like the `aws` tool, or from your S2 bucket's "Settings" tab's "CORS Policy" section:
 
 ```json title="cors_rules.json"
 {
