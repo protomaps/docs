@@ -64,6 +64,7 @@ export default defineConfig({
           { text: "Downloads", link: "/basemaps/downloads" },
           { text: "Basemap Layers", link: "/basemaps/layers" },
           { text: "Basemap Themes", link: "/basemaps/themes" },
+          { text: "Basemap Localization", link: "/basemaps/localization" },
           { text: "MapLibre GL", link: "/basemaps/maplibre" },
           { text: "Leaflet", link: "/basemaps/leaflet" },
           { text: "OpenLayers", link: "/basemaps/openlayers" },
