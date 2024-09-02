@@ -49,12 +49,13 @@ export default defineConfig({
         text: "Accelerating PMTiles",
         collapsed: true,
         items: [
+          { text: "Server", link: "/deploy/server" },
           { text: "Overview", link: "/deploy/" },
           { text: "Cost Calculator", link: "/deploy/cost" },
           { text: "AWS", link: "/deploy/aws" },
+          { text: "Azure", link: "/deploy/azure" },
           { text: "Cloudflare", link: "/deploy/cloudflare" },
           { text: "Google Cloud", link: "/deploy/google-cloud" },
-          { text: "Server (Caddy)", link: "/deploy/server" },
         ],
       },
       {
