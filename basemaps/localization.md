@@ -30,13 +30,13 @@ For transnational places involving many countries and languages, like `sea` feat
 
 A script or writing system is the way how languages are written. For example, English uses the Latin script, Greek uses the Greek script, and Chinese uses the Han script.
 
-If a name from OpenStreetMap contains text in more than one script, then Protomaps breaks up the name into segments. There can be up to 3 segments: `name`, `name2`, and `name3`. Each segment should have a unique script. 
+If a name from OpenStreetMap, which is the de-facto primary local name, contains text in more than one script, then Protomaps breaks up the name into segments. There can be up to 3 segments: `name`, `name2`, and `name3`. Each segment should have a unique script. 
 
 Protomaps stores the scripts used for `name`, `name2`, and `name3` in separate script tags called `pmap:script`, `pmap:script2`, and `pmap:script3`. 
 
 If `pmap:script*` is not present on a name, then it means that the name uses the `Latin` script.
 
-Sometimes names might contain text in multiple scripts. In that case `pmap:script` is set to `Mixed`.
+Sometimes segmentation into single scripts fails due for example inconsistent usage of alphabets. In that case `pmap:script` is set to `Mixed`.
 
 In Japanese, the `Han`, `Hiragana`, and `Katakana` scripts are often mixed in one name. Should any two of these scripts appear in a name we set `pmap:script` to `Mixed-Japanese`.
 
@@ -52,19 +52,19 @@ name = Zürich
 (pmap:script2 absent)
 ```
 
-The OSM name for "Zürich" only uses the Latin script and therefore we use in Protomaps only `name` and leave `pmap:script` away which implies that the script of the `name` is `Latin`. 
+The OpenStreetMap name for "Zürich" only uses the Latin script so we export `name` and but omit `pmap:script` (implying the script of the `name` is `Latin`).
 
-#### Hong Kong 香港
+#### 香港 Hong Kong
 ```
-name = Hong Kong
-(pmap:script absent)
-name2 = 香港
-pmap:script2 = Han
+name = 香港
+pmap:script = Han
+name2 = Hong Kong
+(pmap:script2 absent)
 (name3 absent)
 (pmap:script3 absent)
 ```
 
-The OSM name for Hong Kong is "Hong Kong 香港". We break this up into `name` and `name2` in Protomaps. Since the script of `name` is `Latin`, the `pmap:script` tag is omitted. The script of `name2` is `Han` which is encoded in `pmap:script2`.
+The OpenStreetMap name for Hong Kong is "香港 Hong Kong". We break this up into `name` and `name2` in Protomaps. Since the script of `name2` is `Latin`, the `pmap:script2` tag is omitted. The script of `name` is `Han` which is encoded in `pmap:script`.
 
 #### Casablanca ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء
 ```
@@ -80,7 +80,7 @@ Casablanca in OpenStreetMap is stored as "Casablanca  ⵜⵉⴳⵎⵉ ⵜⵓⵎ�
 
 ## Translated Names
 
-Protomaps supports name translations for 41 languages. Translated names are stored with a `name:{language_code}` formatting like OpenStreetMap has.
+Protomaps supports name translations for 41 languages. Translated names are stored with a `name:{language_code}` formatting like OpenStreetMap.
 
 More than 100 countries recognize 2 or more official languages – and some like Bolivia, India, and South Africa recognize more than 10 official languages each!
 
@@ -145,7 +145,7 @@ Extending our Switzerland example with exonym and endonym from other languages:
 | Indonesian | bahasa Indonesia | `name:id` | `Latin` |
 | Irish | Gaeilge | `name:ga` | `Latin` |
 | Italian | italiano | `name:it` | `Latin` |
-| Japanese | 日本語 | `name:ja` | `Han`, `Katakana`, `Hiragana`, `Mixed-Japanese`* |
+| Japanese | 日本語 | `name:ja` | `Han`, `Katakana`, `Hiragana`, `Mixed-Japanese` |
 | Korean | 한국어 | `name:ko` | `Hangul` |
 | Latvian | latviešu valoda | `name:lv` | `Latin` |
 | Lithuanian | lietuvių kalba | `name:lt` | `Latin` |
@@ -167,7 +167,9 @@ Extending our Switzerland example with exonym and endonym from other languages:
 | Urdu | اردو | `name:ur` | `Arabic` |
 | Vietnamese | Tiếng Việt | `name:vi` | `Latin` |
 
-_*) `Mixed-Japanese` is a custom `pmap:script` value used for labels that contain Hiragana or Katakana mixed with a second or third script. In Japanese, these two scripts often appear in combination with others._
+NOTE: `Mixed-Japanese` is a custom `pmap:script` value used for labels that contain Hiragana or Katakana mixed with a second or third script. In Japanese, these two scripts often appear in combination with others.
+
+NOTE 2 : Values in `pmap:script*` follow the [Unicode Standard Annex #24: Script Names](https://www.unicode.org/reports/tr24/).
 
 ## Styling
 
@@ -200,7 +202,7 @@ Protomaps adds additional names for a small set of language scripts, currently j
 
 Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and MapLibre has built-in support for **CJK scripts** like Chinese, Japanese, and Korean.
 
-To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like gibberish when inspecting the raw values, they render correctly in MapLibre to the end user.
+To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glyphs" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like gibberish when inspecting the raw values, they render correctly in MapLibre to the end user.
 
 See more:
 
