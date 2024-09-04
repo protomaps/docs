@@ -12,7 +12,7 @@ Protomaps has several localization options for names used in text labels.
 
 <MaplibreMap/>
 
-## Default `name` value
+## Local Names
 
 Protomaps follows OpenStreetMaps's convention where a features's primary name value is is the most common name in the local language(s).
 
@@ -20,23 +20,73 @@ In practice, this is most often a single name value like:
 
 - `London` the locality is represented as a simple key, value pair: `name` = `London`
 
-However, many places have more than one common local languages and Protomaps passes thru OpenStreetMap's convention of concatenating multiple names with a `/` deliminator into a single name value, like:
+However, many places have more than one common local languages and Protomaps passes thru OpenStreetMap's convention of concatenating multiple names with a `/` or `-` deliminator into a single name value, like:
 
 - `Switzerland` the country is represented as a complex key, value pair: `name` = `Schweiz/Suisse/Svizzera/Svizra`
 
-For transnational places involving many countries and languages, like `sea` features, the default name value can get quite long and unweidly!
+For transnational places involving many countries and languages, like `sea` features, the default name value can get quite long and unwiedly!
 
-However, we recommended preferring localized names (see blow) for map labels, and fallback to the default name only when a localized name isn't available.
+### `name`, `name2`, and `name3`
 
-## Localized `name:*` values
+A script or writing system is the way how languages are written. For example, English uses the Latin script, Greek uses the Greek script, and Chinese uses the Han script.
 
-Protomaps structures localized names using the same `name:{language_code}` formatting as OpenStreetMap.
+If a name from OpenStreetMap, which is the de-facto primary local name, contains text in more than one script, then Protomaps breaks up the name into segments. There can be up to 3 segments: `name`, `name2`, and `name3`. Each segment should have a unique script. 
+
+Protomaps stores the scripts used for `name`, `name2`, and `name3` in separate script tags called `pmap:script`, `pmap:script2`, and `pmap:script3`. 
+
+If `pmap:script*` is not present on a name, then it means that the name uses the `Latin` script.
+
+Sometimes segmentation into single scripts fails due for example inconsistent usage of alphabets. In that case `pmap:script` is set to `Mixed`.
+
+In Japanese, the `Han`, `Hiragana`, and `Katakana` scripts are often mixed in one name. Should any two of these scripts appear in a name we set `pmap:script` to `Mixed-Japanese`.
+
+Let us look at some examples:
+
+#### Zürich
+```
+name = Zürich
+(pmap:script absent)
+(name2 absent)
+(pmap:script2 absent)
+(name3 absent)
+(pmap:script2 absent)
+```
+
+The OpenStreetMap name for "Zürich" only uses the Latin script so we export `name` and but omit `pmap:script` (implying the script of the `name` is `Latin`).
+
+#### 香港 Hong Kong
+```
+name = 香港
+pmap:script = Han
+name2 = Hong Kong
+(pmap:script2 absent)
+(name3 absent)
+(pmap:script3 absent)
+```
+
+The OpenStreetMap name for Hong Kong is "香港 Hong Kong". We break this up into `name` and `name2` in Protomaps. Since the script of `name2` is `Latin`, the `pmap:script2` tag is omitted. The script of `name` is `Han` which is encoded in `pmap:script`.
+
+#### Casablanca ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء
+```
+name = Casablanca
+(pmap:script absent)
+name2 = ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ
+pmap:script2 = Tifinagh
+name3 = الدار البيضاء
+pmap:script3 = Arabic
+```
+
+Casablanca in OpenStreetMap is stored as "Casablanca  ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء". In Protomaps we break this label up into 3 parts. Since the text in `name` uses the `Latin` script, we omit the `pmap:script` tag. The other two parts use the Tifinagh and Arabic script.
+
+## Translated Names
+
+Protomaps supports name translations for 41 languages. Translated names are stored with a `name:{language_code}` formatting like OpenStreetMap.
 
 More than 100 countries recognize 2 or more official languages – and some like Bolivia, India, and South Africa recognize more than 10 official languages each!
 
 A single official language is used in most remaining countries. There are a few countries where no official language has been designated – like in the United States.
 
-Going back to our London example, English is the predominant (unofficial) langauge in the United Kingdom:
+Going back to our London example, English is the predominant (unofficial) language in the United Kingdom:
 
 - `name:en` = `London`
 
@@ -52,7 +102,7 @@ Extending our London example, many other languages include [exonym and endonym](
 - `name:zh-Hant` = `倫敦`
 - _... many other localized values..._
 
-Going back to our Switzerland example, each of the local (often official) languages would have a specific language name value (in this case German `de`, French `fr`, Italian `it`, and Romansh `rm`), like:
+Going back to our Switzerland example, each of the official languages would have a specific language name value (in this case German `de`, French `fr`, Italian `it`, and Romansh `rm`), like:
 
 - `name:de` = `Schweiz`
 - `name:fr`	= `Suisse`
@@ -66,98 +116,85 @@ Extending our Switzerland example with exonym and endonym from other languages:
 - `name:en` = `Switzerland`
 - `name:es` = `Switzerland`
 - `name:pt` = `Suíça`
-- `name:zh` = `瑞士`
 - `name:zh-Hans` = `瑞士`
 - `name:zh-Hant` = `瑞士`
 - _... many other localized values..._
 
-_NOTE: The Chinese (`zh`) examples above demonstrates how a single language can have multiple writing systems, in this case both simplified Chinese (`zh-Hans`) used in mainland China and tranditional Chinese (`zh-Hant`) used in Taiwan. The value stored in `zh` could be either of those._
 
-## Script of default `name` value
+### List of Supported Languages
 
-The default (or primary) `name` does not self describe the writing system "script" or character set (alphabetic, stroke-based, or otherwise) used to render the value. When combining with localized `name:*` values. This complicates preferring to "fallback" to another language in the same script family before falling back to characters using a different writing system the reader may not be able to make sense of.
+| Language | Native Name | `name:*` Tag | Script |
+| ----- | ----- | ----- | ----- |
+| Arabic | اَلْعَرَبِيَّةُ | `name:ar` | `Arabic` |
+| Bulgarian | български | `name:bg` | `Cyrillic` |
+| Chinese (Simplified) | 中文 汉语 | `name:zh-Hans` | `Han` |
+| Chinese (Traditional) | 中文 漢語 | `name:zh-Hant` | `Han` |
+| Croatian | hrvatski | `name:hr` | `Latin` |
+| Czech | čeština | `name:cs` | `Latin` |
+| Danish | dansk | `name:da` | `Latin` |
+| Dutch | Nederlands | `name:nl` | `Latin` |
+| English | English | `name:en` | `Latin` |
+| Estonian | eesti keel | `name:et` | `Latin` |
+| Finnish | suomi | `name:fi` | `Latin` |
+| French | français | `name:fr` | `Latin` |
+| German | Deutsch | `name:de` | `Latin` |
+| Greek | Νέα Ελληνικά | `name:el` | `Greek` |
+| Hebrew | עברית | `name:he` | `Hebrew` |
+| Hindi | हिन्दी | `name:hi` | `Devanagari` |
+| Hungarian | magyar | `name:hu` | `Latin` |
+| Indonesian | bahasa Indonesia | `name:id` | `Latin` |
+| Irish | Gaeilge | `name:ga` | `Latin` |
+| Italian | italiano | `name:it` | `Latin` |
+| Japanese | 日本語 | `name:ja` | `Han`, `Katakana`, `Hiragana`, `Mixed-Japanese` |
+| Korean | 한국어 | `name:ko` | `Hangul` |
+| Latvian | latviešu valoda | `name:lv` | `Latin` |
+| Lithuanian | lietuvių kalba | `name:lt` | `Latin` |
+| Maltese | lingwa Maltija | `name:mt` | `Latin` |
+| Marathi | मराठी | `name:mr` | `Devanagari` |
+| Nepali | नेपाली | `name:ne` | `Devanagari` |
+| Norwegian | norsk | `name:no` | `Latin` |
+| Persian | فارسی | `name:fa` | `Arabic` |
+| Polish | Język polski | `name:pl` | `Latin` |
+| Portuguese | português | `name:pt` | `Latin` |
+| Romanian | român | `name:ro` | `Latin` |
+| Russian | русский язык | `name:ru` | `Cyrillic` |
+| Slovak | slovenský | `name:sk` | `Latin` |
+| Slovenian | slovenski | `name:sl` | `Latin` |
+| Spanish | español | `name:es` | `Latin` |
+| Swedish | svenska | `name:sv` | `Latin` |
+| Turkish | Türkçe | `name:tr` | `Latin` |
+| Ukrainian | Українська мова | `name:uk` | `Cyrillic` |
+| Urdu | اردو | `name:ur` | `Arabic` |
+| Vietnamese | Tiếng Việt | `name:vi` | `Latin` |
 
-To help solve this, Protomaps characterizes the scipt used in the default `name` value by adding a `pmap:script` tag.
+NOTE: `Mixed-Japanese` is a custom `pmap:script` value used for labels that contain Hiragana or Katakana mixed with a second or third script. In Japanese, these two scripts often appear in combination with others.
 
-Values in `pmap:script` follow the [ISO 15924](https://unicode.org/iso15924/iso15924-codes.html) standard codes for the representation of names of scripts and are summarized in the table below.
+NOTE 2 : Values in `pmap:script*` follow the [Unicode Standard Annex #24: Script Names](https://www.unicode.org/reports/tr24/).
 
-_NOTE: Some languages can be written in more than one script, e.g., Malay can be written in Latin, Arabic, and Thai._
+## Styling
 
-## Common languages, their codes, and scripts
+For each supported language, Protomaps distributes a localized MapLibre style.json file which shows labels in a target language. Country labels are only shown in the target language, place and street labels can have multiple languages.
 
-This table summarizes 26 common langauges, their ISO codes, and writing system scripts.
+The following set of rules is used:
 
-| Language |  Native name | `name:*` property | [ISO 639-2 code](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) | [ISO_639-1 code](https://en.wikipedia.org/wiki/ISO_639-1) | [ISO_15924 script(s)](https://unicode.org/iso15924/iso15924-codes.html) |
-|--------|-----------------|-----------|-----|----|----|
-| Arabic | اَلْعَرَبِيَّةُ | `name:ar` | ara | ar | `Arabic` |
-| Bengali | বাংলা | `name:bn` | ben | bn | `Bengali` |
-| German | Deutsch | `name:de` | deu | de | `Latin` |
-| English | English | `name:en` | eng | en | `Latin` |
-| Spanish | español | `name:es` | spa | es | `Latin` |
-| Farsi | فارسی | `name:fa` | fas | fa | `Arabic` |
-| French | français | `name:fr` | fra | fr | `Latin` |
-| Greek | Νέα Ελληνικά | `name:el` | ell | el | `Greek` |
-| Hebrew | עברית | `name:he` | heb | he | `Hebrew` |
-| Hindi | हिन्दी | `name:hi` | hin | hi | `Devanagari` |
-| Hungarian	| magyar | `name:hu` | hun | hu | `Latin` |
-| Indonesian | bahasa Indonesia | `name:id` | ind | id | `Latin` |
-| Italian | italiano | `name:it` | ita | it | `Latin` |
-| Japanese | 日本語 | `name:ja` | jpn | ja | `Han`, `Katakana`, `Hiragana` |
-| Korean | 한국어 | `name:ko` | kor | ko | `Hangul` |
-| Dutch | Nederlands | `name:nl` | nld | nl | `Latin` |
-| Polish | Język polski | `name:pl` | pol | pl | `Latin` |
-| Portuguese | português | `name:pt` | por | pt | `Latin` |
-| Russian | русский язык | `name:ru` | rus | ru | `Cyrillic` |
-| Swedish | svenska | `name:sv` | swe | sv | `Latin` |
-| Turkish | Türkçe | `name:tr` | tur | tr | `Latin` |
-| Ukrainian | Українська мова | `name:uk` | ukr | uk | `Cyrillic`, `Latin` |
-| Urdu | اُردُو | `name:ur` | urd | ur | `Arabic` |
-| Vietnamese | Tiếng Việt | `name:vi` | vie | vi | `Latin` |
-| Chinese simplified | 中文 汉语 | `name:zh-Hans` | zho  | zh | `Han` |
-| Chinese traditional | 中文 漢語 | `name:zh-Hant` | zho  | zh | `Han` |
+- Show local names only if they use a different script than the target language
+- If the target language is not available, fallback to name:en if the local script is not Latin
+- Hide text in scripts that cannot be rendered correctly by MapLibre, such as Khmer or Bengali
 
-A full 2-character language code decoder ring is
-[available](https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes).
+### Example: Milano
 
-_NOTE: Some langauges require codes with 3-characers or more._
+For a map localized to English, we only use `name:en = Milan` since the local `name = Milano` uses the Latin script which is used in English as well. The label would be:
 
-## Common languages by country
+```
+Milan
+```
 
-The following country and international organizations worldviews are supported:
+For a map localized to Greek, we would use `name:el = Μιλάνο` in the first line and since that is a different script from Latin, we would also include the local `name = Milano` in the second line:
 
-| Country | Native name | Common language | Localized `name:*` value | Recommended `name:*` pairing |
-|---------|-------------|------------------|--------------------------|--------------------------|
-| Argentina | Argentina | Spanish | `name:es` | `name:it`, `name:fr`, `name:en`, `name:de` |
-| Bangladesh | বাংলাদেশ | Bengali | `name:bn` | _n/a_ |
-| Brazil | Brasil | Portugese | `name:pt` | `name:es`, `name:it`, `name:fr`, `name:en`, `name:de` |
-| China | 中国 | Chinese | `name:zh-Hans` | `name:zh`, `name:zh-Hant` |
-| Egypt | مصر | Arabic | `name:ar` | `name:fr`, `name:en`, `name:de` |
-| France | France | French | `name:fr` | `name:es`, `name:it`, `name:pt`, `name:en`, `name:de` |
-| Germany | Deutschland | German | `name:de` | `name:en`, `name:fr`, `name:es`, `name:it` |
-| Greece | Ελλάς | Greek | `name:el` | _n/a_ |
-| India | भारत | Hindi and many other | `name:hi`, +++ | `name:en` |
-| Indonesia | Indonesia | Indonesian | `name:id` | |
-| Israel | ישראל | Hebrew | `name:he` | _n/a_ |
-| Italy | Italia | Italian | `name:it` | `name:es`, `name:fr`, `name:pt`, `name:en`, `name:de` |
-| Japan | 日本 | Japanese | `name:ja` | _n/a_ |
-| Morocco | المغرب | Arabic | `name:ar` | `name:fr`, `name:en`, `name:de` |
-| Nepal | नेपाल | Nepalese | `name:ne` | `name:en`|
-| Netherlands | Nederland | Dutch | `name:nl` | `name:en`, `name:de`, `name:fr`, `name:es`, `name:it`  |
-| Pakistan | پاکستان | Urdu | `name:ur` | _n/a_ |
-| Palestine | فلسطين | Arabic | `name:ar` | _n/a_ |
-| Poland | Polska | Polish | `name:pl` | `name:de`, `name:en` |
-| Portugal | Portugal | Portugese | `name:pt` | `name:es`, `name:it`, `name:fr`, `name:en`, `name:de` |
-| Russia | Россия | Russian | `name:ru` | _n/a_ |
-| Saudi Arabia | المملكة العربية السعودية | Arabic | `name:ar` | _n/a_ |
-| South Korea | 한국 | Korean | `name:ko` | _n/a_ |
-| Spain | España | Spanish | `name:es` | `name:pt`, `name:it`, `name:fr`, `name:en`, `name:de` |
-| Sweden | Sverige | Swedish | `name:sv` | `name:en` |
-| Taiwan | 中華民國 | Traditional Chinese | `name:zh-Hant` | `name:zh-Hans`, `name:zh`|
-| Turkey | Türkiye | Turkish | `name:tr` | `name:fr`, `name:en`, `name:de` |
-| Ukraine | Україна | Ukrainian | `name:uk` | `name:ru` |
-| United Kingdom | United Kingdom | English, Welsh, Scottish, Irish, others | `name:en` | `name:es`, `name:fr`, `name:en`, `name:de` |
-| United States | United States | English, Spanish, French, others | `name:en` | `name:es`, `name:fr`, `name:en`, `name:de` |
-| Vietnam | Việt Nam | Vietnamese | `name:vi` | `name:fr`, `name:en`, `name:es`, `name:de` |
+```
+Μιλάνο
+Milano
+```
 
 ## Positioned glyph font `pmap:pgf:name:*` values
 
@@ -165,34 +202,13 @@ Protomaps adds additional names for a small set of language scripts, currently j
 
 Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and MapLibre has built-in support for **CJK scripts** like Chinese, Japanese, and Korean.
 
-To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glphys" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like giberish when inspecting the raw values, they render correctly in MapLibre to the end user.
+To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glyphs" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like gibberish when inspecting the raw values, they render correctly in MapLibre to the end user.
 
 See more:
 
 - [Traditional MapLibre Text Rendering](https://oliverwipfli.ch/about-text-rendering-in-maplibre-2023-10-17/)
 - [Devanagari Positioned Glyph Fonts](https://oliverwipfli.ch/devanagari-in-the-protomaps-basemap-with-a-positioned-glyph-font-for-maplibre-2024-06-30/)
 
-## Styling localized name
-
-Labeling a map is typically localized for a specific language audience by prefering a specific name tag and falling back to similar languages (in the same writing system "script", see above), and finally falling back to the feature's default name (which could be in any script, in any language).
-
-### MapLibre
-
-#### MapLibre styling basic example
-
-TK TK TK
-
-#### MapLibre styling localized name with fallback example
-
-TK TK TK
-
-#### MapLibre styling localized name with script-based fallback example
-
-TK TK TK
-
-#### MapLibre styling positioned glyph font with script-based example
-
-TK TK TK
 
 #### MapLibre supported scripts and languages
 
@@ -215,18 +231,17 @@ NOTE: Right-to-left scripts and languages like Arabic and Hebrew requires a spec
 
 #### MapLibre partial support
 
-Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pmap:pgf:name:*` values. The PGF fontstacks used by the Protomaps basemaps is available at https://github.com/protomaps/basemaps-assets/tree/main/fonts.
+Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pmap:pgf:name:*` values. The PGF fontstacks used by the Protomaps basemaps are available at https://github.com/protomaps/basemaps-assets/tree/main/fonts.
 
 | Script | Languages |
 | ------- | ---------|
-| `Devanagari` | GUJARATI, HINDI, MARATHI, NEPALI |
-
-These are primarily found in India.
+| `Devanagari` | HINDI, MARATHI, NEPALI |
 
 #### MapLibre no support
 
 | Script | Languages |
 | ------- | ---------|
+| `Gujarati` | GUJARATI |
 | `Kannada` | KANNADA |
 | `Bengali` | BENGALI |
 | `Burmese` | BURMESE |
@@ -242,7 +257,3 @@ These are primarily found in India.
 _NOTE: This is a partial listing of scripts and languages._
 
 These non-supported MapLibre languages are primarily found in India and countries in south-east Asia.
-
-### OpenLayers
-
-Tk tk tk
