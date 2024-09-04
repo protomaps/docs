@@ -24,6 +24,7 @@ export default defineConfig({
         items: [
           { text: "What is Protomaps?", link: "/" },
           { text: "Getting Started", link: "/guide/getting-started" },
+          { text: "Security and Privacy", link: "/guide/security-privacy" },
         ],
       },
       {
