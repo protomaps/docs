@@ -19,7 +19,7 @@ Protomaps is designed for simple, secure and privacy-enabled map publishing, and
 
 Verify the **access level of your storage buckets.**
 
-Hosting PMTiles from a public storage bucket and decoding via [pmtiles.js]() is the simplest publishing method, but allows anyone to download your entire tileset. To limit access, use one of the [deployment options](/deploy) for decoding on the server or in a serverless function.
+Hosting PMTiles from a public storage bucket and decoding via [pmtiles.js](/pmtiles/maplibre) is the simplest publishing method, but allows anyone to download your entire tileset. To limit access, use one of the [deployment options](/deploy/) for decoding on the server or in a serverless function.
 
 ### HTTPS
 
@@ -65,7 +65,7 @@ The European Union's [General Data Protection Regulation (GDPR)](https://gdpr.eu
 
 Using Protomaps for your web map can **eliminate third party data controllers and processors**, making it much easier for sites to comply with GDPR.
 
-Hosting [PMTiles](/pmtiles) via your existing cloud storage or server is a first step - a typical map application has many other components.
+Hosting [PMTiles](/pmtiles/) via your existing cloud storage or server is a first step - a typical map application has many other components.
 
 ### Example Application
 
