@@ -174,7 +174,7 @@ Sample CORS Configuration:
 ### Supabase Storage
 
 * [Supabase Storage](https://supabase.com/storage) is an S3-compatible storage API that supports HTTP Range Requests.
-* [Private Buckets](https://supabase.com/docs/guides/storage/serving/downloads#private-buckets) ntegrate with the Supabase Auth system.
+* [Private Buckets](https://supabase.com/docs/guides/storage/serving/downloads#private-buckets) integrate with the Supabase Auth system.
 * [Public Buckets](https://supabase.com/docs/guides/storage/serving/downloads#public-buckets) allow all CORS origins (`*`) and benefit from a CDN edge cache.
 
 #### CORS

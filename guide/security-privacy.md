@@ -52,7 +52,19 @@ Even if your PMTiles archives or tile endpoints come from your own infrastructur
   src="https://unpkg.com/pmtiles@3.0.7/dist/pmtiles.js" 
   integrity="sha384-MjejsnWXHmuz93aE35YWLh5AbS/6ceRB3Vb+ukOwqFzJRTpQ8vvbkLbNV7I0QK4f" 
   crossorigin="anonymous"
-></script>
+/>
+```
+
+### Content Security Policy
+
+Setting a [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) via HTTP header or HTML `meta` tag can enforce all page resources, like tiles, come from the same origin.
+
+An example HTML CSP policy that includes [MapLibre's required CSP directives](https://maplibre.org/maplibre-gl-js/docs/#csp-directives):
+
+```html
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self' 'nonce-n0nce' 'nonce-n0nce1'; worker-src blob: ; child-src blob: ; img-src data: blob: ;" />
 ```
 
 ## GDPR
@@ -63,7 +75,7 @@ This is not a substitute for legal advice.
 
 The European Union's [General Data Protection Regulation (GDPR)](https://gdpr.eu) regulates how companies store and transmit personal data. 
 
-Using Protomaps for your web map can **eliminate third party data controllers and processors**, making it much easier for sites to comply with GDPR.
+Hosting Protomaps for your web map can **eliminate third party data controllers and processors**, making it easier for sites to comply with GDPR.
 
 Hosting [PMTiles](/pmtiles/) via your existing cloud storage or server is a first step - a typical map application has many other components.
 
@@ -71,10 +83,13 @@ Hosting [PMTiles](/pmtiles/) via your existing cloud storage or server is a firs
 
 Below is a complete example of a map application that avoids third-party data processors. As long as all linked assets are on your own GDPR-compliant static storage, no third party data processors or controllers are required.
 
-```html{4-7,15,23-24}
+```html{7-10,18,26-27,32}
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self' 'nonce-n0nce' 'nonce-n0nce1'; worker-src blob: ; child-src blob: ; img-src data: blob: ;" />
         <link rel="stylesheet" href="maplibre-gl.css">
         <script src="maplibre-gl.js"></script>
         <script src="pmtiles.js"></script>
@@ -95,7 +110,7 @@ Below is a complete example of a map application that avoids third-party data pr
               center: [11.24962,43.77078],
               style: {
                 glyphs: "fonts/{fontstack}/{range}.pbf",
-                sprites: "sprites/v3/light",
+                sprite: "sprites/v3/light",
                 version: 8,
                 sources: {
                   protomaps: {
