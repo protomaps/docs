@@ -51,6 +51,10 @@ For S3-compatible blob storage (Minio, Cloudflare R2, etc) outside of AWS:
 pmtiles show test.pmtiles --bucket=s3://BUCKET_NAME?endpoint=https://example.com&region=auto
 ```
 
+:::info
+Some S3-compatible storage servers like Minio, Ceph and SeaweedFS may require [additional URL options](https://gocloud.dev/howto/blob/#s3-compatible) like `s3ForcePathStyle=true`.
+:::
+
 ### Private buckets
 
 `pmtiles` uses [go-cloud's]() default authentication methods for each cloud provider.
@@ -62,10 +66,6 @@ export AWS_ACCESS_KEY_ID=MY_KEY
 export AWS_SECRET_ACCESS_KEY=MY_SECRET
 pmtiles show NAME.pmtiles --bucket=s3://R2_BUCKET_NAME\?endpoint=https://R2_ACCOUNT_ID.r2.cloudflarestorage.com\&region=auto
 ```
-
-:::info
-Note that some S3-compatible storage servers like Minio, Ceph and SeaweedFS may require [additional URL options](https://gocloud.dev/howto/blob/#s3-compatible) like `s3ForcePathStyle=true`.
-:::
 
 ## Commands
 
@@ -115,17 +115,18 @@ Options:
 
 ### serve
 
-The simplest way to consume PMTiles on the web is directly in the browser with [pmtiles.js along with a renderer-specific client](/docs/pmtiles/maplibre). However, decoding PMTiles on the server and exposing a ZXY API is faster and works with more clients. A ZXY API is directly supported by web and native renderers such as [MapLibre](http://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` also allows serving a public ZXY API from private storage buckets.
+The simplest way to consume PMTiles on the web is directly in the browser with [pmtiles.js along with a renderer-specific client](/docs/pmtiles/maplibre). However, decoding PMTiles on the server and exposing a ZXY API works with more clients and can result in lower latency. A ZXY API is directly supported by web and native renderers such as [MapLibre](http://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` also allows serving a public API from a private storage bucket.
 
 :::info
 When using `pmtiles serve`, requests for the raw file like `/test.pmtiles`, either whole or partial range requests, are not supported. A standard web server like Apache, Nginx or Caddy can serve those.
 :::
 
-Serve a directory or bucket of tilesets (like TILESET.pmtiles) from local or cloud storage as a Z/X/Y endpoint: 
+Serve a directory or bucket of tilesets (like TILESET.pmtiles) from local or cloud storage as a ZXY endpoint: 
 
 ```bash
 pmtiles serve .
-# serves the current directory at http://localhost:8080/TILESET/{z}/{x}/{y}.mvt
+# serves this directory at http://localhost:8080/TILESET/{z}/{x}/{y}.mvt 
+# the .pmtiles extension is added automatically
 # TileJSON at http://localhost:8080/TILESET.json
 pmtiles serve . --bucket=https://example.com
 pmtiles serve / --bucket=s3://BUCKET_NAME
@@ -137,7 +138,7 @@ For ZXY URLs, the extension must match the type of the tiles in the archive, for
 Flags:
 
 * `--cors=ORIGIN` set the value of the Access-Control-Allow-Origin. * is a valid value but must be escaped in your shell. Appropriate for development use.
-* `--cache-size=SIZE_MB` set the total size of the header and directory LRU cache. Default is 64 MB.
+* `--cache-size=SIZE_MB` set the global size of the header and directory LRU cache, shared across all archives. Default is 64 MB.
 * `--port=PORT` specify the HTTP port. Defaults to 8080.
 * `--public-url`: Required for serving [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0). Specify the full URL as it should appear to the browser client like `http://localhost:8080` or `https://example.com`.
 
