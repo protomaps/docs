@@ -5,67 +5,69 @@ outline: deep
 
 # Cloudflare Integration
 
+This guide walks through setting up a ZXY API using Cloudflare R2 Storage and Workers.
+
+:::warning
+Cloudflare R2 is known to have higher latency (500ms or higher) than other Cloud Storage products, but lower storage and no egress costs. Evaluate this as a deployment option alongside others.
+:::
+
 ## Installation
 
 ### 1. Upload to R2
 
 Uploading via Web UI is limited to 300 MB.
 
-Use [rclone](https://rclone.org/downloads/) to upload larger PMTiles archives to R2 (you can use the `rclone/rclone` docker image in order to avoid installation, the config is at `/etc/rclone` for mounting). 
-This requires a token from **R2 > Manage R2 API Tokens**. Note **Access Key ID**, the **Secret Access Key** and the **Endpoint for S3 Clients** from the API key creation screen.
-Run the following commands:
-1. `rclone config` and follow the on screen questions, the endpoint should look like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
-2. `rclone copyto <FILE> <rclone configuration name>:<BUCKET_NAME>/<FILE> --progress --s3-no-check-bucket --s3-chunk-size=256M` to upload to the root of the bucket.
+Use [rclone](/pmtiles/cloud-storage#uploading) to upload larger PMTiles archives to R2.
+
+This requires a token from **R2 > Manage R2 API Tokens**. Note **Access Key ID**, the **Secret Access Key** and the **Endpoint for S3 Clients** from the API key creation screen. The S3-compatible endpoint should look like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`.
 
 Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` or `/NAME.json` ([TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0)) for the archive `NAME.pmtiles`.
 
-### 2. Create Worker with Web Console
+### 2. Manual Option: Create Worker with Web Console
 
-1. In the Workers left menu of the Cloudflare dashboard, choose **Create Worker**.
+1. In the **Workers & Pages** menu of the Cloudflare dashboard, choose **Create > Create Worker**.
 
-2. It will ask you to deploy it first before you can edit the code, click **Deploy**.
+2. Click **Deploy** to publish the sample code.
 
 3. **Edit Code** and paste the bundled [index.js](https://pmtiles.io/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
 
-4. Leave the default **HTTP handler** option.
-
-5. Choose **Save and Deploy** and leave the code editing window.
+5. Choose **Deploy > Save and Deploy** and leave the code editing window.
   
-6. Select the newly created worker from the Workers list.
-
-7. In **Settings** of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
+6. In **Settings** of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
 
   * Create a variable named `BUCKET` and select your R2 bucket from Step 1.
 
-  * Choose **Save and Deploy**.
+  * Choose **Deploy**.
 
-Your worker should now be active at its `*.workers.dev` domain. 
+Your worker should now be active at its `*.workers.dev` domain, visible at the **Visit** link.
 
-Make a request for `<ACCOUNT_NAME>.workers.dev/<FILENAME>/0/0/0.<mvt | png>` to verify tiles are served.
+Make a request for `/TILESET.json` to verify TileJSON is served.
 
-### Alternative: Use Wrangler
+### 2. Command-line Option: Use Wrangler
 
 1. Clone the [PMTiles repository](https://github.com/protomaps/PMTiles) and change to the `serverless/cloudflare` directory.
 
-2. `npm install` in `PMTiles/js` to get the dependencies of the core JS library
+2. `npm install` in `PMTiles/js` to get the dependencies of the core JS library.
 
-3. Also `npm install` in `PMTiles/serverless/cloudflare`
+3. Also `npm install` in `PMTiles/serverless/cloudflare`.
 
-4. Copy `wrangler.toml.example` to `wrangler.toml`
+4. Copy `wrangler.toml.example` to `wrangler.toml`.
 
-5. Edit `wrangler.toml`, replacing `bucket_name` with your bucket.
+5. Edit `wrangler.toml`, replacing `my-bucket-development` and `my-bucket-production` with your bucket.
 
 6. Publish the worker: `npm run deploy`
+
+After the deploy, the `*.workers.dev` subdomain will be printed.
+
+Make a request for `/TILESET.json` to verify TileJSON is served.
 
 ### 3. Create Worker Route
 
 For the cache to work, the worker must be assigned a zone on your own domain, not `workers.dev`.
 
-1. In **Triggers** for your Worker, **Add Custom Domain** e.g. `subdomain.mydomain.com`. This will create a DNS entry in your Cloudflare site.
+1. In **Settings > Triggers** for your Worker, **Add Custom Domain** e.g. `subdomain.mydomain.com`. This will create a DNS entry in your Cloudflare site.
 
-2. In **Routes**, Assign the route `subdomain.mydomain.com/*` to your worker. This directs traffic to the above subdomain to this specific worker.
-
-Verify your deployment is working by checking for the `Cf-Cache-Status` header with a value of `HIT` on tile requests. This may take 2-3 attempts.
+Verify your deployment is working by checking for the `Cf-Cache-Status` header with a value of `HIT` on successful (HTTP 200) requests.
 
 Example with `curl` for vector tiles and [TileJSON](https://github.com/mapbox/tilejson-spec):
 
@@ -85,8 +87,6 @@ Optional environment variables can be set set in `[vars]` of `wrangler.toml` or 
 * `PUBLIC_HOSTNAME` - Optional, override the absolute hostname in [TileJSON](https://github.com/mapbox/tilejson-spec) responses. Example `tiles.example.com`
 
 * `ALLOWED_ORIGINS` - a comma-separated list of allowed CORS origins. Default none. Examples: `https://example.com,https://localhost:3000`, `*`
-
-* ~~`CACHE_MAX_AGE`: max age in the Cloudflare cache, in seconds. default 86400, or 1 day.~~
 
 * `CACHE_CONTROL`: HTTP header value to control caching, default `public, max-age=86400` (1 day).
 
