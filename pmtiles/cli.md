@@ -31,7 +31,7 @@ However, `pmtiles` can also work with remote HTTP archives and tilesets on cloud
 pmtiles show https://r2-public.protomaps.com/protomaps-sample-datasets/cb_2018_us_zcta510_500k.pmtiles
 ```
 
-`pmtiles` uses the [go-cloud]() library for connecting and authenticating to cloud storage.
+`pmtiles` uses the [go-cloud](https://gocloud.dev/howto/blob/) library for connecting and authenticating to cloud storage.
 
 Commands for S3, Azure Blob and Google Cloud Storage:
 
@@ -57,7 +57,7 @@ Some S3-compatible storage servers like Minio, Ceph and SeaweedFS may require [a
 
 ### Private buckets
 
-`pmtiles` uses [go-cloud's]() default authentication methods for each cloud provider.
+`pmtiles` uses [go-cloud's](https://gocloud.dev/howto/blob/) default authentication methods for each cloud provider.
 
 For example, the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables are used to sign requests to private S3-compatible buckets:
 
@@ -115,7 +115,7 @@ Options:
 
 ### serve
 
-The simplest way to consume PMTiles on the web is directly in the browser with [pmtiles.js along with a renderer-specific client](/docs/pmtiles/maplibre). However, decoding PMTiles on the server and exposing a ZXY API works with more clients and can result in lower latency. A ZXY API is directly supported by web and native renderers such as [MapLibre](http://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` also allows serving a public API from a private storage bucket.
+The simplest way to consume PMTiles on the web is directly in the browser with [pmtiles.js along with a renderer-specific client](/pmtiles/maplibre). However, decoding PMTiles on the server and exposing a ZXY API works with more clients and can result in lower latency. A ZXY API is directly supported by web and native renderers such as [MapLibre](https://maplibre.org), without needing the PMTiles client library. Using `pmtiles serve` also allows serving a public API from a private storage bucket.
 
 :::info
 When using `pmtiles serve`, requests for the raw file like `/test.pmtiles`, either whole or partial range requests, are not supported. A standard web server like Apache, Nginx or Caddy can serve those.
@@ -142,7 +142,7 @@ Flags:
 * `--port=PORT` specify the HTTP port. Defaults to 8080.
 * `--public-url`: Required for serving [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0). Specify the full URL as it should appear to the browser client like `http://localhost:8080` or `https://example.com`.
 
-For production usage, it's recommended to run behind a CDN or reverse proxy like Caddy to handle SSL and CORS. See the guide on [Accelerating PMTiles](/docs/deploy/).
+For production usage, it's recommended to run behind a CDN or reverse proxy like Caddy to handle SSL and CORS. See the guide on [Accelerating PMTiles](/deploy/).
 
 
 ### convert
