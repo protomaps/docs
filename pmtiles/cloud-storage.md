@@ -21,6 +21,11 @@ PMTiles is designed to work on any S3-compatible cloud storage platform that sup
 rclone copyto my-filename my-configuration:my-bucket/my-folder/my-filename.pmtiles --progress --s3-chunk-size=256M
 ```
 
+RClone is also available via the [`rclone/rclone` Docker image.](https://hub.docker.com/r/rclone/rclone)
+
+1. `rclone config` and follow the on screen questions. In Docker, the config is located at `/etc/rclone`.
+2. `rclone copyto <FILE> <rclone configuration name>:<BUCKET_NAME>/<FILE> --progress --s3-no-check-bucket --s3-chunk-size=256M` to upload to the root of the bucket.
+
 * The [aws command-line tool](https://aws.amazon.com/cli/) can be used for uploads, as well as setting CORS configuration on any S3-compatible platform.
 
 ::: info
