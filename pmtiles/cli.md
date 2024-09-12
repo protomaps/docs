@@ -13,6 +13,8 @@ The source code is on [GitHub at protomaps/go-pmtiles](https://github.com/protom
 
 To download, see [Releases on GitHub](https://github.com/protomaps/go-pmtiles/releases) for your OS and architecture.
 
+An official Docker Hub image is available at [protomaps/go-pmtiles](https://hub.docker.com/repository/docker/protomaps/go-pmtiles/general).
+
 ## CLI Overview
 
 ### Local archives
@@ -152,6 +154,17 @@ Convert an [MBTiles](https://github.com/mapbox/mbtiles-spec/tree/master/1.3) arc
 ```bash
 pmtiles convert INPUT.mbtiles OUTPUT.pmtiles
 ```
+
+For the Docker image:
+
+```sh
+docker run -v $(pwd):/data --rm protomaps/go-pmtiles convert /data/INPUT.mbtiles /data/OUTPUT.pmtiles
+```
+
+Options:
+
+* `--no-deduplication`: Do not attempt to de-duplicate tile contents. Use this to speed up `convert` if you know the input has only unique tiles.
+* `--tmpdir`: specify the location of the temporary directory.
 
 ### upload
 
