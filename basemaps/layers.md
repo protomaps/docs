@@ -31,7 +31,7 @@ For the previous version of the layers, see [Layers Version 2](/basemaps/layers_
 ## buildings
 
 
-Buildings from OpenStreetMap.
+Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains invidiual osm equivalent buildings.
 
 | Key          |             Values            |                                  Description |
 | ------------ | :---------------------------: | -------------------------------------------: |
