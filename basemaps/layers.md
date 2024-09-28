@@ -18,13 +18,13 @@ This section is under construction for Version 4.
 
 <MaplibreMap highlightLayer="boundaries"/>
 
-| Key               | Values                                    | Description |
-| ----------------- | ----------------------------------------- | ----------- |
-| `kind`            | `country`, `region`, `county`, `locality` |             |
-| `kind_detail`     |                                           |             |
-| `min_admin_level` |                                           |             |
-| `brk_a3`          |                                           |             |
-| `disputed`        | boolean                                   |             |
+| Key           | Values                                    | Description                       |
+| ------------- | ----------------------------------------- | --------------------------------- |
+| `kind`        | `country`, `region`, `county`, `locality` |                                   |
+| `kind_detail` | integer                                   | the minimum admin_level from OSM  |
+| `brk_a3`      |                                           | `brk_a3` value from Natural Earth |
+| `disputed`    | boolean                                   |                                   |
+
 
 
 ## buildings
@@ -311,7 +311,8 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 
 ## roads
 
-Lines from OpenStreetMap, from a curated subset of highway tags, for mid- and high-zooms.
+Linear transportation features designed for movement, including highways, streets,
+ railways and piers from OpenStreetMap. This layer represents built infrastructure including railways. Refer to the [transit](#transit) layer for passenger services.
 
 <MaplibreMap highlightLayer="roads"/>
 
@@ -328,11 +329,22 @@ Lines from OpenStreetMap, from a curated subset of highway tags, for mid- and hi
 | `link`               |                                                                                                                                                                                                             int                                                                                                                                                                                                              |              |
 | `level`              |                                                                                                                                                                                                        `-1`, `0`, `1`                                                                                                                                                                                                        |              |
 
-
+| kind         |
+| ------------ |
+| `highway`    |
+| `major_road` |
+| `minor_road` |
+| `path`       |
+| `aerialway`  |
+| `ferry`      |
+| `pier`       |
+| `rail`       |
 
 ## transit
 
 <MaplibreMap highlightLayer="transit"/>
+
+Lines representing scheduled passenger services suitable for rendering on the map, even at lower zoom levels. For physical infrastructure, like highways and railways, see the [roads](#roads) layer.
 
 Lines from OpenStreetMap, from a curated subset of railway, aerialway, man_made, route, and aeroway tags, for mid- and high-zooms.
 
