@@ -19,8 +19,8 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       source: sourceName,
       "source-layer": highlightName,
       paint: {
-        "circle-color": "steelblue"
-      }
+        "circle-color": "steelblue",
+      },
     },
     {
       id: "highlight_stroke",
@@ -29,8 +29,8 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       source: sourceName,
       "source-layer": highlightName,
       paint: {
-        "line-color": "steelblue"
-      }
+        "line-color": "steelblue",
+      },
     },
     {
       id: "highlight_fill",
@@ -39,9 +39,9 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       source: sourceName,
       "source-layer": highlightName,
       paint: {
-        "fill-color": "steelblue"
-      }
-    }
+        "fill-color": "steelblue",
+      },
+    },
   ];
 };
 
