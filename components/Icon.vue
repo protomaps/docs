@@ -12,9 +12,8 @@ onMounted(async () => {
   const context = canvasRef.value.getContext("2d");
   const [j, i] = await props.sprites;
   const data = j[props.name];
-  context.drawImage(i, data.x, data.y, data.width, data.height, 0,0, 38, 38)
+  context.drawImage(i, data.x, data.y, data.width, data.height, 0, 0, 38, 38);
 });
-
 </script>
 
 <template>
@@ -22,8 +21,8 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-  canvas {
-    width: 19px;
-    height: 19px;
-  }
+canvas {
+  width: 19px;
+  height: 19px;
+}
 </style>
