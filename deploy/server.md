@@ -15,6 +15,14 @@ If you already use a server like nginx or Apache, you can run [`pmtiles serve`](
 
 Use [Caddy Downloads](https://caddyserver.com/download?package=github.com%2Fprotomaps%2Fgo-pmtiles%2Fcaddy) to download a Caddy build with the pmtiles plugin for your OS and architecture.
 
+```sh
+caddy list-modules
+...
+http.handlers.pmtiles_proxy
+
+  Non-standard modules: 1
+```
+
 See the Caddy docs for how to [Keep Caddy Running](https://caddyserver.com/docs/running) by installing as a system service.
 
 ## Credentials

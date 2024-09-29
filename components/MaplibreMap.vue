@@ -9,7 +9,43 @@ const { isDark } = useData();
 const mapRef = ref(null);
 var map;
 
-const style = (passedTheme: string) => {
+const highlightLayers = (sourceName: string, highlightName?: string) => {
+  if (!highlightName) return [];
+  return [
+    {
+      id: "highlight_circle",
+      type: "circle",
+      filter: ["==", ["geometry-type"], "Point"],
+      source: sourceName,
+      "source-layer": highlightName,
+      paint: {
+        "circle-color": "steelblue",
+      },
+    },
+    {
+      id: "highlight_stroke",
+      type: "line",
+      filter: ["==", ["geometry-type"], "LineString"],
+      source: sourceName,
+      "source-layer": highlightName,
+      paint: {
+        "line-color": "steelblue",
+      },
+    },
+    {
+      id: "highlight_fill",
+      type: "fill",
+      filter: ["==", ["geometry-type"], "Polygon"],
+      source: sourceName,
+      "source-layer": highlightName,
+      paint: {
+        "fill-color": "steelblue",
+      },
+    },
+  ];
+};
+
+const style = (passedTheme?: string, highlightLayer?: string) => {
   const theme = passedTheme || (isDark.value ? "dark" : "light");
   return {
     version: 8,
@@ -19,33 +55,35 @@ const style = (passedTheme: string) => {
     sources: {
       protomaps: {
         type: "vector",
-        tiles: [
-          "https://api.protomaps.com/tiles/v3/{z}/{x}/{y}.mvt?key=e6cd5633d51d8e24",
-        ],
-        maxzoom: 15,
+        url: "https://api.protomaps.com/tiles/v3.json?key=e6cd5633d51d8e24",
       },
     },
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", theme),
+    layers: layers("protomaps", theme).concat(
+      highlightLayers("protomaps", highlightLayer),
+    ),
   };
 };
 
 const props = defineProps<{
-  theme: string;
+  theme?: string;
+  highlightLayer?: string;
 }>();
 
 onMounted(() => {
   map = new maplibregl.Map({
     container: mapRef.value,
-    style: style(props.theme),
+    style: style(props.theme, props.highlightLayer),
     cooperativeGestures: true,
+    attributionControl: false,
   });
+  map.addControl(new maplibregl.AttributionControl({ compact: false }));
 });
 
 watch(isDark, () => {
-  map.setStyle(style());
+  map.setStyle(style(props.theme, props.highlightLayer));
 });
 </script>
 
