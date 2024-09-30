@@ -5,15 +5,23 @@ outline: deep
 
 # Set up a Server
 
-PMTiles has first-class integration with [Caddy](https://caddyserver.com), a production-grade, dependency-free web server with [automatic HTTPS](https://caddyserver.com/docs/quick-starts/https). The Caddy plugin can serve buckets of archives from private S3-compatible storage, Azure, Google Cloud, public HTTP endpoints, and the filesystem.
+Provisioning a dedicated server or virtual machine can be a cost-effective and low latency way method of serving PMTiles archives as Z/X/Y tile endpoints.
 
 ::: info
 If you already use a server like nginx or Apache, you can run [`pmtiles serve`](/pmtiles/cli) behind a reverse proxy configuration.
 :::
 
-## Installation
+## Caddy
+
+PMTiles has first-class integration with [Caddy](https://caddyserver.com), a production-grade, dependency-free web server with [automatic HTTPS](https://caddyserver.com/docs/quick-starts/https). The Caddy plugin can serve buckets of archives from private S3-compatible storage, Azure, Google Cloud, public HTTP endpoints, and the filesystem.
+
+### Installation
 
 Use [Caddy Downloads](https://caddyserver.com/download?package=github.com%2Fprotomaps%2Fgo-pmtiles%2Fcaddy) to download a Caddy build with the pmtiles plugin for your OS and architecture.
+
+![caddy plugin](server_caddy.png)
+
+Verify that the `pmtiles_proxy` plugin is present in your `caddy` executable:
 
 ```sh
 caddy list-modules
@@ -25,21 +33,7 @@ http.handlers.pmtiles_proxy
 
 See the Caddy docs for how to [Keep Caddy Running](https://caddyserver.com/docs/running) by installing as a system service.
 
-## Credentials
-
-Credentials will be loaded from environment variables by the [gocloud](https://gocloud.dev/howto/blob/) library.
-* S3 buckets can specify `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in Caddy's [unit files](https://caddyserver.com/docs/running#unit-files):
-
-```txt{3-4}
-...
-[Service]
-Environment=AWS_ACCESS_KEY_ID=mykey
-Environment=AWS_SECRET_ACCESS_KEY=mysecret
-...
-```
-
-
-## Caddyfile
+### Caddyfile
 
 A minimal configuration for serving a bucket:
 
@@ -69,4 +63,15 @@ localhost:2019 {
 
 For a production-ready deployment, refer to the Caddy docs on [configuring SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) and [CORS headers](https://caddyserver.com/docs/caddyfile/directives/header).
 
+### Credentials
 
+Credentials will be loaded from environment variables by the [gocloud](https://gocloud.dev/howto/blob/) library.
+* S3 buckets can specify `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in Caddy's [unit files](https://caddyserver.com/docs/running#unit-files):
+
+```txt{3-4}
+...
+[Service]
+Environment=AWS_ACCESS_KEY_ID=mykey
+Environment=AWS_SECRET_ACCESS_KEY=mysecret
+...
+```
