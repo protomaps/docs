@@ -29,13 +29,15 @@ Name your uploads to storage with the `.pmtiles` extension. Your tile requests t
 
 2. Click **Deploy** to publish the sample code.
 
-3. **Edit Code** and paste the bundled [index.js](https://pmtiles.io/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
+3. **Edit Code** and replace the existing with the bundled [index.js](https://pmtiles.io/index.js) from [PMTiles/serverless/cloudflare](https://github.com/protomaps/PMTiles/tree/main/serverless/cloudflare).
 
 5. Choose **Deploy > Save and Deploy** and leave the code editing window.
   
-6. In **Settings** of your worker, choose Variables > R2 Bucket Bindings > **Add Binding**.
+6. In **Settings** of your worker:
 
-  * Create a variable named `BUCKET` and select your R2 bucket from Step 1.
+  * Choose **Variables and Secrets** > **+Add**. Name a variable `ALLOWED_ORIGINS` and set it to `*` to allow all CORS origins.
+
+  * Choose **Bindings** > **+Add** > **R2 bucket**. Name your variable `BUCKET` and select your R2 bucket from Step 1.
 
   * Choose **Deploy**.
 
