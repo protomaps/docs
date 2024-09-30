@@ -262,7 +262,7 @@ These non-supported MapLibre languages are primarily found in India and countrie
 
 With the data present in the tiles it is possible to create dual language labels, i.e., labels in two target languages.
 
-For example, to localize a map to Dutch (nl) and French (fr), one can use the following json snipped in a MapLibre Style:
+For example, to localize a map to Dutch (nl) and French (fr), one can use the following json snippet in a MapLibre Style:
 
 ```json
 "text-field": [
