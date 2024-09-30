@@ -257,3 +257,44 @@ Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre
 _NOTE: This is a partial listing of scripts and languages._
 
 These non-supported MapLibre languages are primarily found in India and countries in south-east Asia.
+
+## Dual Language Labels
+
+With the data present in the tiles it is possible to create dual language labels, i.e., labels in two target languages.
+
+For example, to localize a map to Dutch (nl) and French (fr), one can use the following json snipped in a MapLibre Style:
+
+```json
+"text-field": [
+  "case",
+  [
+    "all",
+    ["has", "name:nl"],
+    ["has", "name:fr"],
+  ],
+  // both languages are present
+  [
+    "case",
+    ["==", ["get", "name:nl"], ["get", "name:fr"]],
+    // both languages are identical, only show one
+    ["get", "name:nl"],
+    // languages not identical, show both
+    [
+      "format",
+      ["get", "name:nl"], {},
+      "\n", {},
+      ["get", "name:fr"], {},
+    ],
+  ],
+  [
+    "all",
+    ["!", ["has", "name:nl"]],
+    ["!", ["has", "name:fr"]],
+  ],
+  // none of the languages is present, use default
+  ["get", "name"],
+  // only one language is present
+  ["coalesce", "name:nl", "name:fr"],
+]
+```
+
