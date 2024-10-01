@@ -156,14 +156,15 @@ Points from OpenStreetMap and Natural Earth, from a curated subset of place tags
 
 <MaplibreMap highlightLayer="places"/>
 
-| Key         |   Values  |  Description |
-| ----------- | :-------: | -----------: |
-| `kind` |  `country`, `region`, `locality`, `macrohood`, `neighbourhood`  |              |
-| `kind_detail` |  `allotments`, `city`, `country`, `farm`, `hamlet`, `hamlet`, `isolated_dwelling`, `locality`, `neighbourhood`, `province`, `quarter`, `scientific_station`, `state`, `town`, `village` |              |
-| `capital` |  string  |              |
-| `population` |  int  |              |
-| `population_rank` |  int  |              |
-| `wikidata` |  string  |              |
+| Key               |                                                                                          Values                                                                                          |  Description |
+| ----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | -----------: |
+| `kind`            |                                                              `country`, `region`, `locality`, `macrohood`, `neighbourhood`                                                               |              |
+| `kind_detail`     |  `allotments`, `city`, `country`, `farm`, `hamlet`, `hamlet`, `isolated_dwelling`, `locality`, `neighbourhood`, `province`, `quarter`, `scientific_station`, `state`, `town`, `village`  |              |
+| `capital`         |                                                                                          string                                                                                          |              |
+| `population`      |                                                                                           int                                                                                            |              |
+| `population_rank` |                                                                                           int                                                                                            |              |
+| `wikidata`        |                                                                                          string                                                                                          |              |
+
 
 _NOTE: Additional keys are available for each original OSM tags (when available), but those will be deprecated in the next major version so should not be used for styling._
 
@@ -330,18 +331,19 @@ Linear transportation features designed for movement, including highways, street
 
 <MaplibreMap highlightLayer="roads"/>
 
-| Key                  |                                                                                                                                                                                                            Values                                                                                                                                                                                                            |  Description |
-| -------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | -----------: |
-| `kind`               |                                                                                                                                                                                    `highway`, `major_road`, `minor_road`, `path`, `other`                                                                                                                                                                                    |              |
-| `kind_detail`        |  `motorway`, `motorway_link`, `trunk`, `trunk_link`, `primary`, `primary_link`, `secondary`, `secondary_link`, `tertiary`, `tertiary_link`, `residential`, `service`, `unclassified`, `road`, `raceway`, `pedestrian`, `track`, `path`, `cycleway`, `bridleway`, `steps`, `corridor`, `sidewalk`, `crossing`, `driveway`, `parking_aisle`, `alley`, `drive-through`, `emergency_access`, `utility`, `irrigation`, `slipway`  |              |
-| `ref`                |                                                                                                                                                                                                            string                                                                                                                                                                                                            |              |
-| `shield_text_length` |                                                                                                                                                                                                             int                                                                                                                                                                                                              |              |
-| `network`            |                                                                                                                                                                                                            string                                                                                                                                                                                                            |              |
-| `layer`              |                                                                                                                                                                                                             int                                                                                                                                                                                                              |              |
-| `oneway`             |                                                                                                                                                                                                            string                                                                                                                                                                                                            |              |
-| `service`            |                                                                                                                                                                                                            string                                                                                                                                                                                                            |              |
-| `link`               |                                                                                                                                                                                                             int                                                                                                                                                                                                              |              |
-| `level`              |                                                                                                                                                                                                        `-1`, `0`, `1`                                                                                                                                                                                                        |              |
+| Key                  |                                                                                                                                                                                                                                                                                        Values                                                                                                                                                                                                                                                                                        |  Description |
+| -------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | -----------: |
+| `kind`               |                                                                                                                                                                                                                                                                                   See kinds below                                                                                                                                                                                                                                                                                    |              |
+| `kind_detail`        |  `motorway`, `motorway_link`, `trunk`, `trunk_link`, `primary`, `primary_link`, `secondary`, `secondary_link`, `tertiary`, `tertiary_link`, `residential`, `service`, `unclassified`, `road`, `raceway`, `pedestrian`, `track`, `path`, `cycleway`, `bridleway`, `steps`, `corridor`, `sidewalk`, `crossing`, `driveway`, `parking_aisle`, `alley`, `drive-through`, `emergency_access`, `utility`, `irrigation`, `slipway`, `cable_car`, `pier`, `runway`, `taxiway`, `disused`, `funicular`, `light_rail`, `miniature`, `monorail`, `narrow_gauge`, `preserved`, `subway`, `tram`  |              |
+| `ref`                |                                                                                                                                                                                                                                                                                        string                                                                                                                                                                                                                                                                                        |              |
+| `shield_text_length` |                                                                                                                                                                                                                                                                                         int                                                                                                                                                                                                                                                                                          |              |
+| `network`            |                                                                                                                                                                                                                                                                                        string                                                                                                                                                                                                                                                                                        |              |
+| `layer`              |                                                                                                                                                                                                                                                                                         int                                                                                                                                                                                                                                                                                          |              |
+| `oneway`             |                                                                                                                                                                                                                                                                                        string                                                                                                                                                                                                                                                                                        |              |
+| `service`            |                                                                                                                                                                                                                                                                            `siding`, `crossover`, `yard`                                                                                                                                                                                                                                                                             |              |
+| `link`               |                                                                                                                                                                                                                                                                                         int                                                                                                                                                                                                                                                                                          |              |
+| `level`              |                                                                                                                                                                                                                                                                                    `-1`, `0`, `1`                                                                                                                                                                                                                                                                                    |              |
+
 
 | kind         |
 | ------------ |
@@ -353,6 +355,7 @@ Linear transportation features designed for movement, including highways, street
 | `ferry`      |
 | `pier`       |
 | `rail`       |
+| `aeroway`    |
 
 ## transit
 
@@ -360,17 +363,16 @@ Linear transportation features designed for movement, including highways, street
 
 Lines representing scheduled passenger services suitable for rendering on the map, even at lower zoom levels. For physical infrastructure, like highways and railways, see the [roads](#roads) layer.
 
-Lines from OpenStreetMap, from a curated subset of railway, aerialway, man_made, route, and aeroway tags, for mid- and high-zooms.
+This layer is currently empty.
 
-| Key           |                                                           Values                                                          |  Description |
-| ------------- | :-----------------------------------------------------------------------------------------------------------------------: | -----------: |
-| `kind`        |           `aerialway`, `cable_car`, `crossover`, `ferry`, `pier`, `rail`, `runway`, `siding`, `taxiway`, `yard`           |              |
-| `kind_detail` |  `disused`, `funicular`, `light_rail`, `miniature`, `monorail`, `narrow_gauge`, `preserved`, `railway`, `subway`, `tram`  |              |
-| `ref`         |                                                           string                                                          |              |
-| `network`     |                                                           string                                                          |              |
-| `layer`       |                                                            int                                                            |              |
-| `route`       |                                                           string                                                          |              |
-| `service`     |                                                           string                                                          |              |
+| Key           |  Values  |  Description |
+| ------------- | :------: | -----------: |
+| `kind_detail` |          |              |
+| `ref`         |  string  |              |
+| `network`     |  string  |              |
+| `layer`       |   int    |              |
+| `route`       |  string  |              |
+| `service`     |  string  |              |
 
 ## water
 
@@ -378,13 +380,13 @@ Lines from OpenStreetMap, from a curated subset of railway, aerialway, man_made,
 
 Polygons from the Natural Earth 50m `lakes` and `ocean` themes for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
 
-| Key                |                    Values                    |  Description |
-| ------------------ | :------------------------------------------: | -----------: |
-| `kind`        |  `water`, `lake`, `playa`, `ocean`, `other`  |              |
-| `kind_detail` |  `basin`, `canal`, `ditch`, `dock`, `drain`, `lake`, `reservoir`, `river`, `riverbank`, `stream`                                        |              |
-| `reservoir`        | boolean                                      |              |
-| `alkaline`         | boolean                                      |              |
-| `intermittent`     | boolean                                      |              |
-| `bridge`           | string                                       |              |
-| `tunnel`           | string                                       |              |
-| `layer`            | int                                          |              |
+| Key            |                                               Values                                              |  Description |
+| -------------- | :-----------------------------------------------------------------------------------------------: | -----------: |
+| `kind`         |                             `water`, `lake`, `playa`, `ocean`, `other`                            |              |
+| `kind_detail`  |  `basin`, `canal`, `ditch`, `dock`, `drain`, `lake`, `reservoir`, `river`, `riverbank`, `stream`  |              |
+| `reservoir`    |                                              boolean                                              |              |
+| `alkaline`     |                                              boolean                                              |              |
+| `intermittent` |                                              boolean                                              |              |
+| `bridge`       |                                               string                                              |              |
+| `tunnel`       |                                               string                                              |              |
+| `layer`        |                                                int                                                |              |
