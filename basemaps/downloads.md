@@ -18,7 +18,7 @@ Please note that **URLs may change** and hotlinking to these downloads are disco
 
 ## Current Version
 
-The Version 3 Protomaps basemap daily build channel is available at [maps.protomaps.com/builds](https://maps.protomaps.com/builds).
+The Version 4 Protomaps basemap daily build channel is available at [maps.protomaps.com/builds](https://maps.protomaps.com/builds). This is compatible with `protomaps-themes-base` style v4.0.0 and newer.
 
 A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](https://beta.source.coop) at the [protomaps/openstreetmap](https://beta.source.coop/repositories/protomaps/openstreetmap/) repository. This mirrors the most recent daily build only.
 
@@ -27,9 +27,3 @@ A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](http
 To download a cutout of a specific region, rather than the entire world map, see the CLI's [extract command](/pmtiles/cli#extract).
 
 If you don't need all 16 zoom levels of detail, use the `--maxzoom` option of `pmtiles extract`. Each additional zoom level roughly doubles the size of the file.
-
-## Previous Version
-
-The version 2 basemap is `protomaps-basemap-opensource-20230408.pmtiles`
-
-[https://r2-public.protomaps.com/protomaps-sample-datasets/protomaps-basemap-opensource-20230408.pmtiles](https://r2-public.protomaps.com/protomaps-sample-datasets/protomaps-basemap-opensource-20230408.pmtiles)
