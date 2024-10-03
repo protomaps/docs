@@ -55,7 +55,7 @@ const style = (passedTheme?: string, highlightLayer?: string) => {
     sources: {
       protomaps: {
         type: "vector",
-        url: "https://api.protomaps.com/tiles/v3.json?key=e6cd5633d51d8e24",
+        url: "https://api.protomaps.com/tiles/v4.json?key=e6cd5633d51d8e24",
       },
     },
     transition: {
