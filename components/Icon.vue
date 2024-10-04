@@ -4,15 +4,23 @@ import { ref, onMounted, onUpdated, watch } from "vue";
 const canvasRef = ref(null);
 
 const props = defineProps<{
-  name?: string;
+  kind?: string;
   sprites?: Promise<[any, any]>;
 }>();
 
 onMounted(async () => {
-  const context = canvasRef.value.getContext("2d");
+  const ctx = canvasRef.value.getContext("2d");
   const [j, i] = await props.sprites;
-  const data = j[props.name];
-  context.drawImage(i, data.x, data.y, data.width, data.height, 0, 0, 38, 38);
+  if (props.kind in j) {
+    const data = j[props.kind];
+    ctx.drawImage(i, data.x, data.y, data.width, data.height, 0, 0, 38, 38);
+  } else {
+    ctx.strokeStyle = "steelblue";
+    ctx.setLineDash([2, 2]);
+    ctx.strokeWidth = 2;
+    ctx.rect(0, 0, 38, 38);
+    ctx.stroke();
+  }
 });
 </script>
 

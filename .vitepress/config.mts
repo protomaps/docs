@@ -69,7 +69,6 @@ export default defineConfig({
           { text: "Basemap Localization", link: "/basemaps/localization" },
           { text: "MapLibre GL", link: "/basemaps/maplibre" },
           { text: "Leaflet", link: "/basemaps/leaflet" },
-          { text: "OpenLayers", link: "/basemaps/openlayers" },
         ],
       },
     ],
