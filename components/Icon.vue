@@ -18,7 +18,7 @@ onMounted(async () => {
     ctx.strokeStyle = "steelblue";
     ctx.setLineDash([2, 2]);
     ctx.strokeWidth = 2;
-    ctx.rect(0,0,38,38);
+    ctx.rect(0, 0, 38, 38);
     ctx.stroke();
   }
 });
