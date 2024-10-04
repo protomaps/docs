@@ -9,6 +9,21 @@ const { isDark } = useData();
 const mapRef = ref(null);
 var map;
 
+const tableFromProps = (props: unknown) => {
+  let tableHTML = "<table>";
+
+  Object.entries(props).forEach(([key, value]) => {
+    tableHTML += `
+      <tr>
+        <td>${key}</td>
+        <td>${typeof value === "boolean" ? JSON.stringify(value) : value}</td>
+      </tr>`;
+  });
+
+  tableHTML += "</table>";
+  return tableHTML;
+};
+
 const highlightLayers = (sourceName: string, highlightName?: string) => {
   if (!highlightName) return [];
   return [
@@ -20,6 +35,7 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       "source-layer": highlightName,
       paint: {
         "circle-color": "steelblue",
+        "circle-opacity": 0.7,
       },
     },
     {
@@ -30,6 +46,7 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       "source-layer": highlightName,
       paint: {
         "line-color": "steelblue",
+        "line-opacity": 0.7,
       },
     },
     {
@@ -40,13 +57,22 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
       "source-layer": highlightName,
       paint: {
         "fill-color": "steelblue",
+        "fill-opacity": 0.7,
       },
     },
   ];
 };
 
 const style = (passedTheme?: string, highlightLayer?: string) => {
-  const theme = passedTheme || (isDark.value ? "dark" : "light");
+  const theme =
+    passedTheme ||
+    (isDark.value
+      ? highlightLayer
+        ? "black"
+        : "dark"
+      : highlightLayer
+      ? "white"
+      : "light");
   return {
     version: 8,
     glyphs:
@@ -70,6 +96,10 @@ const style = (passedTheme?: string, highlightLayer?: string) => {
 const props = defineProps<{
   theme?: string;
   highlightLayer?: string;
+  center?: number;
+  zoom?: number;
+  lat?: number;
+  lng?: number;
 }>();
 
 onMounted(() => {
@@ -78,8 +108,31 @@ onMounted(() => {
     style: style(props.theme, props.highlightLayer),
     cooperativeGestures: true,
     attributionControl: false,
+    center: (props.lng && props.lat ? [props.lng, props.lat] : [0,0]),
+    zoom: props.zoom || 0
   });
   map.addControl(new maplibregl.AttributionControl({ compact: false }));
+
+  const popup = new maplibregl.Popup({
+    className: "docs-popup",
+    closeButton: false,
+    closeOnClick: false,
+  });
+
+  map.on(
+    "mouseenter",
+    ["highlight_circle", "highlight_stroke", "highlight_fill"],
+    (e) => {
+      map.getCanvas().style.cursor = "pointer";
+      const properties = e.features[0].properties;
+      popup.setLngLat(e.lngLat).setHTML(tableFromProps(properties)).addTo(map);
+    },
+  );
+
+  map.on("mouseleave", ["highlight_circle", "highlight_stroke", "highlight_fill"], () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+  });
 });
 
 watch(isDark, () => {
@@ -95,9 +148,29 @@ watch(isDark, () => {
 @import "maplibre-gl/dist/maplibre-gl.css";
 </style>
 
-<style scoped>
+<style>
 .maplibre-map {
   height: 300px;
   width: 100%;
+}
+
+.docs-popup .maplibregl-popup-content {
+  padding: 4px;
+}
+
+.dark .docs-popup .maplibregl-popup-content {
+  background-color: rgb(22, 22, 24);
+}
+
+.dark .docs-popup .maplibregl-popup-tip {
+  border-top-color: rgb(22, 22, 24);
+  border-bottom-color: rgb(22, 22, 24);
+}
+
+.dark .maplibregl-ctrl-attrib {
+  background-color: hsla(0,0%,0%,.5);
+}
+.dark .maplibregl-ctrl-attrib a {
+ color: rgba(235, 235, 245, 0.6);
 }
 </style>
