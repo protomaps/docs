@@ -39,11 +39,11 @@ The current version is **Version 4**.
 
 ## Common Tags
 
-| Key                            | Values  | Description                                |
-| ------------------------------ | ------- | ------------------------------------------ |
-| `name`, `name:*`, `pgf:name:*` | string  | see [Localization](/basemaps/localization) |
-| `sort_rank`                    | integer | Importance ranking used for rendering      |
-| `min_zoom`                     | integer | Suggested zoom level to limit display      |
+| Key                                                | Values  | Description                                |
+| -------------------------------------------------- | ------- | ------------------------------------------ |
+| `name`, `name*`, `name:*`, `pgf:name:*`, `script*` | string  | see [Localization](/basemaps/localization) |
+| `sort_rank`                                        | integer | Importance ranking used for rendering      |
+| `min_zoom`                                         | integer | Suggested zoom level to limit display      |
 
 ## boundaries
 
@@ -60,7 +60,7 @@ The current version is **Version 4**.
 
 <MaplibreMap highlightLayer="buildings" :zoom=14 :lat="51.5" :lng="-0.2"/>
 
-Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains invidiual OSM equivalent buildings.
+Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains individual OSM equivalent buildings.
 
 | Key          |           Values            |                                 Description |
 | ------------ | :-------------------------: | ------------------------------------------: |

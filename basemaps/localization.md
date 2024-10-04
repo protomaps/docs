@@ -32,51 +32,51 @@ A script or writing system is the way how languages are written. For example, En
 
 If a name from OpenStreetMap, which is the de-facto primary local name, contains text in more than one script, then Protomaps breaks up the name into segments. There can be up to 3 segments: `name`, `name2`, and `name3`. Each segment should have a unique script. 
 
-Protomaps stores the scripts used for `name`, `name2`, and `name3` in separate script tags called `pmap:script`, `pmap:script2`, and `pmap:script3`. 
+Protomaps stores the scripts used for `name`, `name2`, and `name3` in separate script tags called `script`, `script2`, and `script3`. 
 
-If `pmap:script*` is not present on a name, then it means that the name uses the `Latin` script.
+If `script*` is not present on a name, then it means that the name uses the `Latin` script.
 
-Sometimes segmentation into single scripts fails due for example inconsistent usage of alphabets. In that case `pmap:script` is set to `Mixed`.
+Sometimes segmentation into single scripts fails due for example inconsistent usage of alphabets. In that case `script` is set to `Mixed`.
 
-In Japanese, the `Han`, `Hiragana`, and `Katakana` scripts are often mixed in one name. Should any two of these scripts appear in a name we set `pmap:script` to `Mixed-Japanese`.
+In Japanese, the `Han`, `Hiragana`, and `Katakana` scripts are often mixed in one name. Should any two of these scripts appear in a name we set `script` to `Mixed-Japanese`.
 
 Let us look at some examples:
 
 #### Zürich
 ```
 name = Zürich
-(pmap:script absent)
+(script absent)
 (name2 absent)
-(pmap:script2 absent)
+(script2 absent)
 (name3 absent)
-(pmap:script2 absent)
+(script3 absent)
 ```
 
-The OpenStreetMap name for "Zürich" only uses the Latin script so we export `name` and but omit `pmap:script` (implying the script of the `name` is `Latin`).
+The OpenStreetMap name for "Zürich" only uses the Latin script so we export `name` and but omit `script` (implying the script of the `name` is `Latin`).
 
 #### 香港 Hong Kong
 ```
 name = 香港
-pmap:script = Han
+script = Han
 name2 = Hong Kong
-(pmap:script2 absent)
+(script2 absent)
 (name3 absent)
-(pmap:script3 absent)
+(script3 absent)
 ```
 
-The OpenStreetMap name for Hong Kong is "香港 Hong Kong". We break this up into `name` and `name2` in Protomaps. Since the script of `name2` is `Latin`, the `pmap:script2` tag is omitted. The script of `name` is `Han` which is encoded in `pmap:script`.
+The OpenStreetMap name for Hong Kong is "香港 Hong Kong". We break this up into `name` and `name2` in Protomaps. Since the script of `name2` is `Latin`, the `script2` tag is omitted. The script of `name` is `Han` which is encoded in `script`.
 
 #### Casablanca ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء
 ```
 name = Casablanca
-(pmap:script absent)
+(script absent)
 name2 = ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ
-pmap:script2 = Tifinagh
+script2 = Tifinagh
 name3 = الدار البيضاء
-pmap:script3 = Arabic
+script3 = Arabic
 ```
 
-Casablanca in OpenStreetMap is stored as "Casablanca  ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء". In Protomaps we break this label up into 3 parts. Since the text in `name` uses the `Latin` script, we omit the `pmap:script` tag. The other two parts use the Tifinagh and Arabic script.
+Casablanca in OpenStreetMap is stored as "Casablanca  ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء". In Protomaps we break this label up into 3 parts. Since the text in `name` uses the `Latin` script, we omit the `script` tag. The other two parts use the Tifinagh and Arabic script.
 
 ## Translated Names
 
@@ -167,9 +167,9 @@ Extending our Switzerland example with exonym and endonym from other languages:
 | Urdu | اردو | `name:ur` | `Arabic` |
 | Vietnamese | Tiếng Việt | `name:vi` | `Latin` |
 
-NOTE: `Mixed-Japanese` is a custom `pmap:script` value used for labels that contain Hiragana or Katakana mixed with a second or third script. In Japanese, these two scripts often appear in combination with others.
+NOTE: `Mixed-Japanese` is a custom `script` value used for labels that contain Hiragana or Katakana mixed with a second or third script. In Japanese, these two scripts often appear in combination with others.
 
-NOTE 2 : Values in `pmap:script*` follow the [Unicode Standard Annex #24: Script Names](https://www.unicode.org/reports/tr24/).
+NOTE 2 : Values in `script*` follow the [Unicode Standard Annex #24: Script Names](https://www.unicode.org/reports/tr24/).
 
 ## Styling
 
@@ -196,13 +196,13 @@ For a map localized to Greek, we would use `name:el = Μιλάνο` in the first
 Milano
 ```
 
-## Positioned glyph font `pmap:pgf:name:*` values
+## Positioned glyph font `pgf:name:*` values
 
-Protomaps adds additional names for a small set of language scripts, currently just the `Devanagari` script used for Hindi (`name:hi` and `pmap:pgf:name:hi`) and related languages.
+Protomaps adds additional names for a small set of language scripts, currently just the `Devanagari` script used for Hindi (`name:hi` and `pgf:name:hi`) and related languages.
 
 Rendering text in web browsers works for almost all languages and scripts and feels like magic. However, specialized map renderers like MapLibre have to reimplement text rendering and text layout which is complicated when text needs to be curved along linear map features instead of placed only horizontally or vertically. MapLibre normally assumes a one-to-one mapping between glyphs and Unicode codepoints that also exist in MapLibre font files (aka "font stacks") to accomplish the layout for a large but limited number of scripts. Plugins have been developed to extend MapLibre for **right-to-left** scripts like Arabic and Hebrew, and MapLibre has built-in support for **CJK scripts** like Chinese, Japanese, and Korean.
 
-To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glyphs" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pmap:pgf:name:*` values look like gibberish when inspecting the raw values, they render correctly in MapLibre to the end user.
+To facilitate Protomap's support of additional, non-supported scripts in MapLibre (like the Devanagari script used by the Hindi language), Protomaps exports names with "positioned glyphs" so MapLibre can use codepoints as indices of positioned glyphs in an additional custom "font stack". While the raw `pgf:name:*` values look like gibberish when inspecting the raw values, they render correctly in MapLibre to the end user.
 
 See more:
 
@@ -231,7 +231,7 @@ NOTE: Right-to-left scripts and languages like Arabic and Hebrew requires a spec
 
 #### MapLibre partial support
 
-Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pmap:pgf:name:*` values. The PGF fontstacks used by the Protomaps basemaps are available at https://github.com/protomaps/basemaps-assets/tree/main/fonts.
+Requires paired positioned glyph font [font stack](https://maplibre.org/maplibre-style-spec/glyphs/) paired with `pgf:name:*` values. The PGF fontstacks used by the Protomaps basemaps are available at https://github.com/protomaps/basemaps-assets/tree/main/fonts.
 
 | Script | Languages |
 | ------- | ---------|
