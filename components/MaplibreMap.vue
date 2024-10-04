@@ -108,8 +108,8 @@ onMounted(() => {
     style: style(props.theme, props.highlightLayer),
     cooperativeGestures: true,
     attributionControl: false,
-    center: (props.lng && props.lat ? [props.lng, props.lat] : [0,0]),
-    zoom: props.zoom || 0
+    center: props.lng && props.lat ? [props.lng, props.lat] : [0, 0],
+    zoom: props.zoom || 0,
   });
   map.addControl(new maplibregl.AttributionControl({ compact: false }));
 
@@ -129,10 +129,14 @@ onMounted(() => {
     },
   );
 
-  map.on("mouseleave", ["highlight_circle", "highlight_stroke", "highlight_fill"], () => {
-    map.getCanvas().style.cursor = "";
-    popup.remove();
-  });
+  map.on(
+    "mouseleave",
+    ["highlight_circle", "highlight_stroke", "highlight_fill"],
+    () => {
+      map.getCanvas().style.cursor = "";
+      popup.remove();
+    },
+  );
 });
 
 watch(isDark, () => {
@@ -168,9 +172,9 @@ watch(isDark, () => {
 }
 
 .dark .maplibregl-ctrl-attrib {
-  background-color: hsla(0,0%,0%,.5);
+  background-color: hsla(0, 0%, 0%, 0.5);
 }
 .dark .maplibregl-ctrl-attrib a {
- color: rgba(235, 235, 245, 0.6);
+  color: rgba(235, 235, 245, 0.6);
 }
 </style>
