@@ -50,15 +50,15 @@ A CDN deployment of Protomaps has three parts:
 
 _Cloudflare is recommended for budget minded beginners. AWS is recommended for commercial companies who require a faster map and/or can offset increased marginal cost with monetization._
 
-| feature | static pmtiles | Cloudflare |  AWS |  GCP | [Caddy](/deploy/server#caddy) | `pmtiles serve` |
-| - | :-: | :-:| :-: | :-: | :-: | - | 
-| Z/X/Y compatible | ✖️    | ✅        | ✅     |  ✅    | ✅       | ✅                  |
-| Edge caching     | ✖️    |  ✅       |  ✅    | With CDN | With CDN | With CDN           |
-| SSL              |  ✅  |  ✅       |  ✅    |  ✅    |  ✅       | With reverse proxy |
-| Scale to zero    | ✅   |  $5 (USD) |  ✅    |   ✅   | ✖️        |  ✖️                 |
-| Setup effort     | 😓   | 😓        | 😓     |   😓😓  | 😓😓     | 😓😓😓               |
-| Latency          | 🚀   |  🚀       |  🚀🚀🚀 | 🚀🚀🚀  | 🚀🚀     | 🚀🚀🚀              |
-| Cost             | 💰   |  💰       |  💰💰💰 | 💰💰💰  | 💰💰     | 💰💰                |
+| feature          |  static pmtiles  |  Cloudflare  |  AWS  |  GCP, Azure  |  [Caddy](/deploy/server#caddy)  | `pmtiles serve`    |
+| ---------------- | :--------------: | :----------: | :---: | :----------: | :-----------------------------: | ------------------ |
+| Z/X/Y compatible |        ✖️        |      ✅       |   ✅   |      ✅       |                ✅                | ✅                  |
+| Edge caching     |        ✖️        |      ✅       |   ✅   |   With CDN   |             With CDN            | With CDN           |
+| SSL              |        ✅         |      ✅       |   ✅   |      ✅       |                ✅                | With reverse proxy |
+| Scale to zero    |        ✅         |   $5 (USD)   |   ✅   |      ✅       |                ✖️               | ✖️                 |
+| Setup effort     |        😓         |      😓       |   😓   |      😓😓      |                😓😓               | 😓😓😓                |
+| Latency          |        🚀         |      🚀       |  🚀🚀🚀  |     🚀🚀🚀      |                🚀🚀               | 🚀🚀🚀                |
+| Cost             |        💰         |      💰       |  💰💰💰  |     💰💰💰      |                💰💰               | 💰💰                 |
 
 ### Feature explanation
 
@@ -69,7 +69,3 @@ _Cloudflare is recommended for budget minded beginners. AWS is recommended for c
 - **Setup effort**: Developer time to configure complete cloud tile serving solution, less effort 😓 is better than more 😓😓😓 effort
 - **Latency**: Speedy maps tiles 🚀🚀🚀 load in ≤ 200 ms in the client for customers, slow tiles 🚀 load ≥ 500 ms
 - **Cost**: Total cost to run tile serving system, with 💰 being cheaper at $5 USD and 💰💰💰 more expensive options that including storage egress and/or CDN bandwidth costs to achieve lower latency
-
-### Coming soon
-
-- **Azure** support is in development and planned for 2024.
