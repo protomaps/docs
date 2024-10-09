@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const drawIcon = async () => {
   const ctx = canvasRef.value.getContext("2d");
-  ctx.clearRect(0,0,38,38);
+  ctx.clearRect(0, 0, 38, 38);
   const sprites = await props.sprites;
   const json = isDark.value ? sprites[2] : sprites[0];
   const image = isDark.value ? sprites[3] : sprites[1];
