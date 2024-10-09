@@ -19,7 +19,7 @@ outline: deep
     })
   }
 
-  const SPRITES_BASE = "https://protomaps.github.io/basemaps-assets/sprites/v3";
+  const SPRITES_BASE = "https://protomaps.github.io/basemaps-assets/sprites/v4";
 
   const sprites = Promise.all([
     fetch(`${SPRITES_BASE}/light@2x.json`).then(resp => resp.json()),
