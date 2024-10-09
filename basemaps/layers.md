@@ -8,7 +8,7 @@ outline: deep
   import Icon from '../components/Icon.vue'
 
   const fetchImage = async (url) => {
-    new Promise((resolve,reject) => {
+    return new Promise((resolve,reject) => {
       if (typeof window !== 'undefined') {
         const img = new Image();
         img.onload = () => { resolve(img); }
