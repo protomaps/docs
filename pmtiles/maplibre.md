@@ -9,7 +9,7 @@ outline: deep
 
 For reading PMTiles directly from cloud storage, you'll need the `pmtiles` JavaScript library.
 
-The JavaScript library includes a plugin for MapLibre GL that uses its [`addProtocol` feature.](https://maplibre.org/maplibre-gl-js-docs/api/properties/#addprotocol)
+The JavaScript library includes a plugin for MapLibre GL that uses its [`addProtocol` feature.](https://maplibre.org/maplibre-gl-js/docs/API/functions/addProtocol/)
 
 ```bash
 npm install pmtiles
