@@ -10,7 +10,7 @@ outline: deep
 
 Protomaps has several localization options for names used in text labels.
 
-<MaplibreMap/>
+<MaplibreMap :langSelect="true"/>
 
 ## Local Names
 
