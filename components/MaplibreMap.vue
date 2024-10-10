@@ -9,6 +9,8 @@ const { isDark } = useData();
 const mapRef = ref(null);
 var map;
 
+const lang = ref("en");
+
 const tableFromProps = (props: unknown) => {
   let tableHTML = "<table>";
 
@@ -63,7 +65,7 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
   ];
 };
 
-const style = (passedTheme?: string, highlightLayer?: string) => {
+const style = (passedTheme?: string, highlightLayer?: string, lang?: lang) => {
   const theme =
     passedTheme ||
     (isDark.value
@@ -87,7 +89,7 @@ const style = (passedTheme?: string, highlightLayer?: string) => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", theme).concat(
+    layers: layers("protomaps", theme, lang).concat(
       highlightLayers("protomaps", highlightLayer),
     ),
   };
@@ -100,6 +102,7 @@ const props = defineProps<{
   zoom?: number;
   lat?: number;
   lng?: number;
+  langSelect?: boolean;
 }>();
 
 onMounted(() => {
@@ -145,12 +148,188 @@ onMounted(() => {
   );
 });
 
-watch(isDark, () => {
-  map.setStyle(style(props.theme, props.highlightLayer));
+watch([isDark, lang], () => {
+  map.setStyle(style(props.theme, props.highlightLayer, lang.value));
 });
+
+const language_script_pairs = [
+  {
+    lang: "ar",
+    full_name: "Arabic",
+  },
+  {
+    lang: "cs",
+    full_name: "Czech",
+  },
+  {
+    lang: "bg",
+    full_name: "Bulgarian",
+  },
+  {
+    lang: "da",
+    full_name: "Danish",
+  },
+  {
+    lang: "de",
+    full_name: "German",
+  },
+  {
+    lang: "el",
+    full_name: "Greek",
+  },
+  {
+    lang: "en",
+    full_name: "English",
+  },
+  {
+    lang: "es",
+    full_name: "Spanish",
+  },
+  {
+    lang: "et",
+    full_name: "Estonian",
+  },
+  {
+    lang: "fa",
+    full_name: "Persian",
+  },
+  {
+    lang: "fi",
+    full_name: "Finnish",
+  },
+  {
+    lang: "fr",
+    full_name: "French",
+  },
+  {
+    lang: "ga",
+    full_name: "Irish",
+  },
+  {
+    lang: "he",
+    full_name: "Hebrew",
+  },
+  {
+    lang: "hi",
+    full_name: "Hindi",
+  },
+  {
+    lang: "hr",
+    full_name: "Croatian",
+  },
+  {
+    lang: "hu",
+    full_name: "Hungarian",
+  },
+  {
+    lang: "id",
+    full_name: "Indonesian",
+  },
+  {
+    lang: "it",
+    full_name: "Italian",
+  },
+  {
+    lang: "ja",
+    full_name: "Japanese",
+  },
+  {
+    lang: "ko",
+    full_name: "Korean",
+  },
+  {
+    lang: "lt",
+    full_name: "Lithuanian",
+  },
+  {
+    lang: "lv",
+    full_name: "Latvian",
+  },
+  {
+    lang: "ne",
+    full_name: "Nepali",
+  },
+  {
+    lang: "nl",
+    full_name: "Dutch",
+  },
+  {
+    lang: "no",
+    full_name: "Norwegian",
+  },
+  {
+    lang: "mr",
+    full_name: "Marathi",
+  },
+  {
+    lang: "mt",
+    full_name: "Maltese",
+  },
+  {
+    lang: "pl",
+    full_name: "Polish",
+  },
+  {
+    lang: "pt",
+    full_name: "Portuguese",
+  },
+  {
+    lang: "ro",
+    full_name: "Romanian",
+  },
+  {
+    lang: "ru",
+    full_name: "Russian",
+  },
+  {
+    lang: "sk",
+    full_name: "Slovak",
+  },
+  {
+    lang: "sl",
+    full_name: "Slovenian",
+  },
+  {
+    lang: "sv",
+    full_name: "Swedish",
+  },
+  {
+    lang: "tr",
+    full_name: "Turkish",
+  },
+  {
+    lang: "uk",
+    full_name: "Ukrainian",
+  },
+  {
+    lang: "ur",
+    full_name: "Urdu",
+  },
+  {
+    lang: "vi",
+    full_name: "Vietnamese",
+  },
+  {
+    lang: "zh-Hans",
+    full_name: "Chinese (Simplified)",
+  },
+  {
+    lang: "zh-Hant",
+    full_name: "Chinese (Traditional)",
+  },
+];
 </script>
 
 <template>
+  <select v-if="props.langSelect" v-model="lang">
+    <option
+      v-for="option in language_script_pairs"
+      :key="option.lang"
+      :value="option.lang"
+    >
+      {{ option.full_name }}
+    </option>
+  </select>
   <div ref="mapRef" class="maplibre-map"></div>
 </template>
 
