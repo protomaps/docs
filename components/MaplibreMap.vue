@@ -77,7 +77,7 @@ const style = (passedTheme?: string, highlightLayer?: string) => {
     version: 8,
     glyphs:
       "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
-    sprite: `https://protomaps.github.io/basemaps-assets/sprites/v3/${theme}`,
+    sprite: `https://protomaps.github.io/basemaps-assets/sprites/v4/${theme}`,
     sources: {
       protomaps: {
         type: "vector",
