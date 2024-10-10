@@ -110,7 +110,7 @@ Below is a complete example of a map application that avoids third-party data pr
               center: [11.24962,43.77078],
               style: {
                 glyphs: "fonts/{fontstack}/{range}.pbf",
-                sprite: "sprites/v3/light",
+                sprite: "sprites/v4/light",
                 version: 8,
                 sources: {
                   protomaps: {

@@ -29,7 +29,7 @@ You can view a list of available fonts [in the GitHub repository](https://github
 The `sprite` key references a URL specific to one of [the default themes](/basemaps/themes):
 
 ```js
-sprite: "https://protomaps.github.io/basemaps-assets/sprites/v3/light"
+sprite: "https://protomaps.github.io/basemaps-assets/sprites/v4/light"
 ```
 
 These are required for townspots, highway shields and point of interest icons.
@@ -56,7 +56,7 @@ import layers from 'protomaps-themes-base';
 style: {
     version: 8,
     glyphs:'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
-    sprite: "https://protomaps.github.io/basemaps-assets/sprites/v3/light",
+    sprite: "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
     sources: {
         "protomaps": {
             type: "vector",
