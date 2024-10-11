@@ -317,7 +317,7 @@ const language_script_pairs = [
     lang: "zh-Hant",
     full_name: "Chinese (Traditional)",
   },
-];
+].sort((a, b) => a.full_name.localeCompare(b.full_name));
 </script>
 
 <template>
