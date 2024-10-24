@@ -14,7 +14,7 @@ Make note of the **Storage Account Name**, region and **container name** (e.g. `
 
 2. In **Container Details**, name your container and choose **Docker Hub or other registries** as the Image Source.
 
-  * For **Image and Tag** input `protomaps/go-pmtiles:v1.20.1`
+  * For **Image and Tag** input `protomaps/go-pmtiles:v1.22.1`
 
   * For **Command Override** input:
 

@@ -26,7 +26,7 @@ If you need to create a new Bucket:
 
 2. Choose **Deploy one revision from an existing container image.**
 
-3. Specify the Container image URL `protomaps/go-pmtiles:v1.21.0`.
+3. Specify the Container image URL `protomaps/go-pmtiles:v1.22.1`.
 
 4. Choose a descriptive **Service name** like `protomaps-demo`.
 
