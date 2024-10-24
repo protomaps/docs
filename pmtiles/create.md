@@ -61,9 +61,3 @@ ogr2ogr -dsco MINZOOM=0 -dsco MAXZOOM=15 -f "PMTiles" filename.pmtiles "PG:host=
 ```
 
 * `MAXZOOM=15` is sufficient for street-level mapping. Choosing less detail with a lower `MAXZOOM` will reduce the size of the final file.
-
-## Other
-
-::: warning
-This section is under construction.
-:::

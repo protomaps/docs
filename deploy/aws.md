@@ -60,6 +60,10 @@ x-cache: Hit from cloudfront
 
 You may next want to assign a custom domain name to your distribution through Route 53 and Certificate Manager and update the public hostname in step 4 above.
 
+::: warning
+AWS Lambda limits response sizes to 6 MB. This is more than enough for typical web mapping applications; you should optimize your tilesets to fit well under this limit.
+:::
+
 ## Monitoring
 
 * CloudFront will transmit metrics to the [CloudWatch us-east-1 region](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1).
