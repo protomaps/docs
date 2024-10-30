@@ -40,7 +40,7 @@ const hostedCost = computed(() => {
 
 const cf = computed(() => {
   const obj = {
-    workerInvocationCost: (tileRequests.value / 1000 / 1000) * 0.5,
+    workerInvocationCost: (tileRequests.value / 1000 / 1000) * 0.3,
     planCost: 5,
     storageRequestCost:
       (tileRequests.value / 1000 / 1000) * (1 - cacheHitRate.value) * 0.36,
@@ -269,7 +269,7 @@ const cfShow = ref(false);
             <a
               href="https://developers.cloudflare.com/workers/platform/pricing"
             >
-              0.50 / million
+              0.30 / million
             </a>
           </td>
           <td></td>
