@@ -94,7 +94,7 @@ Optional environment variables can be set set in `[vars]` of `wrangler.toml` or 
 
 ## Cost Estimate
 
-* Cloudflare Workers is [$5 USD per month](https://developers.cloudflare.com/workers/platform/pricing) with 10 million requests a month included, plus $0.50 per additional million.
+* Cloudflare Workers is [$5 USD per month](https://developers.cloudflare.com/workers/platform/pricing) with 10 million requests a month included, plus $0.30 per additional million.
 * [Cloudflare R2](https://blog.cloudflare.com/introducing-r2-object-storage/) incurs costs for storage, write requests and read requests. These will only happen on tile cache misses. See the [Cost Calculator](./cost) for estimates based on usage.
 
 ## Cache Invalidation
