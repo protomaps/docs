@@ -21,7 +21,7 @@ Use [rclone](/pmtiles/cloud-storage#uploading) to upload larger PMTiles archives
 
 This requires a token from **R2 > Manage R2 API Tokens**. Note **Access Key ID**, the **Secret Access Key** and the **Endpoint for S3 Clients** from the API key creation screen. The S3-compatible endpoint should look like: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`.
 
-Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` or `/NAME.json` ([TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0)) for the archive `NAME.pmtiles`.
+Name your uploads to storage with the `.pmtiles` extension. Your tile requests to the Workers URL will look like `/NAME/0/0/0.<mvt | png>` or `/NAME.json` ([TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0)) for the archive `NAME.pmtiles`. File names must include only [S3 safe characters](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines).
 
 ### 2. Manual Option: Create Worker with Web Console
 

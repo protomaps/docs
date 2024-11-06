@@ -18,7 +18,7 @@ If you need to create a new Bucket:
 
 5. Uncheck **Data Protection > Soft Delete Policy**.
 
-6. Upload a sample PMTiles into your bucket.
+6. Upload a sample PMTiles into your bucket. File names must include only [S3 safe characters](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines).
 
 ## Creating a Cloud Run container
 
