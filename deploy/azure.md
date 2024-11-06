@@ -4,7 +4,7 @@ PMTiles can be served from a [Azure Container App]() using the [go-pmtiles Docke
 
 ## Blob Storage
 
-PMTiles should stored in a [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) container.
+PMTiles should stored in a [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) container. File names must include only [S3 safe characters](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines).
 
 Make note of the **Storage Account Name**, region and **container name** (e.g. `main`) for the below steps.
 

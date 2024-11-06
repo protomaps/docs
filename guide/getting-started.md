@@ -50,9 +50,15 @@ pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles my_area.p
 
 > **Note:** You can find the bounding box of your own area, using tools, such as [http://bboxfinder.com/](http://bboxfinder.com/#51.830755,4.742883,52.256198,5.552837)
 
+We can also create a subset of the whole planet that is only zoom levels 0 to 6 and ~60 MB:
+
+```bash-vue
+pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles planet_z6.pmtiles --maxzoom=6
+```
+
 ## 4. View the basemap
 
-[maps.protomaps.com](https://maps.protomaps.com) is a viewer for basemaps. Drag our file `my_area.pmtiles` onto the `Drop Zone` to view the map:
+[maps.protomaps.com](https://maps.protomaps.com) is a viewer for basemaps. Drag our file `my_area.pmtiles` or `planet_z6.pmtiles` onto the `Drop Zone` to view the map:
 
 ![utrecht image](./utrecht.png)
 

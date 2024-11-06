@@ -80,7 +80,7 @@ the default export from `protomaps-themes-base` is a function that takes 2 argum
 Loading the `protomaps-themes-base` package from NPM will define the `protomaps_themes_base` global variable.
 
 ```html
-<script src="https://unpkg.com/protomaps-themes-base@3/dist/protomaps-themes-base.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/protomaps-themes-base@4/dist/protomaps-themes-base.js" crossorigin="anonymous"></script>
 ```
 
 ```js

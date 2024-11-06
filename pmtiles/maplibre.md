@@ -5,6 +5,10 @@ outline: deep
 
 # PMTiles for MapLibre GL
 
+PMTiles is designed to be read directly in the browser by the MapLibre GL renderer, for either thematic overlay tilesets or basemap tilesets.
+
+For a guide on integrating the Protomaps basemap tileset into MapLibre GL, see [Basemaps for MapLibre](/basemaps/maplibre).
+
 ## Installation
 
 For reading PMTiles directly from cloud storage, you'll need the `pmtiles` JavaScript library.
@@ -87,3 +91,7 @@ Protomaps also distributes terrain tilesets in the [Terrarium RGB encoding](http
   }
 }
 ```
+
+## Next Steps
+
+* Integrating [Basemap Styles](/basemaps/maplibre) into MapLibre

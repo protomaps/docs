@@ -13,9 +13,9 @@ At the end of this walkthrough, you'll have a CDN-cached ZXY API, compatible wit
 
 ### 1. Upload to S3
 
-The CloudFormation template is designed to work with an existing S3 bucket.
+The CloudFormation template is designed to work with an existing S3 bucket. File names must include only [S3 safe characters](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines).
 
-If you need to create a new one:
+If you need to create a new bucket:
 
 * Open the [S3 Console](https://s3.console.aws.amazon.com/s3/home) and choose **Create Bucket**.
 * Choose a globally unique bucket name, and any region, just remember the **region name.**
