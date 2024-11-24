@@ -172,7 +172,7 @@ Upload an archive to cloud storage.
 
 ```bash
 # requires environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY credentials
-pmtiles upload INPUT.pmtiles REMOTE.pmtiles --bucket=s3://BUCKET_NAME
+pmtiles upload INPUT.pmtiles ${AWS_ACCESS_KEY_ID} --bucket=s3://BUCKET_NAME
 ```
 
 You will need write permissions to the bucket, for example this AWS IAM policy:
