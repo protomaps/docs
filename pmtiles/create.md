@@ -61,3 +61,13 @@ ogr2ogr -dsco MINZOOM=0 -dsco MAXZOOM=15 -f "PMTiles" filename.pmtiles "PG:host=
 ```
 
 * `MAXZOOM=15` is sufficient for street-level mapping. Choosing less detail with a lower `MAXZOOM` will reduce the size of the final file.
+
+## protomaps/basemaps
+
+The [basemaps](https://github.com/protomaps/basemaps) repository on GitHub contains a java [Planetiler](https://github.com/onthegomap/planetiler) profile for generating planet-scale PMTiles from OpenStreetMap. The layers in this tileset are documented at [Basemap Layers](/basemaps/layers) and daily builds can be downloaded for free from [maps.protomaps.com/builds](https://maps.protomaps.com/builds).
+
+Run the basemaps program on your own computer to modify the layers or generate only one specific area.
+
+## Tilemaker
+
+[Tilemaker](https://github.com/systemed/tilemaker) is a program for creating basemap tilesets from OpenStreetMap, though not ones that match the layers in the Protomaps [Basemap Layers](/basemaps/layers). Currently it is recommended only for small areas since the PMTiles index structure is not as optimized as the [Protomaps basemaps](#protomaps/basemaps) generation tool.
