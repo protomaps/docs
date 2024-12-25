@@ -15,7 +15,23 @@ PMTiles is a single-file archive format for pyramids of tiled data. A PMTiles ar
 
 * The arrangement of tiles and directories is designed to minimize the amount of overhead requests when panning and zooming.
 
+* PMTiles is a **read-only** format. It is not possible to update an archive in-place without re-writing the entire file, similar to CSV, JSON and Parquet. If you need transactional updates, use a database like SQLite or [PostgreSQL](http://postgis.net) + [ST_asMVT](https://postgis.net/docs/ST_AsMVT.html).
+
 The current specification version of PMTiles is version 3, which you can [read on GitHub.](https://github.com/protomaps/PMTiles/blob/master/spec/v3/spec.md)
+
+## Comparisons
+
+### Individual files
+
+An alternative to PMTiles is uploading each tile separately in a directory tree like `/Z/X/Y.mvt`. This works great for small tilesets, but uploading full global pyramid, such as 300 million tiles, could cost 1,500 USD in request fees and take days. PMTiles is a single file to upload and de-duplicates tiles internally, reducing size by 70%+ or more for global vector basemaps.
+
+### MBTiles
+
+[MBTiles](https://github.com/mapbox/mbtiles-spec) is a container format for tiled data, just like PMTiles, but based on SQLite. MBTiles are designed to be accessed on disk from a running server process, while PMTiles is designed to be read remotely over HTTP, with at most two cacheable intermediate requests.
+
+### Cloud Optimized GeoTIFF
+
+A [Cloud Optimized GeoTIFF (COG)](https://www.cogeo.org) is a raster TIFF file with an internal organization that enables remote reads from cloud storage. PMTiles is similar to COG, but stores arbitrary tiled data, such as vector MVT tiles. However, COG is backwards compatible with most GIS software that deals with GeoTIFF.
 
 ## Reading PMTiles
 
@@ -44,9 +60,11 @@ See the [pmtiles cli](/pmtiles/cli).
 
 ### JavaScript
 
-PMTiles is designed for being read directly in web browsers in conjunction with a JavaScript map library.
+PMTiles is designed for being viewed directly in web browsers in conjunction with a JavaScript map rendering library, including:
 
-See the docs on viewing PMTiles in [Leaflet](/pmtiles/leaflet), [MapLibre GL JS](/pmtiles/maplibre) and [OpenLayers](/pmtiles/openlayers).
+* [MapLibre GL JS](/pmtiles/maplibre) - the recommended library for building smooth experiences and custom styling.
+* [Leaflet](/pmtiles/leaflet) - a lightweight map display library with many plugins.
+* [OpenLayers](/pmtiles/openlayers) - has the most GIS-related features.
 
 Each of the client integrations uses the [JavaScript pmtiles library](https://github.com/protomaps/PMTiles/tree/main/js).
 
@@ -65,3 +83,4 @@ The Python `pmtiles` package should be considered beta status.
 These libraries are maintained by other individuals and organizations.
 
 * Dart: [pub.dev/packages/pmtiles](https://pub.dev/packages/pmtiles)
+* Rust: [stadiamaps/pmtiles-rs](https://github.com/stadiamaps/pmtiles-rs)
