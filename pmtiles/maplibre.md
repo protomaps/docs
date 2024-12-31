@@ -77,7 +77,7 @@ For raster tiles you'll just need to change the `type` of your source to `raster
 }
 ```
 
-Protomaps also distributes terrain tilesets in the [Terrarium RGB encoding](https://github.com/tilezen/joerd/blob/master/docs/formats.md). These have a special source type in MapLibre GL:
+Protomaps also [distributes terrain tilesets](/basemaps/downloads#terrain) in the [Terrarium RGB encoding](https://github.com/tilezen/joerd/blob/master/docs/formats.md). These have a special source type in MapLibre GL:
 
 
 ```json{5}
