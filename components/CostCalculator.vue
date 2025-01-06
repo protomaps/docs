@@ -79,13 +79,14 @@ const cfShow = ref(false);
 
 <template>
   <div>
-    <h3>Inputs</h3>
-    <div class="well">
-      <div class="big">
-        <input v-model="formattedRequests" />monthly tile requests
+    <div>
+      <div class="text-xl">
+        <input id="requests" class="text-xl" v-model="formattedRequests" />
+        <label for="requests"> monthly tile requests</label>
       </div>
       <div>
         <input
+          aria-label="set the number of requests"
           type="range"
           id="range"
           min="0"
@@ -98,47 +99,51 @@ const cfShow = ref(false);
         <strong>{{ mapViews.toLocaleString() }}</strong> monthly map viewer
         sessions
       </div>
-      <div>
-        (one viewing session loads <input v-model.number="tilesPerView" />tiles)
+      <div class="text-sm">
+        <input id="tilesPerView" v-model.number="tilesPerView" />
+        <label for="tilesPerView"> Tile loads per viewing session</label>
       </div>
-      <div>
+      <div class="mt-4">
         <strong>{{ outgoingGB.toLocaleString() }} GB</strong> outgoing bandwidth
         to Internet
       </div>
-      <div>
-        (average tile size
-        <input v-model.number="averageTileSizeKB" />kilobytes)
+      <div class="text-sm">
+        <input id="averageTileSizeKB" v-model.number="averageTileSizeKB" />
+        <label for="averageTileSizeKB"> Average tile size in kilobytes</label>
       </div>
-      <div><input v-model.number="cacheHitRate" /> CDN cache hit rate</div>
-      <div><input v-model.number="storedGB" /> gigabytes on cloud storage</div>
+      <div class="text-sm">
+        <input v-model.number="cacheHitRate" /> CDN cache hit rate
+      </div>
+      <div class="text-sm">
+        <input v-model.number="storedGB" /> Gigabytes stored
+      </div>
     </div>
   </div>
   <div>
     <h3>Google Maps</h3>
-    <span class="cost">{{ googleCost.toFixed(2) }} USD per month</span>
-    <div>
-      (Reference:
+    <span class="text-lg">{{ googleCost.toFixed(2) }} USD per month</span>
+    <div class="text-sm">
       <a
         href="https://developers.google.com/maps/documentation/javascript/usage-and-billing"
         >SKU: Dynamic Maps</a
-      >)
+      >
     </div>
   </div>
   <div class="highlight">
     <h3>Hosted Map API</h3>
-    <span class="cost">{{ hostedCost.toFixed(2) }} USD per month</span>
-    <div>
-      (<input v-model.number="hostedPerKViews" /> USD per 1,000 sessions)
+    <span class="text-lg">{{ hostedCost.toFixed(2) }} USD per month</span>
+    <div class="text-sm">
+      <input v-model.number="hostedPerKViews" /> USD per 1,000 sessions
     </div>
   </div>
   <div class="highlight">
     <h3>Protomaps on AWS</h3>
-    <span class="cost"
+    <span class="text-lg"
       ><strong>{{ aws.total.toFixed(2) }} USD</strong> per month</span
     >
-    <div class="showBreakdown" v-on:click="awsShow = !awsShow">
+    <button class="showBreakdown" v-on:click="awsShow = !awsShow">
       {{ awsShow ? "Hide" : "Show" }} cost breakdown
-    </div>
+    </button>
     <table v-show="awsShow">
       <thead>
         <tr>
@@ -246,12 +251,12 @@ const cfShow = ref(false);
   </div>
   <div>
     <h3>Protomaps on Cloudflare</h3>
-    <span class="cost"
+    <span class="text-lg"
       ><strong>{{ cf.total.toFixed(2) }} USD</strong> per month</span
     >
-    <div class="showBreakdown" v-on:click="cfShow = !cfShow">
+    <button class="showBreakdown" v-on:click="cfShow = !cfShow">
       {{ cfShow ? "Hide" : "Show" }} cost breakdown
-    </div>
+    </button>
     <table v-show="cfShow">
       <thead>
         <tr>
@@ -331,42 +336,42 @@ const cfShow = ref(false);
 <style scoped>
 input {
   border: 1px solid #ccc;
-  width: 3rem;
-  margin-right: 0.5rem;
+  width: 2rem;
+  border-radius: 3px;
+  padding-left: 0.2rem;
 }
 
-#range {
-  width: 100%;
+.mt-4 {
+  margin-top: 2rem;
 }
 
-#notes {
-  color: #777;
+.text-sm {
+  font-size: 0.8rem;
+}
+
+.text-lg {
+  font-size: 1.2rem;
+}
+
+.text-xl {
+  font-size: 2rem;
 }
 
 .showBreakdown {
+  display: block;
   cursor: pointer;
   font-weight: 500;
   color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
-.big,
-.big input {
-  font-size: 2rem;
-}
-
-.big input {
-  width: 15rem;
-}
-
-.well {
-  padding: 1rem;
-  background: var(--vp-sidebar-bg-color);
-  border-radius: 8px;
+#range {
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
-.cost {
-  font-size: 1.2rem;
+#requests {
+  width: 15rem;
 }
 </style>
