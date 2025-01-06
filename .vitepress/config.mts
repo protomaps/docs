@@ -6,6 +6,12 @@ export default defineConfig({
   head: [["link", { rel: "icon", type: "image/png", href: "/favicon.png" }]],
   description: "Technical Documentation for Protomaps",
   cleanUrls: true,
+  markdown: {
+    theme: {
+      light: 'github-light-high-contrast',
+      dark: 'github-dark-high-contrast'
+    }
+  },
   themeConfig: {
     logo: "/logo.svg",
     // https://vitepress.dev/reference/default-theme-config
@@ -76,7 +82,7 @@ export default defineConfig({
     socialLinks: [
       { icon: "github", link: "https://github.com/protomaps" },
       { icon: "mastodon", link: "https://mapstodon.space/@protomaps" },
-      { icon: "twitter", link: "https://twitter.com/protomaps" },
+      { icon: "bluesky", link: "https://bsky.app/profile/protomaps.com" },
     ],
 
     search: {
