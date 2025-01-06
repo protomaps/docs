@@ -22,6 +22,14 @@ The Version 4 Protomaps basemap daily build channel is available at [maps.protom
 
 A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](https://beta.source.coop) at the [protomaps/openstreetmap](https://beta.source.coop/repositories/protomaps/openstreetmap/) repository. This mirrors the most recent daily build only.
 
+### Build History
+
+The daily builds bucket retains:
+
+* All builds for the past week.
+* Weekly monday builds for the past month.
+* The latest build for each version (major + minor + patch) beyond that.
+
 ## Partial Downloads
 
 To download a cutout of a specific region, rather than the entire world map, see the CLI's [extract command](/pmtiles/cli#extract).
