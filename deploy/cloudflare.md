@@ -49,15 +49,13 @@ Make a request for `/TILESET.json` to verify TileJSON is served.
 
 1. Clone the [PMTiles repository](https://github.com/protomaps/PMTiles) and change to the `serverless/cloudflare` directory.
 
-2. `npm install` in `PMTiles/js` to get the dependencies of the core JS library.
+2. `npm install` in `PMTiles/serverless/cloudflare`.
 
-3. Also `npm install` in `PMTiles/serverless/cloudflare`.
+3. Copy `wrangler.toml.example` to `wrangler.toml`.
 
-4. Copy `wrangler.toml.example` to `wrangler.toml`.
+4. Edit `wrangler.toml`, replacing `my-bucket-development` and `my-bucket-production` with your bucket.
 
-5. Edit `wrangler.toml`, replacing `my-bucket-development` and `my-bucket-production` with your bucket.
-
-6. Publish the worker: `npm run deploy`
+5. Publish the worker: `npm run deploy`
 
 After the deploy, the `*.workers.dev` subdomain will be printed.
 
