@@ -228,6 +228,19 @@ Deno.serve(async (req) => {
 });
 ```
 
+
+### Tigris Data
+
+* [Tigris Data](http://tigrisdata.com) is S3-compatible and offers buckets distributed to multiple locations around the world for low latency.
+* Tigris data has [no egress fees](https://www.tigrisdata.com/docs/pricing/).
+
+#### CORS
+
+In the **Bucket > Settings** of your Tigris bucket, scroll to **CORS Configuration**.
+
+- For **Allowed Methods** and **Allowed Headers**, choose or input `*`. This is required for preflight requests.
+- For **Expose Headers**, input `ETag`.
+
 ## Other Platforms
 
 ### GitHub Pages
