@@ -3,7 +3,10 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Protomaps Docs",
-  head: [["link", { rel: "icon", type: "image/png", href: "/favicon.png" }]],
+  head: [
+    ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
+    ["meta", { property: "og:image", content: "https://protomaps.com/docs_opengraph.jpg" }]
+  ],
   description: "Technical Documentation for Protomaps",
   cleanUrls: true,
   markdown: {

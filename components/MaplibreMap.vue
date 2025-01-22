@@ -2,6 +2,7 @@
 import maplibregl from "maplibre-gl";
 import { ref, onMounted, onUpdated, watch } from "vue";
 import { default as layers } from "protomaps-themes-base";
+import { language_script_pairs } from "protomaps-themes-base";
 import { useData } from "vitepress";
 
 const { isDark } = useData();
@@ -10,6 +11,7 @@ const mapRef = ref(null);
 var map;
 
 const lang = ref("en");
+const currentZoom = ref(0);
 
 const tableFromProps = (props: unknown) => {
   let tableHTML = "<table>";
@@ -103,6 +105,7 @@ const props = defineProps<{
   lat?: number;
   lng?: number;
   langSelect?: boolean;
+  showZoom?: boolean;
 }>();
 
 onMounted(() => {
@@ -112,6 +115,7 @@ onMounted(() => {
       false,
     );
   }
+  currentZoom.value = props.zoom;
   map = new maplibregl.Map({
     container: mapRef.value,
     style: style(props.theme, props.highlightLayer),
@@ -146,178 +150,17 @@ onMounted(() => {
       popup.remove();
     },
   );
+
+  map.on("zoom", () => {
+    currentZoom.value = map.getZoom().toFixed(2);
+  });
 });
 
 watch([isDark, lang], () => {
   map.setStyle(style(props.theme, props.highlightLayer, lang.value));
 });
 
-const language_script_pairs = [
-  {
-    lang: "ar",
-    full_name: "Arabic",
-  },
-  {
-    lang: "cs",
-    full_name: "Czech",
-  },
-  {
-    lang: "bg",
-    full_name: "Bulgarian",
-  },
-  {
-    lang: "da",
-    full_name: "Danish",
-  },
-  {
-    lang: "de",
-    full_name: "German",
-  },
-  {
-    lang: "el",
-    full_name: "Greek",
-  },
-  {
-    lang: "en",
-    full_name: "English",
-  },
-  {
-    lang: "es",
-    full_name: "Spanish",
-  },
-  {
-    lang: "et",
-    full_name: "Estonian",
-  },
-  {
-    lang: "fa",
-    full_name: "Persian",
-  },
-  {
-    lang: "fi",
-    full_name: "Finnish",
-  },
-  {
-    lang: "fr",
-    full_name: "French",
-  },
-  {
-    lang: "ga",
-    full_name: "Irish",
-  },
-  {
-    lang: "he",
-    full_name: "Hebrew",
-  },
-  {
-    lang: "hi",
-    full_name: "Hindi",
-  },
-  {
-    lang: "hr",
-    full_name: "Croatian",
-  },
-  {
-    lang: "hu",
-    full_name: "Hungarian",
-  },
-  {
-    lang: "id",
-    full_name: "Indonesian",
-  },
-  {
-    lang: "it",
-    full_name: "Italian",
-  },
-  {
-    lang: "ja",
-    full_name: "Japanese",
-  },
-  {
-    lang: "ko",
-    full_name: "Korean",
-  },
-  {
-    lang: "lt",
-    full_name: "Lithuanian",
-  },
-  {
-    lang: "lv",
-    full_name: "Latvian",
-  },
-  {
-    lang: "ne",
-    full_name: "Nepali",
-  },
-  {
-    lang: "nl",
-    full_name: "Dutch",
-  },
-  {
-    lang: "no",
-    full_name: "Norwegian",
-  },
-  {
-    lang: "mr",
-    full_name: "Marathi",
-  },
-  {
-    lang: "mt",
-    full_name: "Maltese",
-  },
-  {
-    lang: "pl",
-    full_name: "Polish",
-  },
-  {
-    lang: "pt",
-    full_name: "Portuguese",
-  },
-  {
-    lang: "ro",
-    full_name: "Romanian",
-  },
-  {
-    lang: "ru",
-    full_name: "Russian",
-  },
-  {
-    lang: "sk",
-    full_name: "Slovak",
-  },
-  {
-    lang: "sl",
-    full_name: "Slovenian",
-  },
-  {
-    lang: "sv",
-    full_name: "Swedish",
-  },
-  {
-    lang: "tr",
-    full_name: "Turkish",
-  },
-  {
-    lang: "uk",
-    full_name: "Ukrainian",
-  },
-  {
-    lang: "ur",
-    full_name: "Urdu",
-  },
-  {
-    lang: "vi",
-    full_name: "Vietnamese",
-  },
-  {
-    lang: "zh-Hans",
-    full_name: "Chinese (Simplified)",
-  },
-  {
-    lang: "zh-Hant",
-    full_name: "Chinese (Traditional)",
-  },
-].sort((a, b) => a.full_name.localeCompare(b.full_name));
+language_script_pairs.sort((a, b) => a.full_name.localeCompare(b.full_name));
 </script>
 
 <template>
@@ -330,7 +173,10 @@ const language_script_pairs = [
       {{ option.full_name }}
     </option>
   </select>
-  <div ref="mapRef" class="maplibre-map"></div>
+  <div class="map-container">
+    <div ref="mapRef" class="maplibre-map"></div>
+    <div v-if="props.showZoom" class="zoom-display">z={{ currentZoom }}</div>
+  </div>
 </template>
 
 <style>
@@ -338,9 +184,21 @@ const language_script_pairs = [
 </style>
 
 <style>
+.map-container {
+  position: relative;
+}
+
 .maplibre-map {
   height: 300px;
   width: 100%;
+}
+
+.zoom-display {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .docs-popup .maplibregl-popup-content {
@@ -356,10 +214,17 @@ const language_script_pairs = [
   border-bottom-color: rgb(22, 22, 24);
 }
 
-.dark .maplibregl-ctrl-attrib {
+.dark .maplibregl-ctrl-attrib,
+.dark .zoom-display {
   background-color: hsla(0, 0%, 0%, 0.5);
 }
 .dark .maplibregl-ctrl-attrib a {
   color: rgba(235, 235, 245, 0.6);
+}
+
+select {
+  background: var(--vp-sidebar-bg-color);
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 </style>
