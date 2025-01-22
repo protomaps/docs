@@ -153,7 +153,7 @@ onMounted(() => {
 
   map.on("zoom", () => {
     currentZoom.value = map.getZoom().toFixed(2);
-  })
+  });
 });
 
 watch([isDark, lang], () => {
@@ -185,7 +185,7 @@ language_script_pairs.sort((a, b) => a.full_name.localeCompare(b.full_name));
 
 <style>
 .map-container {
-  position:relative;
+  position: relative;
 }
 
 .maplibre-map {
@@ -214,7 +214,8 @@ language_script_pairs.sort((a, b) => a.full_name.localeCompare(b.full_name));
   border-bottom-color: rgb(22, 22, 24);
 }
 
-.dark .maplibregl-ctrl-attrib, .dark .zoom-display {
+.dark .maplibregl-ctrl-attrib,
+.dark .zoom-display {
   background-color: hsla(0, 0%, 0%, 0.5);
 }
 .dark .maplibregl-ctrl-attrib a {
