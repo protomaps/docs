@@ -10,6 +10,7 @@ const mapRef = ref(null);
 var map;
 
 const lang = ref("en");
+const currentZoom = ref(0);
 
 const tableFromProps = (props: unknown) => {
   let tableHTML = "<table>";
@@ -103,6 +104,7 @@ const props = defineProps<{
   lat?: number;
   lng?: number;
   langSelect?: boolean;
+  showZoom?: boolean;
 }>();
 
 onMounted(() => {
@@ -112,6 +114,7 @@ onMounted(() => {
       false,
     );
   }
+  currentZoom.value = props.zoom;
   map = new maplibregl.Map({
     container: mapRef.value,
     style: style(props.theme, props.highlightLayer),
@@ -330,7 +333,10 @@ const language_script_pairs = [
       {{ option.full_name }}
     </option>
   </select>
-  <div ref="mapRef" class="maplibre-map"></div>
+  <div class="map-container">
+    <div ref="mapRef" class="maplibre-map"></div>
+    <div v-if="props.showZoom" class="zoom-display">z={{ currentZoom }}</div>
+  </div>
 </template>
 
 <style>
@@ -338,9 +344,21 @@ const language_script_pairs = [
 </style>
 
 <style>
+.map-container {
+  position:relative;
+}
+
 .maplibre-map {
   height: 300px;
   width: 100%;
+}
+
+.zoom-display {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .docs-popup .maplibregl-popup-content {
@@ -356,10 +374,16 @@ const language_script_pairs = [
   border-bottom-color: rgb(22, 22, 24);
 }
 
-.dark .maplibregl-ctrl-attrib {
+.dark .maplibregl-ctrl-attrib, .dark .zoom-display {
   background-color: hsla(0, 0%, 0%, 0.5);
 }
 .dark .maplibregl-ctrl-attrib a {
   color: rgba(235, 235, 245, 0.6);
+}
+
+select {
+  background: var(--vp-sidebar-bg-color);
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 </style>

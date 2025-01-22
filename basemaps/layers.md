@@ -47,7 +47,7 @@ The current version is **Version 4**.
 
 ## boundaries
 
-<MaplibreMap highlightLayer="boundaries" :zoom=5 :lat="52" :lng="4"/>
+<MaplibreMap highlightLayer="boundaries" :zoom=5 :showZoom="true" :lat="52" :lng="4"/>
 
 | Key           | Values                                    | Description                       |
 | ------------- | ----------------------------------------- | --------------------------------- |
@@ -58,7 +58,7 @@ The current version is **Version 4**.
 
 ## buildings
 
-<MaplibreMap highlightLayer="buildings" :zoom=14 :lat="51.5" :lng="-0.2"/>
+<MaplibreMap highlightLayer="buildings" :zoom=14 :showZoom="true" :lat="51.5" :lng="-0.2"/>
 
 Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains individual OSM equivalent buildings.
 
@@ -71,7 +71,7 @@ Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected
 
 ## earth
 
-<MaplibreMap highlightLayer="earth" :zoom=3 :lat="-4.5" :lng="127"/>
+<MaplibreMap highlightLayer="earth" :zoom=3 :showZoom="true" :lat="-4.5" :lng="127"/>
 
 Polygons from the Natural Earth 50m `land` theme for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
 
@@ -81,7 +81,7 @@ Polygons from the Natural Earth 50m `land` theme for z0-z4, 10m for z5, preproce
 
 ## landcover
 
-<MaplibreMap highlightLayer="landcover" :zoom=2 :lat="38" :lng="-100"/>
+<MaplibreMap highlightLayer="landcover" :zoom=2 :showZoom="true" :lat="38" :lng="-100"/>
 
 Polygons from the Daylight distribution's [landcover](https://daylightmap.org/2023/10/11/landcover.html) theme, for z0-z7.
 
@@ -93,7 +93,7 @@ _NOTE: It's recommended to pair with **natural** layer polygons in from OpenStre
 
 ## landuse
 
-<MaplibreMap highlightLayer="landuse" :zoom=13 :lat="-1.28" :lng="36.8"/>
+<MaplibreMap highlightLayer="landuse" :zoom=13 :showZoom="true" :lat="-1.28" :lng="36.8"/>
 
 Polygons from OpenStreetMap, from a curated subset of `aeroway`, `amenity`, `area:aeroway`, `boundary`, `highway`, `landuse`, `leisure`, `man_made`, `natural`, `place`, `railway`, `tourism` tags, for all zooms.
 
@@ -166,7 +166,7 @@ Polygons from OpenStreetMap, from a curated subset of `aeroway`, `amenity`, `are
 
 Points from OpenStreetMap and Natural Earth, from a curated subset of place tags, for all zooms.
 
-<MaplibreMap highlightLayer="places" :zoom=2 :lat="-24.6" :lng="134"/>
+<MaplibreMap highlightLayer="places" :zoom=2 :showZoom="true" :lat="-24.6" :lng="134"/>
 
 | Key               |                                                                                         Values                                                                                         | Description |
 | ----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ----------: |
@@ -181,7 +181,7 @@ Points from OpenStreetMap and Natural Earth, from a curated subset of place tags
 
 Points from OpenStreetMap, from a curated subset of aeroway, amenity, attraction, boundary, craft, highway, historic, landuse, leisure, natural, railway, shop, tourism tags, for all zooms.
 
-<MaplibreMap highlightLayer="pois"  :zoom=16 :lat="52.525" :lng="13.41"/>
+<MaplibreMap highlightLayer="pois"  :zoom=16 :showZoom="true" :lat="52.525" :lng="13.41"/>
 
 | Key        |  Values   | Description |
 | ---------- | :-------: | ----------: |
@@ -345,7 +345,7 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 Linear transportation features designed for movement, including highways, streets,
 railways and piers from OpenStreetMap. This layer represents built infrastructure including railways. Refer to the [transit](#transit) layer for passenger services.
 
-<MaplibreMap highlightLayer="roads" :zoom=13 :lat="35.68" :lng="139.76"/>
+<MaplibreMap highlightLayer="roads" :zoom=13 :showZoom="true" :lat="35.68" :lng="139.76"/>
 
 | Key                  |                                                                                                                                                                                                                                                                                       Values                                                                                                                                                                                                                                                                                       | Description |
 | -------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ----------: |
@@ -391,7 +391,7 @@ This layer is currently empty.
 
 ## water
 
-<MaplibreMap highlightLayer="water" :zoom=6 :lat="-1.3" :lng="-49"/>
+<MaplibreMap highlightLayer="water" :zoom=6 :showZoom="true" :lat="-1.3" :lng="-49"/>
 
 Polygons from the Natural Earth 50m `lakes` and `ocean` themes for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
 
