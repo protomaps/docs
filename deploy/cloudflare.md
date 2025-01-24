@@ -65,7 +65,7 @@ Make a request for `/TILESET.json` to verify TileJSON is served.
 
 For the cache to work, the worker must be assigned a zone on your own domain, not `workers.dev`.
 
-1. In **Settings > Triggers** for your Worker, **Add Custom Domain** e.g. `subdomain.mydomain.com`. This will create a DNS entry in your Cloudflare site.
+1. In **Settings > Domains & Routes** for your Worker, add a **Custom Domain** e.g. `subdomain.mydomain.com`. This will create a DNS entry in your Cloudflare site.
 
 Verify your deployment is working by checking for the `Cf-Cache-Status` header with a value of `HIT` on successful (HTTP 200) requests.
 
