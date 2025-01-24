@@ -76,9 +76,14 @@ pmtiles show NAME.pmtiles --bucket=s3://R2_BUCKET_NAME\?endpoint=https://R2_ACCO
 ```bash
 pmtiles show INPUT.pmtiles
 pmtiles show INPUT.pmtiles --bucket=s3://BUCKET_NAME
+pmtiles show INPUT.pmtiles --header-json
+pmtiles show INPUT.pmtiles --metadata
 ```
 
 Print an archive's header data and metadata.
+
+* `--header-json`: print a JSON representation of part of the header to stdout.
+* `--metadata`: print the JSON metadata to stdout.
 
 ### tile
 
@@ -139,7 +144,7 @@ For ZXY URLs, the extension must match the type of the tiles in the archive, for
 
 Flags:
 
-* `--cors=ORIGIN` set the value of the Access-Control-Allow-Origin. * is a valid value but must be escaped in your shell. Appropriate for development use.
+* `--cors=ORIGIN1,ORIGIN2` set the valid origins for the `Access-Control-Allow-Origin` CORS header. `*` is a valid value but must be escaped in your shell. Appropriate for development use.
 * `--cache-size=SIZE_MB` set the global size of the header and directory LRU cache, shared across all archives. Default is 64 MB.
 * `--port=PORT` specify the HTTP port. Defaults to 8080.
 * `--public-url`: Required for serving [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/3.0.0). Specify the full URL as it should appear to the browser client like `http://localhost:8080` or `https://example.com`.
@@ -189,6 +194,22 @@ You will need write permissions to the bucket, for example this AWS IAM policy:
       ]
   }
 ```
+
+### edit
+
+Change parts of the archive header, or replace the archive JSON metadata.
+
+```bash
+pmtiles show NAME.pmtiles --header-json > header.json
+pmtiles show NAME.pmtiles --metadata > metadata.json
+
+# make changes to header.json or metadata.json
+
+pmtiles edit NAME.pmtiles --header-json=header.json --metadata=metadata.json
+```
+
+* The `tile_type`, `tile_compresssion`, `minzoom`, `maxzoom`, `bounds` and `center` of the header can be edited. Other fields are not editable. Editing only the header will modify the file in-place.
+* Writing the JSON metadata requires writing a new copy of the archive, which will then replace `NAME.pmtiles`.
 
 ### version
 
