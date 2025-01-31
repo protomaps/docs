@@ -114,12 +114,13 @@ S3 CORS Configuration:
 
 ```
 echo '[{"maxAgeSeconds": 300, "method": ["GET", "HEAD"], "origin": ["https://example.com"], "responseHeader": ["range","etag","if-match"]}]' > cors.json
-gsutil cors set cors.json gs://my-bucket-name
+
+gcloud storage buckets update gs://my-bucket-name --cors-file=cors.json
 ```
 
-#### CORS: gsutil tool
+#### CORS: gcloud
 
-Install the [gsutil tool](https://cloud.google.com/storage/docs/gsutil_install)
+Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install) to set a [CORS Configuration](https://cloud.google.com/storage/docs/cors-configurations):
 
 ```json title="cors.json"
 [
@@ -133,7 +134,10 @@ Install the [gsutil tool](https://cloud.google.com/storage/docs/gsutil_install)
 ```
 
 ```bash
-gsutil cors set gcors.json gs://my-bucket-name
+# view CORS settings
+gcloud storage buckets describe gs://my-bucket-name --format="default(cors_config)"
+
+gcloud storage buckets update gs://my-bucket-name --cors-file=cors.json
 ```
 
 ### Microsoft Azure
