@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Protomaps Docs",
   head: [
     ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
+    ["link", { rel: "apple-touch-icon", type: "image/jpg", href:"https://protomaps.com//apple-touch-icon.jpg" }],
     ["meta", { property: "og:image", content: "https://protomaps.com/docs_opengraph.jpg" }]
   ],
   description: "Technical Documentation for Protomaps",
