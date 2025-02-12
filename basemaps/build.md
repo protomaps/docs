@@ -62,7 +62,3 @@ java -Xmx20g -jar target/protomaps-basemap-HEAD-with-deps.jar --nodemap-type=arr
 * `-Xmx20g`: Give the Java runtime environment 20GB of heap space.
 * `--nodemap-type=array`: a build option best for planet tile generation.
 * `--tmpdir=/var/scratch`: ensure there is at least 512GB of scratch space.
-
-
-
-
