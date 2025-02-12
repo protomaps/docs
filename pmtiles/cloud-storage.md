@@ -270,11 +270,22 @@ CORS configuration:
 
 As an alternative, consider using the [`pmtiles_proxy` plugin for Caddy](/deploy/server).
 
-* **Nginx** supports HTTP Range Requests. CORS headers should be set by configuration files.
+* **Nginx** supports HTTP Range Requests. CORS headers should be set by configuration files. Your HTTP server will also need to support CORS Preflight requests (`OPTIONS` method) for full browser support. Example NGINX block:
+
+```
+if ($request_method = 'OPTIONS') {
+  add_header 'Access-Control-Max-Age' 3600;
+  add_header 'Content-Type' 'text/plain charset=UTF-8';
+  add_header 'Access-Control-Allow-Origin' '*' always;
+  add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
+  add_header 'Content-Length' 0;
+  return 204;
+}
+```
 
 ## Next steps
 
 * [Accelerate your maps and serve from private buckets with CDN integration](/deploy/).
-* Learn how to customize your map's [Basemap Layers](/basemaps/layers).
+* Learn how to style the [Basemap Layers](/basemaps/layers).
 
 
