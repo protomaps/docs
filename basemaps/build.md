@@ -28,7 +28,7 @@ To start you will need:
 
 ```sh
 git clone https://github.com/protomaps/basemaps
-cd tiles
+cd basemaps/tiles
 mvn clean package
 ```
 
@@ -47,7 +47,7 @@ This will also download resources such as pre-processed OSM water and land polyg
 
 ## Build the planet
 
-The recommended system requirements for building a planet tileset are:
+The recommended system requirements for building a planet tileset in < 3 hours are:
 
 * CPU: As many CPU cores as possible. Recommended: Intel Core i9 series, AMD Ryzen 9 series, AWS `c7gd.8xlarge` or equivalent.
 * RAM: 64GB of RAM.
