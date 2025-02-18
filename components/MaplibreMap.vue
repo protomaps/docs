@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import maplibregl from "maplibre-gl";
 import { ref, onMounted, onUpdated, watch } from "vue";
-import { language_script_pairs, layers, namedFlavor } from "@protomaps/basemaps";
+import {
+  language_script_pairs,
+  layers,
+  namedFlavor,
+} from "@protomaps/basemaps";
 import { useData } from "vitepress";
 
 const { isDark } = useData();
@@ -90,7 +94,7 @@ const style = (passedFlavor?: string, highlightLayer?: string, lang?: lang) => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", namedFlavor(flavor), {lang:lang}).concat(
+    layers: layers("protomaps", namedFlavor(flavor), { lang: lang }).concat(
       highlightLayers("protomaps", highlightLayer),
     ),
   };
