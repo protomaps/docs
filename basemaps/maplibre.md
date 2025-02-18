@@ -26,7 +26,7 @@ You can view a list of available fonts [in the GitHub repository](https://github
 
 ### Sprites
 
-The `sprite` key references a URL specific to one of [the default themes](/basemaps/themes):
+The `sprite` key references a URL specific to one of [the default flavors](/basemaps/flavors):
 
 ```js
 sprite: "https://protomaps.github.io/basemaps-assets/sprites/v4/light"
@@ -36,20 +36,20 @@ These are required for townspots, highway shields and point of interest icons.
 
 ## Loading styles as JSON
 
-Because [MapLibre styles](https://maplibre.org/maplibre-style-spec/) are JSON documents, the simplest way to define a style in your application is with static JSON. You can use the `Get style JSON` feature of [maps.protomaps.com](https://maps.protomaps.com) to generate static JSON for a specific theme and style package version.
+Because [MapLibre styles](https://maplibre.org/maplibre-style-spec/) are JSON documents, the simplest way to define a style in your application is with static JSON. You can use the `Get style JSON` feature of [maps.protomaps.com](https://maps.protomaps.com) to generate static JSON for a specific flavor and style package version.
 
 ## Creating styles programatically
 
-For more control and less code, you can add use the [`protomaps-themes-base`](https://www.npmjs.com/package/protomaps-themes-base) NPM package as a dependency.
+For more control and less code, you can add use the [`@protomaps/basemaps`](https://www.npmjs.com/package/@protomaps/basemaps) NPM package as a dependency.
 
 ### Using the npm package
 
 ```bash
-npm install protomaps-themes-base
+npm install @protomaps/basemaps
 ```
 
 ```js
-import layers from 'protomaps-themes-base';
+import { layers, namedFlavor } from '@protomaps/basemaps';
 ```
 
 ```js
@@ -65,24 +65,26 @@ style: {
             attribution: '<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org">OpenStreetMap</a>'
         }
     },
-    layers: layers("protomaps","light")
+    layers: layers("protomaps",namedFlavor("light"),{lang:"en"})
 }
 ```
 
-the default export from `protomaps-themes-base` is a function that takes 2 arguments:
+the `layers` from `@protomaps/basemaps` is a function that takes 3 arguments:
 
 * the source name of the basemap, like `protomaps` in the `sources` example above.
 
-* the [theme](/basemaps/themes), one of `light`, `dark`, `white`, `black`, `grayscale`.
+* A [flavor object](/basemaps/flavors); the defaults can be fetched `namedFlavor` with `light`, `dark`, `white`, `black`, `grayscale`.
+
+* An options object: to display labels. pass a `lang` key. Pass `labelsOnly` to display only labels.
 
 ### Using a CDN
 
-Loading the `protomaps-themes-base` package from NPM will define the `protomaps_themes_base` global variable.
+Loading the `@protomaps/basemaps` package from NPM will define the `basemaps` global variable.
 
 ```html
-<script src="https://unpkg.com/protomaps-themes-base@4/dist/protomaps-themes-base.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@protomaps/basemaps@5/dist/basemaps.js" crossorigin="anonymous"></script>
 ```
 
 ```js
-layers: protomaps_themes_base.default("protomaps","light")
+layers: basemaps.layers("protomaps",basemaps.namedFlavor("light"),{lang:"en"})
 ````

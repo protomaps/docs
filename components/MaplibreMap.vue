@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import maplibregl from "maplibre-gl";
 import { ref, onMounted, onUpdated, watch } from "vue";
-import { default as layers } from "protomaps-themes-base";
-import { language_script_pairs } from "protomaps-themes-base";
+import { language_script_pairs, layers, namedFlavor } from "@protomaps/basemaps";
 import { useData } from "vitepress";
 
 const { isDark } = useData();
@@ -67,9 +66,9 @@ const highlightLayers = (sourceName: string, highlightName?: string) => {
   ];
 };
 
-const style = (passedTheme?: string, highlightLayer?: string, lang?: lang) => {
-  const theme =
-    passedTheme ||
+const style = (passedFlavor?: string, highlightLayer?: string, lang?: lang) => {
+  const flavor =
+    passedFlavor ||
     (isDark.value
       ? highlightLayer
         ? "black"
@@ -81,7 +80,7 @@ const style = (passedTheme?: string, highlightLayer?: string, lang?: lang) => {
     version: 8,
     glyphs:
       "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
-    sprite: `https://protomaps.github.io/basemaps-assets/sprites/v4/${theme}`,
+    sprite: `https://protomaps.github.io/basemaps-assets/sprites/v4/${flavor}`,
     sources: {
       protomaps: {
         type: "vector",
@@ -91,14 +90,14 @@ const style = (passedTheme?: string, highlightLayer?: string, lang?: lang) => {
     transition: {
       duration: 0,
     },
-    layers: layers("protomaps", theme, lang).concat(
+    layers: layers("protomaps", namedFlavor(flavor), {lang:lang}).concat(
       highlightLayers("protomaps", highlightLayer),
     ),
   };
 };
 
 const props = defineProps<{
-  theme?: string;
+  flavor?: string;
   highlightLayer?: string;
   center?: number;
   zoom?: number;
@@ -118,7 +117,7 @@ onMounted(() => {
   currentZoom.value = props.zoom;
   map = new maplibregl.Map({
     container: mapRef.value,
-    style: style(props.theme, props.highlightLayer),
+    style: style(props.flavor, props.highlightLayer),
     cooperativeGestures: true,
     attributionControl: false,
     center: props.lng && props.lat ? [props.lng, props.lat] : [0, 0],
@@ -157,7 +156,7 @@ onMounted(() => {
 });
 
 watch([isDark, lang], () => {
-  map.setStyle(style(props.theme, props.highlightLayer, lang.value));
+  map.setStyle(style(props.flavor, props.highlightLayer, lang.value));
 });
 
 language_script_pairs.sort((a, b) => a.full_name.localeCompare(b.full_name));

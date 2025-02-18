@@ -9,7 +9,7 @@
   "dependencies": {
     "maplibre-gl": "^4.7.1",
     "pmtiles": "^4.1.0",
-    "protomaps-themes-base": "4.4.0",
+    "@protomaps/basemaps": "5.0.0",
     "vitepress": "^1.5.0"
   },
   "devDependencies": {
