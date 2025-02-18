@@ -117,7 +117,7 @@ onMounted(() => {
   currentZoom.value = props.zoom;
   map = new maplibregl.Map({
     container: mapRef.value,
-    style: style(props.flavor, props.highlightLayer),
+    style: style(props.flavor, props.highlightLayer, lang),
     cooperativeGestures: true,
     attributionControl: false,
     center: props.lng && props.lat ? [props.lng, props.lat] : [0, 0],
