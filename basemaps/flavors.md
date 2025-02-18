@@ -55,5 +55,5 @@ Use [ES6 spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 ```ts
 import { namedFlavor } from "@protomaps/basemaps"
-let flavor = {...namedFlavor("light"),buildings:"red")
+let flavor = {...namedFlavor("light"),buildings:"red"}
 ```
