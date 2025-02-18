@@ -65,5 +65,5 @@ pmtiles extract https://build.protomaps.com/{{ dateNoDashes }}.pmtiles planet_z6
 ## Next Steps
 
 * Upload your tiles to cloud storage: [Cloud Storage](/pmtiles/cloud-storage)
-* Change the appearance or theme of the basemap: [Basemap Styles](/basemaps/themes)
+* Change the appearance of the basemap: [Basemap Styles](/basemaps/flavors)
 * Bring your own datasets: [Creating PMTiles](/pmtiles/create)

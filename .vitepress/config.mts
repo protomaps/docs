@@ -75,7 +75,7 @@ export default defineConfig({
         items: [
           { text: "Downloads", link: "/basemaps/downloads" },
           { text: "Basemap Layers", link: "/basemaps/layers" },
-          { text: "Basemap Themes", link: "/basemaps/themes" },
+          { text: "Basemap Flavors", link: "/basemaps/flavors" },
           { text: "Basemap Localization", link: "/basemaps/localization" },
           { text: "Building Tiles", link: "/basemaps/build" },
           { text: "MapLibre GL", link: "/basemaps/maplibre" },

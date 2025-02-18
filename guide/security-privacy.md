@@ -93,7 +93,7 @@ Below is a complete example of a map application that avoids third-party data pr
         <link rel="stylesheet" href="maplibre-gl.css">
         <script src="maplibre-gl.js"></script>
         <script src="pmtiles.js"></script>
-        <script src="protomaps-themes-base.js"></script>
+        <script src="basemaps.js"></script>
     </head>
     <body>
         <div id="map" style="height: 100%; width: 100%"></div>
@@ -119,7 +119,7 @@ Below is a complete example of a map application that avoids third-party data pr
                     attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>'
                   },
                 },
-                layers: protomaps_themes_base.default("protomaps", "light")
+                layers: basemaps.layers("protomaps", basemaps.namedFlavor("light"), {lang: "en"})
               },
             });
         </script>
@@ -129,7 +129,7 @@ Below is a complete example of a map application that avoids third-party data pr
 
 * `maplibre-gl.js`, `maplibre-gl.css` - JavaScript and CSS for the MapLibre GL rendering library.
 * `pmtiles.js` - JavaScript for decoding PMTiles archives in the browser.
-* `protomaps-themes-base.js` - JavaScript for creating a MapLibre GL style for a basemap tileset. 
+* `basemaps.js` - JavaScript for creating a MapLibre GL style for a basemap tileset. 
 * `mapbox-gl-rtl-text.min.js` - MapLibre plugin for supporting right-to-left languages.
 * `fonts/{fontstack}/{range}.pbf` - Font glyphs for rendering labels, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
-* `sprites/{version/{theme}` - Sprites for basemap icons, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
+* `sprites/{version/{flavor_name}` - Sprites for basemap icons, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
