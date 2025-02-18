@@ -51,7 +51,7 @@ A flavor for data visualization.
 
 ## Overriding Defaults
 
-Use [ES6 spread syntax] to override any part of the Flavor object. For example, to color buildings red:
+Use [ES6 spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to override any part of the Flavor object. For example, to color buildings red:
 
 ```ts
 import { namedFlavor } from "@protomaps/basemaps"
