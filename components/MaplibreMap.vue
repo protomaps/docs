@@ -16,6 +16,17 @@ var map;
 const lang = ref("en");
 const currentZoom = ref(0);
 
+const tableFromFeatures = (features: unknown[]) => {
+  let tableHTML = "<div>";
+
+  features.forEach((f) => {
+    tableHTML += tableFromProps(f.properties);
+  });
+
+  tableHTML += "</div>";
+  return tableHTML;
+};
+
 const tableFromProps = (props: unknown) => {
   let tableHTML = "<table>";
 
@@ -140,8 +151,10 @@ onMounted(() => {
     ["highlight_circle", "highlight_stroke", "highlight_fill"],
     (e) => {
       map.getCanvas().style.cursor = "pointer";
-      const properties = e.features[0].properties;
-      popup.setLngLat(e.lngLat).setHTML(tableFromProps(properties)).addTo(map);
+      popup
+        .setLngLat(e.lngLat)
+        .setHTML(tableFromFeatures(e.features))
+        .addTo(map);
     },
   );
 
