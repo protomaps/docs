@@ -60,14 +60,16 @@ The current version is **Version 4**.
 
 <MaplibreMap highlightLayer="buildings" :zoom=14 :showZoom="true" :lat="51.5" :lng="-0.2"/>
 
-Buildings from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains individual OSM equivalent buildings.
+Buildings and address points from OpenStreetMap. z0-14 contains merged buildings, even disconnected ones. z15+ contains individual OSM equivalent buildings.
 
-| Key          |           Values            |                                 Description |
-| ------------ | :-------------------------: | ------------------------------------------: |
-| `kind`       | `building`, `building_part` | Whether it is a whole building or one part. |
-| `height`     |           number            |        May be quantized at low zoom levels. |
-| `min_height` |           number            |        May be quantized at low zoom levels. |
-| `layer`      |           integer           | Layer position relative to other buildings. |
+| Key                |                  Values                  |                                                  Description |
+| ------------------ | :--------------------------------------: | -----------------------------------------------------------: |
+| `kind`             |  `address`, `building`, `building_part`  |  Whether it is an address point, whole building or one part. |
+| `addr_housenumber` |                  string                  |                           Address number for `kind=address`. |
+| `height`           |                  number                  |                         May be quantized at low zoom levels. |
+| `min_height`       |                  number                  |                         May be quantized at low zoom levels. |
+| `layer`            |                 integer                  |                  Layer position relative to other buildings. |
+
 
 ## earth
 
