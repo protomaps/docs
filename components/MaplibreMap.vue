@@ -19,9 +19,9 @@ const currentZoom = ref(0);
 const tableFromFeatures = (features: unknown[]) => {
   let tableHTML = "<div>";
 
-  features.forEach(f => {
+  features.forEach((f) => {
     tableHTML += tableFromProps(f.properties);
-  })
+  });
 
   tableHTML += "</div>";
   return tableHTML;
@@ -151,7 +151,10 @@ onMounted(() => {
     ["highlight_circle", "highlight_stroke", "highlight_fill"],
     (e) => {
       map.getCanvas().style.cursor = "pointer";
-      popup.setLngLat(e.lngLat).setHTML(tableFromFeatures(e.features)).addTo(map);
+      popup
+        .setLngLat(e.lngLat)
+        .setHTML(tableFromFeatures(e.features))
+        .addTo(map);
     },
   );
 
