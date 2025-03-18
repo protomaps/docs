@@ -40,26 +40,24 @@ Storage services usually bill by number of GET requests and the total number of 
 
 * R2 supports HTTP/2.
 
-* R2 CORS can be configured through a command-line utility, like the `aws` tool, or from your S2 bucket's "Settings" tab's "CORS Policy" section:
+* R2 CORS can be configured through a command-line utility, like the `wrangler` tool, or from your Cloudflare R2 bucket's "Settings" tab's "CORS Policy" section:
 
 ```json title="cors_rules.json"
 {
-  "CORSRules": [
-    {
-      "AllowedOrigins": ["https://example.com"],
-      "AllowedMethods": ["GET","HEAD"],
-      "AllowedHeaders": ["range","if-match"],
-      "ExposeHeaders": ["etag"],
-      "MaxAgeSeconds": 3000
-    }
-  ]
+    "allowed": {
+        "origins": ["https://example.com"],
+        "methods": ["GET","HEAD"],
+        "headers": ["range","if-match"],
+    },
+    "exposeHeaders": ["etag"],
+    "maxAgeSeconds": 3000
 }
 ```
 
-Example of using the `aws` command line tool to configure R2 CORS:
+Example of using the `wrangler` command line tool to configure R2 CORS:
 
 ```
-aws s3api put-bucket-cors --bucket MY_BUCKET --cors-configuration file:///home/user/cors_rules.json --endpoint-url https://S3_COMPATIBLE_ENDPOINT
+wrangler r2 bucket cors set MY_BUCKET --file file:///home/user/cors_rules.json
 ```
 
 ### Amazon S3
