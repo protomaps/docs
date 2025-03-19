@@ -171,6 +171,18 @@ Options:
 * `--no-deduplication`: Do not attempt to de-duplicate tile contents. Use this to speed up `convert` if you know the input has only unique tiles.
 * `--tmpdir`: specify the location of the temporary directory.
 
+### cluster
+
+Cluster an unclustered existing archive, optimizing the size and layout. Archives created by tippecanoe, planetiler, and the pmtiles CLI are already clustered.
+
+```bash
+pmtiles cluster INPUT.mbtiles
+```
+
+Options:
+
+* `--no-deduplication`: Do not attempt to de-duplicate tile contents. Use this to speed up `cluster` if you know the input has only unique tiles.
+
 ### upload
 
 Upload an archive to cloud storage.
