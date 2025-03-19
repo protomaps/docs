@@ -70,4 +70,4 @@ Run the basemaps program on your own computer to modify the layers or generate o
 
 ## Tilemaker
 
-[Tilemaker](https://github.com/systemed/tilemaker) is a program for creating basemap tilesets from OpenStreetMap, though not ones that match the layers in the Protomaps [Basemap Layers](/basemaps/layers). The PMTiles directories that Tilemakers produces are currently not optimized, which may result in large, slower fetches when decoding in a web browser. An alternative is to create MBTiles from Tilemaker and then use `pmtiles convert`.
+[Tilemaker](https://github.com/systemed/tilemaker) is a program for creating basemap tilesets from OpenStreetMap, though not ones that match the layers in the Protomaps [Basemap Layers](/basemaps/layers). The PMTiles archives that Tilemaker produces are currently not clustered, which may result in large, slower fetches when decoding in a web browser. For production use you should optimize the archive with [pmtiles cluster](/pmtiles/cli#cluster).
