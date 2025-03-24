@@ -32,16 +32,18 @@ the [`pmtiles` command line tool](/pmtiles/cli) converts MBTiles to PMTiles with
 
 ## GeoTIFF
 
-Using a file from [OSGeo's GeoTIFF samples](https://download.osgeo.org/geotiff/samples/) and the [rio-mbtiles](https://github.com/mapbox/rio-mbtiles) Python tool:
+The [rio-pmtiles](https://pypi.org/project/rio-pmtiles/) package is a plugin for the [Rasterio](https://rasterio.readthedocs.io/en/stable/) python library and CLI.
+
+Using a file from [OSGeo's GeoTIFF samples](https://download.osgeo.org/geotiff/samples/):
 
 ```sh
 # convert single-band to 3-band RGB GeoTIFF
 gdal_translate -expand rgb input.tif input_rgb.tif
 
-# in this example create 512x512 PNG tiles from zooms 0 to 16.
-rio mbtiles input_rgb.tif output.mbtiles --format PNG --zoom-levels 0..16 --tile-size 512 --resampling bilinear
+pip install rio-pmtiles
 
-pmtiles convert output.mbtiles output.pmtiles
+# in this example create 512x512 PNG tiles from zooms 0 to 16.
+rio pmtiles input_rgb.tif output.pmtiles --format PNG --zoom-levels 0..16 --tile-size 512 --resampling bilinear
 ```
 
 ## GDAL
