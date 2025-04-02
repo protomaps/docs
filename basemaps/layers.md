@@ -395,7 +395,9 @@ This layer is currently empty.
 
 <MaplibreMap highlightLayer="water" :zoom=6 :showZoom="true" :lat="-1.3" :lng="-49"/>
 
-Polygons from the Natural Earth 50m `lakes` and `ocean` themes for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
+* Polygons, lines and point labels from OpenStreetMap.
+
+* Polygons from the Natural Earth 50m `lakes` and `ocean` themes for z0-z4, 10m for z5, preprocessed land polygons from [OSMCoastline](https://osmdata.openstreetmap.de) for z6+.
 
 | Key            |                                             Values                                              | Description |
 | -------------- | :---------------------------------------------------------------------------------------------: | ----------: |

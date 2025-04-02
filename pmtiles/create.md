@@ -42,9 +42,18 @@ gdal_translate -expand rgb input.tif input_rgb.tif
 
 pip install rio-pmtiles
 
-# in this example create 512x512 PNG tiles from zooms 0 to 16.
-rio pmtiles input_rgb.tif output.pmtiles --format PNG --zoom-levels 0..16 --tile-size 512 --resampling bilinear
+rio pmtiles input_rgb.tif output.pmtiles --format PNG --resampling bilinear
 ```
+
+Options:
+
+* `--format`: One of `PNG` (lossless), `JPEG`, `WEBP`. `JPEG` is fastest to generate. Default `WEBP`.
+* `--tile-size`: the dimensions in pixels. 512 is recommended for displaying in MapLibre GL. default `512`.
+* `--resampling`: Choose `nearest` for discrete data. Default `bilinear`.
+* `--silent`: Don't show a progress bar.
+* `--zoom-levels`: Specify a range `10..12` to only generate those zoom levels. By default, generates all levels between 0 and the level to capture the full detail of the input.
+* `--help`: Show other advanced options and GDAL flags.
+
 
 ## GDAL
 
