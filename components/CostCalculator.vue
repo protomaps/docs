@@ -47,7 +47,7 @@ const cf = computed(() => {
     storageCost: storedGB.value * 0.015,
   };
   obj.total =
-    obj.workerInvocationCost + obj.planCost + obj.storageCost + obj.storageCost;
+    obj.workerInvocationCost + obj.planCost + obj.storageRequestCost + obj.storageCost;
   return obj;
 });
 
