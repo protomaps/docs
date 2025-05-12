@@ -176,7 +176,7 @@ Options:
 Cluster an unclustered existing archive, optimizing the size and layout. Archives created by tippecanoe, planetiler, and the pmtiles CLI are already clustered.
 
 ```bash
-pmtiles cluster INPUT.mbtiles
+pmtiles cluster INPUT.pmtiles
 ```
 
 Options:
