@@ -64,7 +64,7 @@ GDAL has native support for PMTiles starting with version 3.8.0 (2023-11-13), se
 GDAL's [`ogr2ogr`](https://gdal.org/programs/ogr2ogr.html#ogr2ogr) tool supports a wide range of formats as input for creating PMTiles. Below are examples of generating PMTiles from a Shapefile or multiple PostgreSQL/PostGIS tables.
 
 ```sh
-# Convert shapefile to to pmtiles
+# Convert shapefile to pmtiles
 ogr2ogr -dsco MINZOOM=10 -dsco MAXZOOM=15 -f "PMTiles" filename.pmtiles my_shapes.shp
 
 # Merge all PostgreSQL/PostGIS tables in a schema into a single PMTiles file.
