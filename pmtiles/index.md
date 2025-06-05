@@ -72,7 +72,7 @@ Each of the client integrations uses the [JavaScript pmtiles library](https://gi
 
 ### Python
 
-`pmtiles` is a python package for reading and writing PMTiles. [GitHub](https://github.com/protomaps/PMTiles/tree/master/python) and via the [Python Package Index](https://pypi.org/project/pmtiles/).
+`pmtiles` is a python package for reading and writing PMTiles. It is available via [GitHub](https://github.com/protomaps/PMTiles/tree/main/python) and the [Python Package Index](https://pypi.org/project/pmtiles/).
 
 ::: warning
 The Python `pmtiles` package should be considered beta status.
