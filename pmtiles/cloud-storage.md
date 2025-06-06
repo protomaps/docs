@@ -156,6 +156,18 @@ gcloud storage buckets update gs://my-bucket-name --cors-file=cors.json
 
 * use S3Cmd config to expose `etag` header
 
+### Bunny.net
+
+Bunny.net is a EU-headquartered content delivery network. PMTiles can be uploaded to a Bunny [Storage Zone](https://bunny.net/storage/) and accessed through an edge-cached [Pull Zone](https://support.bunny.net/hc/en-us/articles/207790269-How-to-create-your-first-Pull-Zone).
+
+Bunny does not offer an S3-compatible storage API. To upload a PMTiles archive to a Bunny storage zone:
+
+```sh
+curl --request PUT --url https://SUBDOMAIN.storage.bunnycdn.com/BUCKET/example.pmtiles --header "AccessKey: ACCESS_KEY" --header "Content-Type: application/octet-stream" --header 'accept: application/json' -T EXAMPLE.pmtiles --progress-bar -o upload.txt
+```
+
+CORS can be enabled in the **Headers** section. Allowed referrers can be configured in the **Security > General** section.
+
 ### Backblaze B2
 
 * Backblaze B2 only supports HTTP/1.1.
