@@ -109,8 +109,8 @@ Below is a complete example of a map application that avoids third-party data pr
               zoom: 12,
               center: [11.24962,43.77078],
               style: {
-                glyphs: "fonts/{fontstack}/{range}.pbf",
-                sprite: "sprites/v4/light",
+                glyphs: "https://example.com/fonts/{fontstack}/{range}.pbf",
+                sprite: "https://example.com/sprites/v4/light",
                 version: 8,
                 sources: {
                   protomaps: {
@@ -131,5 +131,7 @@ Below is a complete example of a map application that avoids third-party data pr
 * `pmtiles.js` - JavaScript for decoding PMTiles archives in the browser.
 * `basemaps.js` - JavaScript for creating a MapLibre GL style for a basemap tileset. 
 * `mapbox-gl-rtl-text.min.js` - MapLibre plugin for supporting right-to-left languages.
-* `fonts/{fontstack}/{range}.pbf` - Font glyphs for rendering labels, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
-* `sprites/{version/{flavor_name}` - Sprites for basemap icons, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
+* `https://example.com/fonts/{fontstack}/{range}.pbf` - Font glyphs for rendering labels, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
+* `https://example.com/sprites/{version/{flavor_name}` - Sprites for basemap icons, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
+
+The URLs for glyphs and sprites must be absolute, in order to load the ressources correclty. This is due to the [behavior of `map-libre-js`](https://github.com/maplibre/maplibre-gl-js/issues/182).
