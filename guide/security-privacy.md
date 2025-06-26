@@ -134,4 +134,4 @@ Below is a complete example of a map application that avoids third-party data pr
 * `https://example.com/fonts/{fontstack}/{range}.pbf` - Font glyphs for rendering labels, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
 * `https://example.com/sprites/{version/{flavor_name}` - Sprites for basemap icons, available at [protomaps/basemaps-assets](https://github.com/protomaps/basemaps-assets).
 
-The URLs for glyphs and sprites must be absolute, in order to load the ressources correclty. This is due to the [behavior of `map-libre-js`](https://github.com/maplibre/maplibre-gl-js/issues/182).
+The URLs for glyphs and sprites must be absolute, in order to load the ressources correclty. This is due to the [behavior of MapLibre](https://github.com/maplibre/maplibre-gl-js/issues/182).
