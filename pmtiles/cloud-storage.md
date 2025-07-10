@@ -255,6 +255,22 @@ In the **Bucket > Settings** of your Tigris bucket, scroll to **CORS Configurati
 - For **Allowed Methods** and **Allowed Headers**, choose or input `*`. This is required for preflight requests.
 - For **Expose Headers**, input `ETag`.
 
+### Source Cooperative
+
+Source Cooperative is a publishing utility for open data operated by [Radiant Earth](https://radiant.earth/).
+
+To upload PMTiles to Source Cooperative, use the [pmtiles cli](/pmtiles/cli).
+
+On the **Manage** page of your source.coop repository, create an API key and find the **Access Key ID** and **Secret Access Key**.
+
+Then use `pmtiles upload` to copy the file to Source's S3-compatible endpoint:
+
+```sh
+export AWS_ACCESS_KEY_ID=YOUR_KEY
+export AWS_SECRET_ACCESS_KEY=YOUR_SECRET
+pmtiles upload file.pmtiles path/in/bucket/key.pmtiles --bucket=s3://ORGANIZATION_NAME?endpoint=https://data.source.coop&region=auto&use_path_style=true
+```
+
 ## Other Platforms
 
 ### GitHub Pages
