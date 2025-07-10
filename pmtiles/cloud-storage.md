@@ -257,7 +257,7 @@ In the **Bucket > Settings** of your Tigris bucket, scroll to **CORS Configurati
 
 ### Source Cooperative
 
-Source Cooperative is a publishing utility for open data operated by [Radiant Earth](https://radiant.earth/).
+[Source Cooperative](https://source.coop) is a publishing utility for open data operated by [Radiant Earth](https://radiant.earth/).
 
 To upload PMTiles to Source Cooperative, use the [pmtiles cli](/pmtiles/cli).
 
