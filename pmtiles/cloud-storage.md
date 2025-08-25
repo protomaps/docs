@@ -277,6 +277,10 @@ pmtiles upload file.pmtiles path/in/bucket/key.pmtiles --bucket=s3://ORGANIZATIO
 
 GitHub pages supports repositories up to [1 GB](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits). If your PMTiles file fits, it's an easy way to host.
 
+:::warning
+PMTiles archives hosted on GitHub Pages currently do not load in Firefox. See [this GitHub issue](https://github.com/protomaps/PMTiles/issues/584) for the bug description and workaround.
+:::
+
 ### Scaleway
 
 [Scaleway Object Storage](https://www.scaleway.com/en/object-storage/) only supports HTTP/1.1.
