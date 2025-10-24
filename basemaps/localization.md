@@ -297,4 +297,3 @@ For example, to localize a map to Dutch (nl) and French (fr), one can use the fo
   ["coalesce", "name:nl", "name:fr"],
 ]
 ```
-
