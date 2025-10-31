@@ -204,11 +204,11 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `airfield`               |                                                  |
 | `alpine_hut`             |                                                  |
 | `amusement_ride`         |                                                  |
-| `animal`                 |                                                  |
+| `animal`                 | <Icon kind="animal" :sprites="sprites"/>         |
 | `art`                    |                                                  |
-| `artwork`                |                                                  |
+| `artwork`                | <Icon kind="artwork" :sprites="sprites"/>        |
 | `atm`                    |                                                  |
-| `attraction`             |                                                  |
+| `attraction`             | <Icon kind="attraction" :sprites="sprites"/>     |
 | `atv`                    |                                                  |
 | `baby_hatch`             |                                                  |
 | `bakery`                 |                                                  |
@@ -222,11 +222,12 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `bicycle_repair_station` |                                                  |
 | `boat_storage`           |                                                  |
 | `bookmaker`              |                                                  |
-| `books`                  |                                                  |
+| `books`                  | <Icon kind="books" :sprites="sprites"/>          |
+| `building`               | <Icon kind="building" :sprites="sprites"/>       |
 | `bureau_de_change`       |                                                  |
 | `bus_stop`               |                                                  |
 | `butcher`                |                                                  |
-| `cafe`                   |                                                  |
+| `cafe`                   | <Icon kind="cafe" :sprites="sprites"/>           |
 | `camp_site`              |                                                  |
 | `car_parts`              |                                                  |
 | `car_rental`             |                                                  |
@@ -243,13 +244,13 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `clothes`                |                                                  |
 | `college`                | <Icon kind="fire_station" :sprites="sprites"/>   |
 | `computer`               |                                                  |
-| `convenience`            |                                                  |
+| `convenience`            | <Icon kind="convenience" :sprites="sprites"/>    |
 | `customs`                |                                                  |
 | `dentist`                |                                                  |
 | `district`               |                                                  |
 | `doctors`                |                                                  |
 | `dog_park`               |                                                  |
-| `drinking_water`         |                                                  |
+| `drinking_water`         | <Icon kind="drinking_water" :sprites="sprites"/> |
 | `emergency_phone`        |                                                  |
 | `fashion`                |                                                  |
 | `firepit`                |                                                  |
@@ -260,6 +261,7 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `fuel`                   |                                                  |
 | `gambling`               |                                                  |
 | `garden_centre`          |                                                  |
+| `garden`                 | <Icon kind="garden" :sprites="sprites"/>         |
 | `gift`                   |                                                  |
 | `golf_course`            |                                                  |
 | `golf`                   |                                                  |
@@ -322,12 +324,12 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `stationery`             |                                                  |
 | `studio`                 |                                                  |
 | `summer_toboggan`        |                                                  |
-| `supermarket`            |                                                  |
+| `supermarket`            | <Icon kind="supermarket" :sprites="sprites"/>    |
 | `swimming_area`          |                                                  |
 | `taxi`                   |                                                  |
 | `telephone`              |                                                  |
 | `tobacco`                |                                                  |
-| `toilets`                |                                                  |
+| `toilets`                | <Icon kind="toilets" :sprites="sprites"/>        |
 | `townhall`               | <Icon kind="townhall" :sprites="sprites"/>       |
 | `trail_riding_station`   |                                                  |
 | `travel_agency`          |                                                  |
@@ -341,6 +343,15 @@ _NOTE: The list of kind values is not comprehensive as some raw OSM tag values a
 | `wayside_cross`          |                                                  |
 | `wilderness_hut`         |                                                  |
 | `zoo`                    | <Icon kind="zoo" :sprites="sprites"/>            |
+
+
+### Ranking
+
+Points of interest are sourced from OpenStreetMap, and the `wikidata` tag is joined with the [QRank](https://github.com/brawer/wikidata-qrank) dataset to determine their prominence. The determined QRank is then used to move prominent POIs to lower zoom levels.
+
+For example, the station [Alexanderplatz](https://www.openstreetmap.org/node/3908141014) has Wikidata ID [Q698497](https://www.wikidata.org/wiki/Q698497) and a QRank of 37850. A neighboring station, [Jannowitzbrücke](https://www.openstreetmap.org/node/21487225) has Wikidata ID [Q1647893](https://www.wikidata.org/wiki/Q1647893) and a QRank of 11176. Alexanderplatz station thus appears at a lower zoom level than other stations.
+
+To view or modify the mapping from QRank thresholds to zoom levels, see [Pois.java](https://github.com/protomaps/basemaps/blob/main/tiles/src/main/java/com/protomaps/basemap/layers/Pois.java).
 
 ## roads
 

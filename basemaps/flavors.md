@@ -60,6 +60,8 @@ let flavor = {...namedFlavor("light"),buildings:"red"}
 
 ## Sprites
 
+### Default Sprites
+
 Each of the five default Flavors has an associated spritesheet. Sprites are necessary for displaying:
 
 * Townspots - circles for cities and named places at low zoom levels.
@@ -77,8 +79,30 @@ make # builds all 5 default flavor spritesheets in dist/
 ./target/release/spritegen refill.svg flavors/custom.json dist/custom
 ```
 
+### Custom Sprites
+
 A custom spritesheet (`custom.json`, `custom.png`, `custom@2x.json`, `custom@2x.png`) can be referenced from a [MapLibre JSON style](maplibre):
 
 ```js
 sprite: "https://example.com/assets/custom"
+```
+
+Sprites can be replaced with custom sets by assigning new icons to the same sprite names. Sprite names can be found in [light.json](https://github.com/protomaps/basemaps/blob/main/sprites/flavors/light.json):
+
+```csv
+townspot
+capital
+arrow
+generic_shield-1char
+...
+```
+
+To generate a spritesheet with a sigle icon based on the CC0 [Maki icon set created by Mapbox](https://github.com/mapbox/maki), use the [spreet](https://github.com/flother/spreet) command line tool:
+
+```sh
+mv airport.svg icons/aerodrome.svg
+spreet icons output
+# creates output.json and output.png
+spreet --retina icons output@2x
+#creates output@2x.json and output@2x.png, used on HiDPI displays
 ```
