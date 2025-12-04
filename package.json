@@ -7,9 +7,9 @@
     "prettier-check": "prettier --check components"
   },
   "dependencies": {
-    "maplibre-gl": "^4.7.1",
-    "pmtiles": "^4.1.0",
-    "@protomaps/basemaps": "5.0.0",
+    "maplibre-gl": "^5.13.0",
+    "pmtiles": "^4.3.0",
+    "@protomaps/basemaps": "5.7.0",
     "vitepress": "^1.6.4"
   },
   "devDependencies": {
