@@ -83,4 +83,5 @@ The Python `pmtiles` package should be considered beta status.
 These libraries are maintained by other individuals and organizations.
 
 * Dart: [pub.dev/packages/pmtiles](https://pub.dev/packages/pmtiles)
+* Kotlin/JVM: [MinotaurG/pmtiles-kotlin](https://github.com/MinotaurG/pmtiles-kotlin)
 * Rust: [stadiamaps/pmtiles-rs](https://github.com/stadiamaps/pmtiles-rs)
