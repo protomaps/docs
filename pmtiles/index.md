@@ -83,5 +83,6 @@ The Python `pmtiles` package should be considered beta status.
 These libraries are maintained by other individuals and organizations.
 
 * Dart: [pub.dev/packages/pmtiles](https://pub.dev/packages/pmtiles)
+* JavaScript (MapLibre): [honua-io/honua-sdk-js](https://github.com/honua-io/honua-sdk-js) - typed geospatial SDK whose MapLibre runtime auto-registers the `pmtiles://` protocol and exposes archive metadata. [Example](https://honua-io.github.io/honua-sdk-js/gallery.html#sample-pmtiles-static)
 * Kotlin/JVM: [MinotaurG/pmtiles-kotlin](https://github.com/MinotaurG/pmtiles-kotlin)
 * Rust: [stadiamaps/pmtiles-rs](https://github.com/stadiamaps/pmtiles-rs)
