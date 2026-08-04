@@ -5,16 +5,29 @@ export default defineConfig({
   title: "Protomaps Docs",
   head: [
     ["link", { rel: "icon", type: "image/png", href: "/favicon.png" }],
-    ["link", { rel: "apple-touch-icon", type: "image/jpg", href:"https://protomaps.com//apple-touch-icon.jpg" }],
-    ["meta", { property: "og:image", content: "https://protomaps.com/docs_opengraph.jpg" }]
+    [
+      "link",
+      {
+        rel: "apple-touch-icon",
+        type: "image/jpg",
+        href: "https://protomaps.com//apple-touch-icon.jpg",
+      },
+    ],
+    [
+      "meta",
+      {
+        property: "og:image",
+        content: "https://protomaps.com/docs_opengraph.jpg",
+      },
+    ],
   ],
   description: "Technical Documentation for Protomaps",
   cleanUrls: true,
   markdown: {
     theme: {
-      light: 'github-light-high-contrast',
-      dark: 'github-dark-high-contrast'
-    }
+      light: "github-light-high-contrast",
+      dark: "github-dark-high-contrast",
+    },
   },
   themeConfig: {
     logo: "/logo.svg",
@@ -55,6 +68,11 @@ export default defineConfig({
           { text: "Leaflet", link: "/pmtiles/leaflet" },
           { text: "OpenLayers", link: "/pmtiles/openlayers" },
         ],
+      },
+      {
+        text: "PMTiles on mobile",
+        collapsed: true,
+        items: [{ text: "MapLibre GL", link: "/pmtiles/maplibre-mobile" }],
       },
       {
         text: "Accelerating PMTiles",
