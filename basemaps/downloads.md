@@ -22,7 +22,7 @@ The Version 4 Protomaps basemap daily build channel is available at [maps.protom
 
 [BLAKE3](https://github.com/BLAKE3-team/BLAKE3/releases/) hashes are provided for daily builds. Use `b3sum` to verify the integrity of your downloaded file.
 
-A mirror in the AWS `us-west-2` is available on [Source Cooperative (beta)](https://beta.source.coop) at the [protomaps/openstreetmap](https://beta.source.coop/repositories/protomaps/openstreetmap/) repository. This mirrors the most recent daily build only.
+A mirror in the AWS `us-west-2` is available on [Source Cooperative](https://source.coop/) at the [protomaps/openstreetmap](https://source.coop/protomaps/openstreetmap) repository. This mirrors an older build.
 
 ### Build History
 
